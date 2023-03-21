@@ -1,13 +1,6 @@
-import { Stack, useRouter } from "expo-router";
-import { observer } from "mobx-react";
-import { FlatList, ListRenderItem, Pressable, Text, View } from "react-native";
-import { FloatingButton } from "../../../components/FloatingButton";
-import { HabitViewModel } from "../habit-list-presenter";
-import {
-  useHabitListPresenter,
-  HabitListPresenterProvider,
-} from "./useHabitsListPresenter";
-import { tw } from "../../../theme/tailwind";
+import { Stack } from "expo-router";
+import { HabitsList } from "./HabitList";
+import { HabitListPresenterProvider } from "./useHabitsListPresenter";
 
 export const HabitListScreen = () => {
   return (
@@ -17,42 +10,3 @@ export const HabitListScreen = () => {
     </HabitListPresenterProvider>
   );
 };
-
-const HabitsList = observer(() => {
-  const router = useRouter();
-  const habitListPresenter = useHabitListPresenter();
-
-  const handleNewHabit = () => router.push("/habits/new");
-
-  const handleToggleHabitCompleted = (habitId: string) => {
-    habitListPresenter.toggleCompletedForSelectedDate(habitId);
-  };
-
-  const renderItem: ListRenderItem<HabitViewModel> = ({ item }) => {
-    return (
-      <Pressable onPress={() => handleToggleHabitCompleted(item.id)}>
-        <View style={tw`flex-row btn bg-warning-base`}>
-          <Text>{item.title}</Text>
-          <View>
-            {item.isCompletedForSelectedDate ? (
-              <Text style={tw`success text-`}>Completed</Text>
-            ) : (
-              <Text>Not completed</Text>
-            )}
-          </View>
-        </View>
-      </Pressable>
-    );
-  };
-
-  return (
-    <>
-      <FlatList
-        data={habitListPresenter.habits}
-        renderItem={renderItem}
-        contentInsetAdjustmentBehavior="automatic"
-      />
-      <FloatingButton onPress={handleNewHabit} />
-    </>
-  );
-});

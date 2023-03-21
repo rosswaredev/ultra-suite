@@ -1,6 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { ComponentProps } from "react";
+import { colors } from "../../src/theme/colors";
 
 const tabBarIcon =
   (name: ComponentProps<typeof MaterialCommunityIcons>["name"]) =>
@@ -14,11 +15,15 @@ export default function Home() {
         screenOptions={{
           headerShown: false,
           tabBarStyle: { paddingBottom: 3 },
+          tabBarInactiveTintColor: colors["base-400"],
         }}
       >
         <Tabs.Screen
           name="tasks"
-          options={{ title: "Tasks", tabBarIcon: tabBarIcon("check") }}
+          options={{
+            title: "Tasks",
+            tabBarIcon: tabBarIcon("check"),
+          }}
         />
         <Tabs.Screen
           name="habits"

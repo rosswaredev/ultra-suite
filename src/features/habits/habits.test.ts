@@ -13,10 +13,11 @@ it("should add a habit", () => {
 it("complete habit for today", () => {
   const habitStore = new HabitStore({});
   const habitListPresenter = new HabitListPresenter(habitStore);
-  const habitId = habitListPresenter.addHabit("test habit");
+  habitListPresenter.addHabit("test habit");
+  let habitViewModel = habitListPresenter.habits[0];
 
-  habitListPresenter.toggleCompletedForSelectedDate(habitId);
-  const habit = habitListPresenter.habits[0];
+  habitViewModel.toggleCompleted();
+  habitViewModel = habitListPresenter.habits[0];
 
-  expect(habit.isCompletedForSelectedDate).toBeTruthy();
+  expect(habitViewModel.isCompletedForSelectedDate).toBeTruthy();
 });

@@ -6,6 +6,7 @@ export type HabitViewModel = {
   id: string;
   title: string;
   isCompletedForSelectedDate: boolean;
+  toggleCompleted: () => void;
 };
 
 export class HabitListPresenter {
@@ -35,6 +36,7 @@ export class HabitListPresenter {
           completion.habitId === habit.id &&
           isSameDay(completion.date, this.selectedDate)
       ),
+      toggleCompleted: () => this.toggleCompletedForSelectedDate(habit.id),
     }));
   }
 }
