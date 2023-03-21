@@ -1596,6 +1596,18 @@
           "value": "{core.colors.slate.700}",
           "type": "color"
         },
+        "400": {
+          "value": "{core.colors.slate.600}",
+          "type": "color"
+        },
+        "500": {
+          "value": "{core.colors.slate.500}",
+          "type": "color"
+        },
+        "600": {
+          "value": "{core.colors.slate.400}",
+          "type": "color"
+        },
         "content": {
           "value": "{core.colors.slate.100}",
           "type": "color"
