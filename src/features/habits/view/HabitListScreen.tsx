@@ -29,7 +29,6 @@ const HabitsList = observer(() => {
   };
 
   const renderItem: ListRenderItem<HabitViewModel> = ({ item }) => {
-    console.log("item", item);
     return (
       <Pressable onPress={() => handleToggleHabitCompleted(item.id)}>
         <View style={tw`flex-row btn bg-warning-base`}>
