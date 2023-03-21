@@ -22,7 +22,7 @@ export const HabitsList = observer(() => {
         data={habitListPresenter.habits}
         renderItem={renderItem}
         contentInsetAdjustmentBehavior="automatic"
-        className="px-4"
+        className="px-4 pt-4"
         ItemSeparatorComponent={Separator}
       />
       <FloatingButton onPress={handleNewHabit} />
