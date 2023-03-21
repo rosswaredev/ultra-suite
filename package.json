@@ -4,7 +4,10 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "test": "vitest"
+    "test": "vitest",
+    "tokens": "yarn tokens:transform && yarn tokens:build",
+    "tokens:transform": "token-transformer ./src/theme/figma-tokens.json src/theme/tokens.resolved.json global,semantic,components",
+    "tokens:build": "style-dictionary build --config sd.config.js"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -35,7 +38,9 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
-    "@types/react-native": "^0.71.3"
+    "@types/react-native": "^0.71.3",
+    "style-dictionary": "^3.7.2",
+    "token-transformer": "^0.0.30"
   },
   "resolutions": {
     "metro": "^0.73.7",

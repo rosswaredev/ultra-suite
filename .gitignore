@@ -12,3 +12,5 @@ web-build/
 
 # macOS
 .DS_Store
+src/theme/tokens.resolved.json
+src/theme/tokens.json

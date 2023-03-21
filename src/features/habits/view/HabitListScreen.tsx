@@ -32,11 +32,11 @@ const HabitsList = observer(() => {
     console.log("item", item);
     return (
       <Pressable onPress={() => handleToggleHabitCompleted(item.id)}>
-        <View style={tw`flex-row btn bg-success`}>
+        <View style={tw`flex-row btn bg-warning-base`}>
           <Text>{item.title}</Text>
           <View>
             {item.isCompletedForSelectedDate ? (
-              <Text style={tw`success`}>Completed</Text>
+              <Text style={tw`success text-`}>Completed</Text>
             ) : (
               <Text>Not completed</Text>
             )}
