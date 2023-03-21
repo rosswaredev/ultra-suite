@@ -33,7 +33,7 @@ const Checkbox = ({ isChecked, onToggle }: CheckboxProps) => (
     style={{
       backgroundColor: colors[isChecked ? "primary-base" : "transparent"],
     }}
-    className="h-6 w-6 border-primary-base border-2 rounded-full justify-center items-center"
+    className="h-6 w-6 border-primary-base/25 border-2 rounded-full justify-center items-center"
     onPress={onToggle}
   >
     {isChecked ? (

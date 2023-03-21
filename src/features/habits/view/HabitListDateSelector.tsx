@@ -11,6 +11,7 @@ import { default as cn } from "classnames";
 import { useHabitListPresenter } from "./useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
 import * as Haptics from "expo-haptics";
+import { useCallback } from "react";
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -29,15 +30,14 @@ export const HabitListDateSelector = observer(() => {
     isSelected: isSameDay(item, new Date(habitListPresenter.selectedDate)),
   }));
 
-  const handleViewableItemsChanged = ({
-    changed,
-  }: {
-    changed: ViewToken[];
-  }) => {
-    const hasAnItemBecomeHidden = changed.some((token) => !token.isViewable);
-    if (hasAnItemBecomeHidden)
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-  };
+  const handleViewableItemsChanged = useCallback(
+    ({ changed }: { changed: ViewToken[] }) => {
+      const hasAnItemBecomeHidden = changed.some((token) => !token.isViewable);
+      if (hasAnItemBecomeHidden)
+        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    },
+    []
+  );
 
   const renderItem: ListRenderItem<DateSelectorItem> = ({ item }) => {
     const isToday = isSameDay(item.date, new Date());
