@@ -34,8 +34,8 @@ export const HabitListDateSelector = observer(() => {
   }: {
     changed: ViewToken[];
   }) => {
-    const hasItemBecomeVisible = changed.some((token) => token.isViewable);
-    if (hasItemBecomeVisible)
+    const hasAnItemBecomeHidden = changed.some((token) => !token.isViewable);
+    if (hasAnItemBecomeHidden)
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
   };
 
@@ -82,6 +82,10 @@ export const HabitListDateSelector = observer(() => {
       ListHeaderComponent={() => <View className="w-4" />}
       ItemSeparatorComponent={() => <View className="w-1" />}
       onViewableItemsChanged={handleViewableItemsChanged}
+      viewabilityConfig={{
+        itemVisiblePercentThreshold: 0.4,
+        waitForInteraction: true,
+      }}
       horizontal
       inverted
       showsHorizontalScrollIndicator={false}
