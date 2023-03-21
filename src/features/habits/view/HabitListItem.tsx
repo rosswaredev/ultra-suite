@@ -3,6 +3,7 @@ import * as Haptics from "expo-haptics";
 import { observer } from "mobx-react";
 import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../../../theme/colors";
+import { slop } from "../../../utils/slop";
 import { HabitViewModel } from "../habit-list-presenter";
 
 type HabitListItemProps = {
@@ -35,6 +36,7 @@ const Checkbox = ({ isChecked, onToggle }: CheckboxProps) => (
     }}
     className="h-6 w-6 border-primary-base/25 border-2 rounded-full justify-center items-center"
     onPress={onToggle}
+    hitSlop={slop.all(20)}
   >
     {isChecked ? (
       <MaterialCommunityIcons

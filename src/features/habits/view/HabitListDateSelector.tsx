@@ -12,6 +12,7 @@ import { useHabitListPresenter } from "./useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
 import * as Haptics from "expo-haptics";
 import { useCallback } from "react";
+import { slop } from "../../../utils/slop";
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -52,6 +53,7 @@ export const HabitListDateSelector = observer(() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
           habitListPresenter.selectDate(item.date);
         }}
+        hitSlop={slop.all(20)}
       >
         <Text
           className={cn("text-base-content font-bold text-center", {
