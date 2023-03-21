@@ -6,6 +6,7 @@ export default function HabitsLayout() {
     <Stack
       screenOptions={{
         headerLargeTitle: true,
+        headerLargeTitleShadowVisible: false,
         headerStyle: { backgroundColor: colors["base-100"] },
       }}
     />
