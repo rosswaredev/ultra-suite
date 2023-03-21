@@ -17,7 +17,7 @@ export default function Home() {
         options={{ title: "Tasks", tabBarIcon: tabBarIcon("check") }}
       />
       <Tabs.Screen
-        name="habits/index"
+        name="habits"
         options={{ title: "Habits", tabBarIcon: tabBarIcon("playlist-check") }}
       />
       <Tabs.Screen
