@@ -30,6 +30,7 @@ class HabitStore extends Model({
   addHabit(title: string) {
     const habit = new Habit({ title });
     this.habits.push(habit);
+    console.log("habit added", habit.id);
     return habit.id;
   }
 
@@ -54,5 +55,8 @@ class HabitStore extends Model({
 }
 
 const habitStore = new HabitStore({});
+
+habitStore.addHabit("buy milk");
+habitStore.addHabit("buy eggs");
 
 export { HabitStore, habitStore };

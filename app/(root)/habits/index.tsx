@@ -1,11 +1,5 @@
-import { Stack } from "expo-router";
-import { ScrollView, Text } from "react-native";
+import { HabitListScreen } from "../../../src/features/habits/view/HabitListScreen";
 
 export default function HabitsHome() {
-  return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Stack.Screen options={{ title: "Habits" }} />
-      <Text>Habits Home</Text>
-    </ScrollView>
-  );
+  return <HabitListScreen />;
 }

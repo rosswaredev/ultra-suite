@@ -2,7 +2,7 @@
   "compilerOptions": {
     "experimentalDecorators": true, // mobx-keystone
     "useDefineForClassFields": true, // mobx
-    "types": ["vitest/globals"]
+    "types": ["vitest/globals"],
   },
   "extends": "expo/tsconfig.base"
 }

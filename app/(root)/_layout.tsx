@@ -1,32 +1,11 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { ComponentProps } from "react";
-import { View } from "react-native";
 
 const tabBarIcon =
   (name: ComponentProps<typeof MaterialCommunityIcons>["name"]) =>
   ({ size, color }) =>
     <MaterialCommunityIcons name={name} size={size} color={color} />;
-
-const FloatingButton = () => {
-  return (
-    <View
-      style={{
-        position: "absolute",
-        backgroundColor: "black",
-        borderRadius: 999,
-        width: 48,
-        height: 48,
-        right: 16,
-        bottom: 16 + 48,
-        alignItems: "center",
-        justifyContent: "center",
-      }}
-    >
-      <MaterialCommunityIcons name="plus" size={24} color="white" />
-    </View>
-  );
-};
 
 export default function Home() {
   return (
@@ -57,7 +36,6 @@ export default function Home() {
           options={{ title: "Calendar", tabBarIcon: tabBarIcon("calendar") }}
         />
       </Tabs>
-      <FloatingButton />
     </>
   );
 }
