@@ -4,6 +4,8 @@ import {
   HabitListPresenter,
 } from "../habit-list-presenter";
 
+const habitListPresenter = createHabitListPresenter();
+
 const HabitListPresenterContext = createContext<HabitListPresenter | null>(
   null
 );
@@ -11,8 +13,6 @@ const HabitListPresenterContext = createContext<HabitListPresenter | null>(
 export const HabitListPresenterProvider = ({
   children,
 }: PropsWithChildren<unknown>) => {
-  const habitListPresenter = useRef(createHabitListPresenter()).current;
-
   return (
     <HabitListPresenterContext.Provider value={habitListPresenter}>
       {children}

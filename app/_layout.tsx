@@ -5,8 +5,8 @@ import {
 } from "@react-navigation/native";
 import { Stack } from "expo-router";
 import { useColorScheme } from "react-native";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 import { colors } from "../src/theme/colors";
-// import { tw } from "../src/theme/tailwind";
 
 const lightTheme: typeof DefaultTheme = {
   ...DefaultTheme,
@@ -35,7 +35,9 @@ export default function App() {
 
   return (
     <ThemeProvider value={theme}>
-      <Stack screenOptions={{ headerShown: false }} />
+      <SafeAreaProvider>
+        <Stack screenOptions={{ headerShown: false }} />
+      </SafeAreaProvider>
     </ThemeProvider>
   );
 }

@@ -1,28 +1,37 @@
 import { useRouter } from "expo-router";
+import { makeAutoObservable } from "mobx";
 import { observer } from "mobx-react";
-import { ListRenderItem, FlatList, View } from "react-native";
+import { useRef } from "react";
+import { ListRenderItem, FlatList, View, Text, Button } from "react-native";
 import { FloatingButton } from "../../../components/FloatingButton";
 import { HabitViewModel } from "../habit-list-presenter";
 import { HabitListItem } from "./HabitListItem";
 import { useHabitListPresenter } from "./useHabitsListPresenter";
 
-export const HabitsList = observer(() => {
+type HabitsListProps = {
+  header?: React.ReactElement;
+};
+
+export const HabitsList = observer(({ header }: HabitsListProps) => {
   const router = useRouter();
   const habitListPresenter = useHabitListPresenter();
 
   const handleNewHabit = () => router.push("/habits/new");
 
   const renderItem: ListRenderItem<HabitViewModel> = ({ item }) => (
-    <HabitListItem item={item} />
+    <View className="px-4">
+      <HabitListItem item={item} />
+    </View>
   );
 
   return (
     <>
       <FlatList
         data={habitListPresenter.habits}
+        keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentInsetAdjustmentBehavior="automatic"
-        className="px-4"
+        ListHeaderComponent={header}
         ItemSeparatorComponent={Separator}
       />
       <FloatingButton onPress={handleNewHabit} />

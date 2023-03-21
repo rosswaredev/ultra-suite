@@ -10,10 +10,10 @@ export type HabitViewModel = {
 };
 
 export class HabitListPresenter {
-  selectedDate: Date = new Date();
+  selectedDate = new Date().toISOString();
 
   constructor(private habitStore: HabitStore) {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {}, { autoBind: true });
   }
 
   addHabit(title: string) {
@@ -23,8 +23,12 @@ export class HabitListPresenter {
   toggleCompletedForSelectedDate(habitId: string) {
     this.habitStore.toggleHabitCompletedForSelectedDate(
       habitId,
-      this.selectedDate
+      new Date(this.selectedDate)
     );
+  }
+
+  selectDate(date: Date) {
+    this.selectedDate = new Date(date).toISOString();
   }
 
   get habits(): HabitViewModel[] {
@@ -34,7 +38,7 @@ export class HabitListPresenter {
       isCompletedForSelectedDate: this.habitStore.completions.some(
         (completion) =>
           completion.habitId === habit.id &&
-          isSameDay(completion.date, this.selectedDate)
+          isSameDay(completion.date, new Date(this.selectedDate))
       ),
       toggleCompleted: () => this.toggleCompletedForSelectedDate(habit.id),
     }));
