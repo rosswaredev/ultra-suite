@@ -1,4 +1,4 @@
-import { NewHabitScreen } from "../../../src/features/habits/view/NewhabitScreen";
+import { NewHabitScreen } from "../../../src/features/habits/view/NewHabitScreen";
 
 export default function NewHabit() {
   return <NewHabitScreen />;

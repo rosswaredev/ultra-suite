@@ -7,6 +7,7 @@ import {
   useHabitListPresenter,
   HabitListPresenterProvider,
 } from "./useHabitsListPresenter";
+import { tw } from "../../../theme/tailwind";
 
 export const HabitListScreen = () => {
   return (
@@ -31,11 +32,11 @@ const HabitsList = observer(() => {
     console.log("item", item);
     return (
       <Pressable onPress={() => handleToggleHabitCompleted(item.id)}>
-        <View style={{ flexDirection: "row" }}>
+        <View style={tw`flex-row btn bg-success`}>
           <Text>{item.title}</Text>
           <View>
             {item.isCompletedForSelectedDate ? (
-              <Text>Completed</Text>
+              <Text style={tw`success`}>Completed</Text>
             ) : (
               <Text>Not completed</Text>
             )}
@@ -44,8 +45,6 @@ const HabitsList = observer(() => {
       </Pressable>
     );
   };
-
-  console.log("habits", habitListPresenter.habits);
 
   return (
     <>
