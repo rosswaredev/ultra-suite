@@ -1,11 +1,12 @@
-// tailwind.config.js
-const { plugin } = require('twrnc');
-const { extractTailwindUtilitiesFromTokens } = require('./src/theme/utils');
+const  plugin = require( "tailwindcss/plugin");
 
-const tailwindUtilities = extractTailwindUtilitiesFromTokens();
+const { extractSemanticTailwindColorsFromTokens } = require( "./src/theme/utils");
+
+const semanticColors = extractSemanticTailwindColorsFromTokens();
 
 module.exports = {
-  plugins: [
-    plugin(({ addUtilities }) => addUtilities(tailwindUtilities)),
-  ],
+  content: ["index.js", "./{app,src}/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    colors: semanticColors
+  }
 };
