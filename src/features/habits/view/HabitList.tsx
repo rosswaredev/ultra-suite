@@ -28,6 +28,7 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
     <>
       <FlatList
         data={habitListPresenter.habits}
+        className="pt-4"
         keyExtractor={(item) => item.id}
         renderItem={renderItem}
         contentInsetAdjustmentBehavior="automatic"

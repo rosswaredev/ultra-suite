@@ -1,6 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as Haptics from "expo-haptics";
 import { observer } from "mobx-react";
-import { Pressable, View, Text, TouchableOpacity } from "react-native";
+import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../../../theme/colors";
 import { HabitViewModel } from "../habit-list-presenter";
 
@@ -13,7 +14,12 @@ export const HabitListItem = observer(({ item }: HabitListItemProps) => (
     <Text className="text-base-content">{item.title}</Text>
     <Checkbox
       isChecked={item.isCompletedForSelectedDate}
-      onToggle={item.toggleCompleted}
+      onToggle={() => {
+        item.isCompletedForSelectedDate
+          ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+          : Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        item.toggleCompleted();
+      }}
     />
   </View>
 ));

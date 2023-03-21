@@ -12,6 +12,7 @@ export const HabitListHeader = () => {
           Habits
         </Text>
         <HabitListDateSelector />
+        <View className="bg-base-300" style={{ height: 0.5 }} />
       </View>
     </HabitListPresenterProvider>
   );

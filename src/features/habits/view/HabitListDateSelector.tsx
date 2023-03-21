@@ -5,10 +5,12 @@ import {
   FlatList,
   ListRenderItem,
   TouchableOpacity,
+  ViewToken,
 } from "react-native";
 import { default as cn } from "classnames";
 import { useHabitListPresenter } from "./useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
+import * as Haptics from "expo-haptics";
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -27,6 +29,16 @@ export const HabitListDateSelector = observer(() => {
     isSelected: isSameDay(item, new Date(habitListPresenter.selectedDate)),
   }));
 
+  const handleViewableItemsChanged = ({
+    changed,
+  }: {
+    changed: ViewToken[];
+  }) => {
+    const hasItemBecomeVisible = changed.some((token) => token.isViewable);
+    if (hasItemBecomeVisible)
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+  };
+
   const renderItem: ListRenderItem<DateSelectorItem> = ({ item }) => {
     const isToday = isSameDay(item.date, new Date());
     return (
@@ -36,7 +48,10 @@ export const HabitListDateSelector = observer(() => {
           item.isSelected ? "border-accent-base" : "border-base-200",
           item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
         )}
-        onPress={() => habitListPresenter.selectDate(item.date)}
+        onPress={() => {
+          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+          habitListPresenter.selectDate(item.date);
+        }}
       >
         <Text
           className={cn("text-base-content font-bold text-center", {
@@ -63,8 +78,10 @@ export const HabitListDateSelector = observer(() => {
       className="mb-2"
       data={days}
       renderItem={renderItem}
+      keyExtractor={(item) => item.date.toISOString()}
       ListHeaderComponent={() => <View className="w-4" />}
       ItemSeparatorComponent={() => <View className="w-1" />}
+      onViewableItemsChanged={handleViewableItemsChanged}
       horizontal
       inverted
       showsHorizontalScrollIndicator={false}

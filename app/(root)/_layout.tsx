@@ -14,7 +14,6 @@ export default function Home() {
       <Tabs
         screenOptions={{
           headerShown: false,
-          tabBarStyle: { paddingBottom: 3 },
           tabBarInactiveTintColor: colors["base-400"],
         }}
       >
