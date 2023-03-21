@@ -28,18 +28,30 @@ export const HabitListDateSelector = observer(() => {
   }));
 
   const renderItem: ListRenderItem<DateSelectorItem> = ({ item }) => {
+    const isToday = isSameDay(item.date, new Date());
     return (
       <TouchableOpacity
         className={cn(
-          "p-2 rounded-lg border-2",
-          item.isSelected ? "border-primary-base" : "border-base-100"
+          "w-11 py-2 rounded-lg border-2",
+          item.isSelected ? "border-accent-base" : "border-base-200",
+          item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
         )}
         onPress={() => habitListPresenter.selectDate(item.date)}
       >
-        <Text className="text-base-content font-bold text-center">
+        <Text
+          className={cn("text-base-content font-bold text-center", {
+            "text-base-100": item.isSelected && isToday,
+            "text-accent-base": !item.isSelected && isToday,
+          })}
+        >
           {format(item.date, "d")}
         </Text>
-        <Text className="text-base-content">
+        <Text
+          className={cn("text-base-content text-center", {
+            "text-base-100": item.isSelected && isToday,
+            "text-accent-base": !item.isSelected && isToday,
+          })}
+        >
           {format(item.date, "EEE").toUpperCase()}
         </Text>
       </TouchableOpacity>
@@ -52,6 +64,7 @@ export const HabitListDateSelector = observer(() => {
       data={days}
       renderItem={renderItem}
       ListHeaderComponent={() => <View className="w-4" />}
+      ItemSeparatorComponent={() => <View className="w-1" />}
       horizontal
       inverted
       showsHorizontalScrollIndicator={false}
