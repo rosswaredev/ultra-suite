@@ -1,13 +1,5 @@
-import { Link } from 'expo-router';
-import { View } from 'react-native';
+import { Redirect } from "expo-router";
 
 export default function AppHome() {
-  return (
-    <View style={{ paddingTop: 200 }}>
-      <Link href="_sitemap">Sitemap</Link>
-      <Link href="/tasks">Tasks</Link>
-      <Link href="_sitemap">Sitemap</Link>
-      <Link href="_sitemap">Sitemap</Link>
-    </View>
-  );
+  return <Redirect href="/tasks" />;
 }

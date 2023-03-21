@@ -26,6 +26,7 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@iconify/react": "^4.1.0",
     "@types/react-native": "^0.71.3"
   },
   "resolutions": {
