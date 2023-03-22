@@ -53,7 +53,7 @@ export const HabitListDateSelector = observer(() => {
           Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
           habitListPresenter.selectDate(item.date);
         }}
-        hitSlop={slop.all(20)}
+        hitSlop={slop.all(5)}
       >
         <Text
           className={cn("text-base-content font-bold text-center", {

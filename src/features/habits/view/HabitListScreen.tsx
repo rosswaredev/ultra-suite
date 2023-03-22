@@ -6,12 +6,7 @@ import { HabitListPresenterProvider } from "./useHabitsListPresenter";
 export const HabitListScreen = () => {
   return (
     <HabitListPresenterProvider>
-      <Stack.Screen
-        options={{
-          title: "Habits",
-          header: () => <HabitListHeader />,
-        }}
-      />
+      <Stack.Screen options={{ header: () => <HabitListHeader /> }} />
       <HabitsList />
     </HabitListPresenterProvider>
   );
