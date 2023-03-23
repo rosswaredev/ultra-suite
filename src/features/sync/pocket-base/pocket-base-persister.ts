@@ -1,20 +1,22 @@
-import { pb } from "./pocket-base";
+import { PatchAddOperation } from "mobx-keystone";
+import { Collection, collection, create, Schema } from "pocketbase-ts";
+import { z, ZodSchema } from "zod";
 import { Persister } from "../persist-changes";
+import { pb } from "./pocket-base";
 
-export class PocketBasePersister implements Persister {
-  constructor(public collectionName: string) {}
+export class PocketBasePersister<T extends z.ZodTypeAny> implements Persister {
+  constructor(private collectionName: string, private schema: T) {}
 
-  async add(data: any) {
-    console.log(`Persisting to ${this.collectionName}`, data.id.length, data);
-    await pb
-      .collection(this.collectionName)
-      .create({ id: data.id, title: data.title });
+  async add(data: unknown) {
+    try {
+      const parsedData = this.schema.parse(data);
+      await pb.collection(this.collectionName).create(parsedData);
+    } catch (err) {
+      console.error(
+        `Error parsing data on add for "${this.collectionName}": ${err}`
+      );
+    }
+
     return;
   }
-}
-
-// const baseLocalId = nanoid()
-let localId = 0;
-function generateModelId() {
-  return localId.toString(36) + "-" + baseLocalId;
 }

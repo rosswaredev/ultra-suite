@@ -7,7 +7,9 @@
     "test": "vitest",
     "tokens": "yarn tokens:transform && yarn tokens:build",
     "tokens:transform": "token-transformer ./src/theme/figma-tokens.json src/theme/tokens.resolved.json global,semantic,components",
-    "tokens:build": "style-dictionary build --config sd.config.js"
+    "tokens:build": "style-dictionary build --config sd.config.js",
+    "typegen": "yarn typegen:pocket-base",
+    "typegen:pocket-base": "pocketbase-typegen -d ./db/pocket-base/pb_data/data.db -o ./src/features/sync/pocket-base/types.ts"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
@@ -30,6 +32,7 @@
     "nanoid": "^4.0.1",
     "nativewind": "^2.0.11",
     "pocketbase": "^0.12.1",
+    "pocketbase-ts": "^0.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-native": "0.71.3",
@@ -42,12 +45,14 @@
     "react-native-web": "~0.18.7",
     "typescript": "^4.9.4",
     "vite": "^4.2.1",
-    "vitest": "^0.29.7"
+    "vitest": "^0.29.7",
+    "zod": "^3.21.4"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
     "@types/react-native": "^0.71.3",
+    "pocketbase-typegen": "^1.1.7",
     "style-dictionary": "^3.7.2",
     "tailwindcss": "^3.2.7",
     "token-transformer": "^0.0.30"

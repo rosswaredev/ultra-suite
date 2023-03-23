@@ -61,6 +61,4 @@ const habitStore = new HabitStore({});
 habitStore.addHabit("buy milk");
 habitStore.addHabit("buy eggs");
 
-persistChanges(habitStore, new PocketBasePersister("habits"));
-
 export { HabitStore, habitStore };
