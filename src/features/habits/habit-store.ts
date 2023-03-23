@@ -9,6 +9,8 @@ import {
   prop,
   timestampToDateTransform,
 } from "mobx-keystone";
+import { persistChanges } from "../sync/persist-changes";
+import { PocketBasePersister } from "../sync/pocket-base/pocket-base-persister";
 
 @model("app/Habit")
 export class Habit extends Model({
@@ -58,5 +60,7 @@ const habitStore = new HabitStore({});
 
 habitStore.addHabit("buy milk");
 habitStore.addHabit("buy eggs");
+
+persistChanges(habitStore, new PocketBasePersister("habits"));
 
 export { HabitStore, habitStore };
