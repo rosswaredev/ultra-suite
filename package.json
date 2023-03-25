@@ -9,7 +9,8 @@
     "tokens:transform": "token-transformer ./src/theme/figma-tokens.json src/theme/tokens.resolved.json global,semantic,components",
     "tokens:build": "style-dictionary build --config sd.config.js",
     "typegen": "yarn typegen:pocket-base",
-    "typegen:pocket-base": "pocketbase-typegen -d ./db/pocket-base/pb_data/data.db -o ./src/features/sync/pocket-base/types.ts"
+    "typegen:pocket-base": "pocketbase-typegen -d ./db/pocket-base/pb_data/data.db -o ./src/features/sync/pocket-base/types.ts",
+    "pb:serve": "./db/pocket-base/pocketbase-linux serve"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",

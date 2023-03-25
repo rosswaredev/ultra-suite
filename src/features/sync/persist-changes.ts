@@ -1,26 +1,27 @@
-import { Model, onPatches, onSnapshot, PatchAddOperation } from "mobx-keystone";
+import { ActionTrackingResult, Model, onActionMiddleware, onPatches, onSnapshot, PatchAddOperation, serializeActionCall } from "mobx-keystone";
 import { Habit } from "../habits/habit-store";
+import { pocketBaseClient } from "./pocket-base/pocket-base";
 
 export interface Persister {
-  add: (data: object) => Promise<void>;
+  onAction: (data: object) => Promise<void>;
 }
 
-export const persistChanges = <T>(
+export const persistActions = <T>(
   subtreeRoot: object,
-  persister: Persister
+  // persister: Persister
 ) => {
-  onPatches(subtreeRoot, (patches) => {
-    if (patches.length === 0) return;
+  onActionMiddleware(subtreeRoot, {
+    onFinish(actionCall, actionContext, ret) {
+      if (ret.result === ActionTrackingResult.Return) {
+        const serializedActionCall = serializeActionCall(actionCall, subtreeRoot);
+        console.log({ actionCall, actionContext, serializedActionCall })
 
-    if (patches.length > 1) {
-      console.warn("TODO: Handle multiple patches");
-      return;
-    }
 
-    const [patch] = patches;
+        pocketBaseClient.collection('events').create({ event: serializedActionCall }).catch(err => `Error saving event to pb: ${serializedActionCall}: ${err}`)
 
-    if (patch.op === "add") {
-      persister.add(patch.value).catch((err) => console.log(err));
+      } else if (ret.result === ActionTrackingResult.Throw) {
+        console.log('action error ', ret.value);
+      }
     }
   });
 };

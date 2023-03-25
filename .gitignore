@@ -16,3 +16,4 @@ src/theme/tokens.resolved.json
 src/theme/tokens.json
 
 db/pocket-base/pb_data
+yarn-error.log

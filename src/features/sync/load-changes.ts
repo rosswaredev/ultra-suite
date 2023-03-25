@@ -2,7 +2,7 @@ import { applyPatches, applySnapshot, Patch } from "mobx-keystone";
 
 export interface Loader {
   collectionName: string;
-  onPatch: (onPatchListener: (patches: Patch[]) => void) => void;
+  onSubscribe: (onSubscribeListener: (data: object) => void) => void;
 }
 
 const OP_MAP = {
@@ -12,8 +12,8 @@ const OP_MAP = {
 };
 
 export const loadChanges = (obj: object, loader: Loader) => {
-  loader.onPatch((patches) => {
-    console.log({ patches });
-    applyPatches(obj, patches);
+  loader.onSubscribe((data) => {
+    console.log({ data });
+    // applyPatches(obj, patches);
   });
 };
