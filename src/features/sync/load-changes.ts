@@ -1,8 +1,8 @@
-import { applyPatches, applySnapshot, Patch } from "mobx-keystone";
+import { applySerializedActionAndSyncNewModelIds, SerializedActionCallWithModelIdOverrides, } from "mobx-keystone";
 
 export interface Loader {
   collectionName: string;
-  onSubscribe: (onSubscribeListener: (data: object) => void) => void;
+  onSubscribe: (onSubscribeListener: (data: SerializedActionCallWithModelIdOverrides) => void) => void;
 }
 
 const OP_MAP = {
@@ -11,9 +11,10 @@ const OP_MAP = {
   delete: "remove",
 };
 
-export const loadChanges = (obj: object, loader: Loader) => {
+export const loadChanges = (subtreeRoot: object, loader: Loader) => {
   loader.onSubscribe((data) => {
     console.log({ data });
-    // applyPatches(obj, patches);
+    
+    applySerializedActionAndSyncNewModelIds(subtreeRoot, data);
   });
 };

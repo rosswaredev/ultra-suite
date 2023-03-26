@@ -5,4 +5,4 @@ import eventsource from "react-native-sse";
 global.EventSource = eventsource;
 
 const url = 'http://localhost:8090'
-export const pocketBaseClient = new PocketBase('https://ultra-suite.pockethost.io');
+export const pocketBaseClient = new PocketBase('https://rosswaredev-legendary-meme-qrg5r779p75h47p-8090.preview.app.github.dev/');

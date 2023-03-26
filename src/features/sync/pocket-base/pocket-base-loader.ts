@@ -12,10 +12,10 @@ type X = CollectionResponses[keyof CollectionResponses];
 export class PocketBaseLoader<T, K extends z.ZodTypeAny> implements Loader {
   constructor(public collectionName: string, private schema: K) {}
 
-  onSubscribe(onSubscribeListener: (patch: object) => void) {
+  onSubscribe(onSubscribeListener: (patch) => void) {
     try {
       pocketBaseClient.collection("events").subscribe("*", (recordSubscription) => {
-        onSubscribeListener(recordSubscription.record)
+        onSubscribeListener(recordSubscription.record.event)
       });
 
     } catch (err) {
