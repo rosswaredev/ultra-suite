@@ -15,7 +15,8 @@ export class PocketBaseLoader<T, K extends z.ZodTypeAny> implements Loader {
   onSubscribe(onSubscribeListener: (patch) => void) {
     try {
       pocketBaseClient.collection("events").subscribe("*", (recordSubscription) => {
-        onSubscribeListener(recordSubscription.record.event)
+        const { version, event } = recordSubscription.record;
+        onSubscribeListener({ version, event })
       });
 
     } catch (err) {

@@ -3,15 +3,23 @@ import { nanoid } from "nanoid";
 import { PocketBaseLoader } from "./features/sync/pocket-base/pocket-base-loader";
 
 import "react-native-get-random-values";
-import { Habit, habitStore } from "./features/habits/habit-store";
-import { persistActions } from "./features/sync/persist-changes";
-import { PocketBasePersister } from "./features/sync/pocket-base/pocket-base-persister";
-import { loadChanges } from "./features/sync/load-changes";
-import { Collections, HabitsRecord } from "./features/sync/pocket-base/types";
-import { Schema, Type } from "pocketbase-ts";
 import { z } from "zod";
+import { HabitStore } from "./features/habits/habit-store";
+import { loadChanges } from "./features/sync/load-changes";
+import { persistActions } from "./features/sync/persist-changes";
+import { Collections } from "./features/sync/pocket-base/types";
+import { RootStore } from "./root-store";
 
 setGlobalConfig({ modelIdGenerator: () => nanoid(15) });
+
+
+const habitStore = new HabitStore({});
+
+export const rootStore = new RootStore({ habitStore })
+
+
+habitStore.addHabit("buy milk");
+habitStore.addHabit("buy eggs");
 
 const habitSchema = z.object({
   id: z.string(),
@@ -19,12 +27,12 @@ const habitSchema = z.object({
 });
 
 persistActions(
-  habitStore,
+  rootStore,
   // new PocketBasePersister(Collections.Habits, habitSchema)
 );
 
 
 loadChanges(
-  habitStore,
+  rootStore,
   new PocketBaseLoader(Collections.Habits, habitSchema)
 );
