@@ -5,6 +5,7 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { colors } from "../../../theme/colors";
 import { slop } from "../../../utils/slop";
 import { HabitViewModel } from "../habit-list-presenter";
+import { default as cn } from "classnames";
 
 type HabitListItemProps = {
   item: HabitViewModel;
@@ -16,9 +17,9 @@ export const HabitListItem = observer(({ item }: HabitListItemProps) => (
     <Checkbox
       isChecked={item.isCompletedForSelectedDate}
       onToggle={() => {
-        item.isCompletedForSelectedDate
-          ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-          : Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+        // item.isCompletedForSelectedDate
+        //   ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
+        //   : Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
         item.toggleCompleted();
       }}
     />
@@ -30,20 +31,21 @@ type CheckboxProps = {
   onToggle: () => void;
 };
 const Checkbox = ({ isChecked, onToggle }: CheckboxProps) => (
-  <TouchableOpacity
-    style={{
-      backgroundColor: colors[isChecked ? "primary-base" : "transparent"],
-    }}
-    className="h-6 w-6 border-primary-base/25 border-2 rounded-full justify-center items-center"
-    onPress={onToggle}
-    hitSlop={slop.all(20)}
-  >
-    {isChecked ? (
-      <MaterialCommunityIcons
-        name="check"
-        size={16}
-        color={colors["base-content"]}
-      />
-    ) : null}
+  <TouchableOpacity onPress={onToggle} hitSlop={slop.all(20)}>
+    <View
+      className={cn(
+        isChecked ? "bg-primary-base" : "bg-base-200",
+        "h-6 w-6 border-2 rounded-full justify-center items-center",
+        isChecked ? "border-primary-base" : "border-primary-base/50"
+      )}
+    >
+      {isChecked ? (
+        <MaterialCommunityIcons
+          name="check"
+          size={16}
+          color={colors["base-content"]}
+        />
+      ) : null}
+    </View>
   </TouchableOpacity>
 );

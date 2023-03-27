@@ -34,14 +34,16 @@ export const HabitListDateSelector = observer(() => {
   const handleViewableItemsChanged = useCallback(
     ({ changed }: { changed: ViewToken[] }) => {
       const hasAnItemBecomeHidden = changed.some((token) => !token.isViewable);
-      if (hasAnItemBecomeHidden)
-        Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      // if (hasAnItemBecomeHidden)
+      //   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     },
     []
   );
 
   const renderItem: ListRenderItem<DateSelectorItem> = ({ item }) => {
     const isToday = isSameDay(item.date, new Date());
+
+    console.log({ isToday, sel: item.isSelected });
     return (
       <TouchableOpacity
         className={cn(
@@ -50,13 +52,14 @@ export const HabitListDateSelector = observer(() => {
           item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
         )}
         onPress={() => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+          // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
           habitListPresenter.selectDate(item.date);
         }}
         hitSlop={slop.all(5)}
       >
         <Text
-          className={cn("text-base-content font-bold text-center", {
+          className={cn("font-bold text-center", {
+            "text-base-content": !isToday,
             "text-base-100": item.isSelected && isToday,
             "text-accent-base": !item.isSelected && isToday,
           })}
@@ -64,7 +67,8 @@ export const HabitListDateSelector = observer(() => {
           {format(item.date, "d")}
         </Text>
         <Text
-          className={cn("text-base-content text-center", {
+          className={cn("text-center", {
+            "text-base-content": !isToday,
             "text-base-100": item.isSelected && isToday,
             "text-accent-base": !item.isSelected && isToday,
           })}

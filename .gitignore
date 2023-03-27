@@ -17,4 +17,5 @@ src/theme/tokens.json
 
 db/pocket-base/pb_data
 yarn-error.log
-app/output.css
+app/styles.css
+yarn-error.log

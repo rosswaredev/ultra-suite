@@ -10,10 +10,16 @@
     "tokens:build": "style-dictionary build --config sd.config.js",
     "typegen": "yarn typegen:pocket-base",
     "typegen:pocket-base": "pocketbase-typegen -d ./db/pocket-base/pb_data/data.db -o ./src/features/sync/pocket-base/types.ts",
-    "pb:serve": "./db/pocket-base/pocketbase serve"
+    "pb:serve": "./db/pocket-base/pocketbase serve",
+    "styles": "yarn styles:build && yarn styles:fix",
+    "styles:prepare": "./scripts/prepare-styles.sh",
+    "styles:build": "yarn tailwindcss -i ./src/theme/tailwind-input.css -o ./app/styles.css",
+    "styles:fix": "./scripts/fix-styles.sh",
+    "setup": "yarn typegen && yarn tokens && yarn styles"
   },
   "dependencies": {
     "@expo/vector-icons": "^13.0.0",
+    "@expo/webpack-config": "^18.0.1",
     "@react-navigation/native": "^6.1.6",
     "@types/react": "~18.0.27",
     "classnames": "^2.3.2",
