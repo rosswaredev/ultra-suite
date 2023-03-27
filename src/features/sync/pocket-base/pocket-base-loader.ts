@@ -1,4 +1,8 @@
-import { applySnapshot, Patch } from "mobx-keystone";
+import {
+  applySnapshot,
+  Patch,
+  SerializedActionCallWithModelIdOverrides,
+} from "mobx-keystone";
 import { pocketBaseClient } from "./pocket-base";
 
 import { Loader } from "../load-changes";
@@ -12,13 +16,19 @@ type X = CollectionResponses[keyof CollectionResponses];
 export class PocketBaseLoader<T, K extends z.ZodTypeAny> implements Loader {
   constructor(public collectionName: string, private schema: K) {}
 
-  onSubscribe(onSubscribeListener: (patch) => void) {
+  onSubscribe(
+    onSubscribeListener: (event: {
+      version: number;
+      action: SerializedActionCallWithModelIdOverrides;
+    }) => void
+  ) {
     try {
-      pocketBaseClient.collection("events").subscribe("*", (recordSubscription) => {
-        const { version, event } = recordSubscription.record;
-        onSubscribeListener({ version, event })
-      });
-
+      pocketBaseClient
+        .collection("events")
+        .subscribe("*", (recordSubscription) => {
+          const { version, action } = recordSubscription.record;
+          onSubscribeListener({ version, action });
+        });
     } catch (err) {
       console.error(
         `Error parsing data on add for "${this.collectionName}": ${err}`

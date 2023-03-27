@@ -1,10 +1,25 @@
-import { applyAction, applySerializedActionAndSyncNewModelIds, applySerializedActionAndTrackNewModelIds, deserializeActionCall, isModel, Patch, resolvePath, SerializedActionCallWithModelIdOverrides, WritablePath, } from "mobx-keystone";
+import {
+  applyAction,
+  applySerializedActionAndSyncNewModelIds,
+  applySerializedActionAndTrackNewModelIds,
+  deserializeActionCall,
+  isModel,
+  Patch,
+  resolvePath,
+  SerializedActionCallWithModelIdOverrides,
+  WritablePath,
+} from "mobx-keystone";
 import { isObject } from "mobx/dist/internal";
 import { eventLog } from "./event-log";
 
 export interface Loader {
   collectionName: string;
-  onSubscribe: (onSubscribeListener: (args: { version: number, event: SerializedActionCallWithModelIdOverrides }) => void) => void;
+  onSubscribe: (
+    onSubscribeListener: (event: {
+      version: number;
+      action: SerializedActionCallWithModelIdOverrides;
+    }) => void
+  ) => void;
 }
 
 const OP_MAP = {
@@ -14,18 +29,15 @@ const OP_MAP = {
 };
 
 export const loadChanges = (subtreeRoot: object, loader: Loader) => {
-  loader.onSubscribe(({ version, event }) => {
-
-
-
-    console.log({ version, event });
+  loader.onSubscribe(({ version, action }) => {
+    console.log({ version, action });
 
     if (version === eventLog.version) {
-      const deserializedAction = deserializeActionCall(event);
-      event.modelIdOverrides
-      applyAction(subtreeRoot, deserializedAction);
-      applySerializedActionAndSyncNewModelIds(subtreeRoot, event);
-      const x = applySerializedActionAndTrackNewModelIds(subtreeRoot, event);
+      // const deserializedAction = deserializeActionCall(action);
+      // event.modelIdOverrides;
+      // applyAction(subtreeRoot, deserializedAction);
+      applySerializedActionAndSyncNewModelIds(subtreeRoot, action);
+      // const x = applySerializedActionAndTrackNewModelIds(subtreeRoot, action);
       // x.serializedActionCall.
     }
   });

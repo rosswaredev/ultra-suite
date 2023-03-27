@@ -12,11 +12,9 @@ import { RootStore } from "./root-store";
 
 setGlobalConfig({ modelIdGenerator: () => nanoid(15) });
 
-
 const habitStore = new HabitStore({});
 
-export const rootStore = new RootStore({ habitStore })
-
+export const rootStore = new RootStore({ habitStore });
 
 habitStore.addHabit("buy milk");
 habitStore.addHabit("buy eggs");
@@ -27,12 +25,8 @@ const habitSchema = z.object({
 });
 
 persistActions(
-  rootStore,
+  rootStore
   // new PocketBasePersister(Collections.Habits, habitSchema)
 );
 
-
-loadChanges(
-  rootStore,
-  new PocketBaseLoader(Collections.Habits, habitSchema)
-);
+loadChanges(rootStore, new PocketBaseLoader(Collections.Habits, habitSchema));

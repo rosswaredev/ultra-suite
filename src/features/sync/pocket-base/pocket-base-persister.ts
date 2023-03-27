@@ -2,12 +2,12 @@ import { PatchAddOperation } from "mobx-keystone";
 import { Collection, collection, create, Schema } from "pocketbase-ts";
 import { z, ZodSchema } from "zod";
 import { Persister } from "../persist-changes";
-import { pb } from "./pocket-base";
+// import { pb } from "./pocket-base";
 
 export class PocketBasePersister<T extends z.ZodTypeAny> implements Persister {
   constructor(private collectionName: string, private schema: T) {}
 
-  async add(data: unknown) {
+  async onAction(data: unknown) {
     try {
       const parsedData = this.schema.parse(data);
       await pb.collection(this.collectionName).create(parsedData);

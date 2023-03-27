@@ -32,9 +32,9 @@ export type AuthSystemFields<T = never> = {
 
 // Record types for each collection
 
-export type EventsRecord<Tevent = unknown> = {
-	number?: number
-	event: null | Tevent
+export type EventsRecord<Taction = unknown> = {
+	action: null | Taction
+	version?: number
 }
 
 export type HabitsRecord = {
@@ -47,7 +47,7 @@ export type UsersRecord = {
 }
 
 // Response types include system fields and match responses from the PocketBase API
-export type EventsResponse<Tevent = unknown> = EventsRecord<Tevent> & BaseSystemFields
+export type EventsResponse<Taction = unknown> = EventsRecord<Taction> & BaseSystemFields
 export type HabitsResponse = HabitsRecord & BaseSystemFields
 export type UsersResponse = UsersRecord & AuthSystemFields
 
