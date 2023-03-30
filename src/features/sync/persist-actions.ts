@@ -4,14 +4,18 @@ import {
   onActionMiddleware,
   serializeActionCall,
 } from "mobx-keystone";
-import { eventLog } from "./event-log";
-import { SyncEvent } from "./load-changes";
+import { EventLog } from "./event-log";
+import { SyncEvent } from "./load-actions";
 
 export interface Persister {
   persist: (event: SyncEvent) => Promise<void>;
 }
 
-export const persistActions = (subtreeRoot: object, persister: Persister) => {
+export const persistActions = (
+  subtreeRoot: object,
+  eventLog: EventLog,
+  persister: Persister
+) => {
   onActionMiddleware(subtreeRoot, {
     onStart(actionCall) {
       const serializedActionCall = serializeActionCall(actionCall, subtreeRoot);
@@ -35,8 +39,6 @@ export const persistActions = (subtreeRoot: object, persister: Persister) => {
       if (ret.result === ActionTrackingResult.Return) {
         persister.persist({ version: eventLog.version, action: ret.value });
         eventLog.bumpVersion();
-      } else if (ret.result === ActionTrackingResult.Throw) {
-        console.log("action error ", ret.value);
       }
     },
   });

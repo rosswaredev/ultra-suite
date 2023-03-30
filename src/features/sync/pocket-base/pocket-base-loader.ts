@@ -1,4 +1,4 @@
-import { Loader, SyncEvent } from "../load-changes";
+import { Loader, SyncEvent } from "../load-actions";
 import { pocketBaseClient } from "./pocket-base";
 
 export class PocketBaseLoader implements Loader {

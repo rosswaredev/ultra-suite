@@ -1,5 +1,5 @@
-import { SyncEvent } from "../load-changes";
-import { Persister } from "../persist-changes";
+import { SyncEvent } from "../load-actions";
+import { Persister } from "../persist-actions";
 import { pocketBaseClient } from "./pocket-base";
 
 export class PocketBasePersister implements Persister {

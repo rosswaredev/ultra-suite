@@ -2,7 +2,7 @@ import {
   applySerializedActionAndSyncNewModelIds,
   SerializedActionCallWithModelIdOverrides,
 } from "mobx-keystone";
-import { eventLog } from "./event-log";
+import { EventLog } from "./event-log";
 
 export type SyncEvent = {
   version: number;
@@ -18,7 +18,11 @@ export interface Loader {
   onSubscribe: (onSubscribeListener: (event: SyncEvent) => void) => void;
 }
 
-export const loadChanges = (subtreeRoot: object, loader: Loader) => {
+export const loadActions = (
+  subtreeRoot: object,
+  eventLog: EventLog,
+  loader: Loader
+) => {
   loader.loadFromVersion(eventLog.version, (events) => {
     eventLog.setIsReplaying(true);
 

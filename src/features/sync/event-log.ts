@@ -10,5 +10,3 @@ export class EventLog extends Model({
     this.version++;
   }
 }
-
-export const eventLog = new EventLog({});
