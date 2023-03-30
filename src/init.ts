@@ -9,6 +9,7 @@ import { loadChanges } from "./features/sync/load-changes";
 import { persistActions } from "./features/sync/persist-changes";
 import { Collections } from "./features/sync/pocket-base/types";
 import { RootStore } from "./root-store";
+import { PocketBasePersister } from "./features/sync/pocket-base/pocket-base-persister";
 
 setGlobalConfig({ modelIdGenerator: () => nanoid(15) });
 
@@ -21,6 +22,5 @@ const habitSchema = z.object({
   title: z.string(),
 });
 
-persistActions(rootStore);
-
+persistActions(rootStore, new PocketBasePersister());
 loadChanges(rootStore, new PocketBaseLoader(Collections.Habits, habitSchema));

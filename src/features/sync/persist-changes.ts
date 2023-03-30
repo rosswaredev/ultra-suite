@@ -5,15 +5,15 @@ import {
   serializeActionCall,
 } from "mobx-keystone";
 import { eventLog } from "./event-log";
-import { pocketBaseClient } from "./pocket-base/pocket-base";
+import { SyncEvent } from "./load-changes";
 
 export interface Persister {
-  onAction: (data: object) => Promise<void>;
+  persist: (event: SyncEvent) => Promise<void>;
 }
 
-export const persistActions = <T>(subtreeRoot: object) => {
+export const persistActions = (subtreeRoot: object, persister: Persister) => {
   onActionMiddleware(subtreeRoot, {
-    onStart(actionCall, actionContext) {
+    onStart(actionCall) {
       const serializedActionCall = serializeActionCall(actionCall, subtreeRoot);
       const { serializedActionCall: serializedActionCallWithModelIdOverrides } =
         applySerializedActionAndTrackNewModelIds(
@@ -27,20 +27,13 @@ export const persistActions = <T>(subtreeRoot: object) => {
       };
     },
 
-    onFinish(actionCall, actionContext, ret) {
+    onFinish(actionCall, _, ret) {
       if (actionCall.actionName === "$$applyPatches") return;
 
       if (eventLog.isReplaying) return;
 
       if (ret.result === ActionTrackingResult.Return) {
-        const version = eventLog.version;
-
-        pocketBaseClient
-          .collection("events")
-          .create({ version, action: ret.value })
-          .catch((err) => `Error saving event to pb: ${ret.value}: ${err}`);
-
-        // On success
+        persister.persist({ version: eventLog.version, action: ret.value });
         eventLog.bumpVersion();
       } else if (ret.result === ActionTrackingResult.Throw) {
         console.log("action error ", ret.value);

@@ -1,22 +1,13 @@
-import { PatchAddOperation } from "mobx-keystone";
-import { Collection, collection, create, Schema } from "pocketbase-ts";
-import { z, ZodSchema } from "zod";
+import { SyncEvent } from "../load-changes";
 import { Persister } from "../persist-changes";
-// import { pb } from "./pocket-base";
+import { pocketBaseClient } from "./pocket-base";
 
-export class PocketBasePersister<T extends z.ZodTypeAny> implements Persister {
-  constructor(private collectionName: string, private schema: T) {}
-
-  async onAction(data: unknown) {
+export class PocketBasePersister implements Persister {
+  async persist(event: SyncEvent) {
     try {
-      const parsedData = this.schema.parse(data);
-      await pb.collection(this.collectionName).create(parsedData);
+      await pocketBaseClient.collection("events").create(event);
     } catch (err) {
-      console.error(
-        `Error parsing data on add for "${this.collectionName}": ${err}`
-      );
+      console.error(`Error saving event to pb: ${event.action}: ${err}`);
     }
-
-    return;
   }
 }

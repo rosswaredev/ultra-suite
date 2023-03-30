@@ -4,20 +4,18 @@ import {
 } from "mobx-keystone";
 import { eventLog } from "./event-log";
 
-export type LoadEvent = {
+export type SyncEvent = {
   version: number;
   action: SerializedActionCallWithModelIdOverrides;
 };
 
 export interface Loader {
-  collectionName: string;
-
   loadFromVersion: (
     version: number,
-    onLoad: (events: LoadEvent[]) => void
+    onLoad: (events: SyncEvent[]) => void
   ) => Promise<void>;
 
-  onSubscribe: (onSubscribeListener: (event: LoadEvent) => void) => void;
+  onSubscribe: (onSubscribeListener: (event: SyncEvent) => void) => void;
 }
 
 export const loadChanges = (subtreeRoot: object, loader: Loader) => {

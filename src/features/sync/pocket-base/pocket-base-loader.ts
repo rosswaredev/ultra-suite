@@ -1,15 +1,10 @@
-import { SerializedActionCallWithModelIdOverrides } from "mobx-keystone";
+import { Loader, SyncEvent } from "../load-changes";
 import { pocketBaseClient } from "./pocket-base";
 
-import { z } from "zod";
-import { Loader, LoadEvent } from "../load-changes";
-
-export class PocketBaseLoader<T, K extends z.ZodTypeAny> implements Loader {
-  constructor(public collectionName: string, private schema: K) {}
-
+export class PocketBaseLoader implements Loader {
   async loadFromVersion(
     version: number,
-    onLoad: (events: LoadEvent[]) => void
+    onLoad: (events: SyncEvent[]) => void
   ) {
     try {
       const records = await pocketBaseClient.collection("events").getFullList({
@@ -27,15 +22,7 @@ export class PocketBaseLoader<T, K extends z.ZodTypeAny> implements Loader {
     }
   }
 
-  // loadFromVersion(version: number, onLoad: (events: ) => void) {
-  // }
-
-  onSubscribe(
-    onSubscribeListener: (event: {
-      version: number;
-      action: SerializedActionCallWithModelIdOverrides;
-    }) => void
-  ) {
+  onSubscribe(onSubscribeListener: (event: SyncEvent) => void) {
     try {
       pocketBaseClient
         .collection("events")
@@ -44,10 +31,7 @@ export class PocketBaseLoader<T, K extends z.ZodTypeAny> implements Loader {
           onSubscribeListener({ version, action });
         });
     } catch (err) {
-      console.error(
-        `Error parsing data on add for "${this.collectionName}": ${err}`
-      );
+      console.error(`Error subscribing to events: ${err}`);
     }
-    return;
   }
 }
