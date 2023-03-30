@@ -2,7 +2,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
 import { observer } from "mobx-react";
 import { Text, TouchableOpacity, View } from "react-native";
-import { colors } from "../../../theme/colors";
+import colors from "../../../theme/colors.json";
 import { slop } from "../../../utils/slop";
 import { HabitViewModel } from "../habit-list-presenter";
 import { default as cn } from "classnames";

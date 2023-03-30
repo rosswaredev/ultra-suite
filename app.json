@@ -7,6 +7,15 @@
       "bundler": "metro"
     },
     "name": "ultra-suite",
-    "slug": "ultra-suite"
+    "slug": "ultra-suite",
+    "extra": {
+      "eas": {
+        "projectId": "884b97df-a784-4ec7-8f59-1de4333ed3d4"
+      }
+    },
+    "owner": "rosswaredev",
+    "ios": {
+      "bundleIdentifier": "com.rosswaredev.ultrasuite"
+    }
   }
 }

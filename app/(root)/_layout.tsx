@@ -1,7 +1,7 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { ComponentProps } from "react";
-import { colors } from "../../src/theme/colors";
+import colors from "../../src/theme/colors.json";
 
 const tabBarIcon =
   (name: ComponentProps<typeof MaterialCommunityIcons>["name"]) =>

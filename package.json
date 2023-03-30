@@ -5,8 +5,9 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "test": "vitest",
-    "tokens": "yarn tokens:transform && yarn tokens:build",
+    "tokens": "yarn tokens:transform && yarn tokens:colors && yarn tokens:build",
     "tokens:transform": "token-transformer ./src/theme/figma-tokens.json src/theme/tokens.resolved.json global,semantic,components",
+    "tokens:colors": "node ./scripts/colors.js",
     "tokens:build": "style-dictionary build --config sd.config.js",
     "typegen": "yarn typegen:pocket-base",
     "typegen:pocket-base": "pocketbase-typegen -d ./db/pocket-base/pb_data/data.db -o ./src/features/sync/pocket-base/types.ts",
@@ -15,7 +16,9 @@
     "styles:prepare": "./scripts/prepare-styles.sh",
     "styles:build": "yarn tailwindcss -i ./src/theme/tailwind-input.css -o ./app/styles.css",
     "styles:fix": "./scripts/fix-styles.sh",
-    "setup": "yarn typegen && yarn tokens && yarn styles"
+    "setup": "yarn typegen && yarn tokens && yarn styles",
+    "build": "yarn build:preview:ios",
+    "build:preview:ios": "eas build --profile preview --platform ios"
   },
   "dependencies": {
     "@expo/config-plugins": "~6.0.0",

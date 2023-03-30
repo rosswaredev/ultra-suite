@@ -12,7 +12,6 @@ import {
   HabitListPresenterProvider,
   useHabitListPresenter,
 } from "./useHabitsListPresenter";
-import colors from "tailwindcss/colors";
 
 export const NewHabitScreen = () => {
   return (

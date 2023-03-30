@@ -6,7 +6,7 @@ import {
 import { Stack } from "expo-router";
 import { useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
-import { colors } from "../src/theme/colors";
+import colors from "../src/theme/colors.json";
 
 const lightTheme: typeof DefaultTheme = {
   ...DefaultTheme,

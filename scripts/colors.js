@@ -1,4 +1,5 @@
-const tokensJson = require("./tokens.json");
+const fs = require("fs");
+const tokensJson = require("../src/theme/tokens.json");
 
 const { semantic } = tokensJson;
 const semanticTokenGroups = Object.entries(semantic);
@@ -27,4 +28,7 @@ const colors = semanticTokenGroups.reduce(
   { transparent: "transparent" }
 );
 
-module.exports = { colors };
+fs.writeFile("./src/theme/colors.json", JSON.stringify(colors), (err) => {
+  if (err) throw err;
+  console.log("The file has been saved!");
+});
