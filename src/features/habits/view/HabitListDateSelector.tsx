@@ -42,8 +42,6 @@ export const HabitListDateSelector = observer(() => {
 
   const renderItem: ListRenderItem<DateSelectorItem> = ({ item }) => {
     const isToday = isSameDay(item.date, new Date());
-
-    console.log({ isToday, sel: item.isSelected });
     return (
       <TouchableOpacity
         className={cn(

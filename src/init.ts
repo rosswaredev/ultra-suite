@@ -16,17 +16,11 @@ const habitStore = new HabitStore({});
 
 export const rootStore = new RootStore({ habitStore });
 
-habitStore.addHabit("buy milk");
-habitStore.addHabit("buy eggs");
-
 const habitSchema = z.object({
   id: z.string(),
   title: z.string(),
 });
 
-persistActions(
-  rootStore
-  // new PocketBasePersister(Collections.Habits, habitSchema)
-);
+persistActions(rootStore);
 
 loadChanges(rootStore, new PocketBaseLoader(Collections.Habits, habitSchema));
