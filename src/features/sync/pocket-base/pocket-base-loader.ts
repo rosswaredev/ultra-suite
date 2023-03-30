@@ -2,7 +2,7 @@ import { Loader, SyncEvent } from "../load-actions";
 import { pocketBaseClient } from "./pocket-base";
 
 export class PocketBaseLoader implements Loader {
-  async loadFromVersion(
+  async loadActionsFromVersion(
     version: number,
     onLoad: (events: SyncEvent[]) => void
   ) {
@@ -22,7 +22,7 @@ export class PocketBaseLoader implements Loader {
     }
   }
 
-  onSubscribe(onSubscribeListener: (event: SyncEvent) => void) {
+  streamActions(onSubscribeListener: (event: SyncEvent) => void) {
     try {
       pocketBaseClient
         .collection("events")

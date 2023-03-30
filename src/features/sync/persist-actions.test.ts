@@ -1,29 +1,8 @@
-import {
-  applyPatches,
-  Model,
-  model,
-  modelAction,
-  Patch,
-  prop,
-} from "mobx-keystone";
+import { applyPatches, Patch } from "mobx-keystone";
 import { EventLog } from "./event-log";
 import { SyncEvent } from "./load-actions";
 import { persistActions, Persister } from "./persist-actions";
-
-@model("test/TestModel")
-class TestModel extends Model({
-  count: prop<number>(),
-}) {
-  @modelAction
-  increment() {
-    this.count += 1;
-  }
-
-  @modelAction
-  oops() {
-    throw new Error("oops");
-  }
-}
+import { TestModel } from "./test-model";
 
 class TestPersister implements Persister {
   events: SyncEvent[] = [];

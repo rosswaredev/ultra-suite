@@ -13,7 +13,6 @@ import { EventLog } from "./features/sync/event-log";
 setGlobalConfig({ modelIdGenerator: () => nanoid(15) });
 
 const habitStore = new HabitStore({});
-
 export const rootStore = new RootStore({ habitStore });
 const eventLog = new EventLog({ version: 0 });
 

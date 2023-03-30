@@ -10,12 +10,12 @@ export type SyncEvent = {
 };
 
 export interface Loader {
-  loadFromVersion: (
+  loadActionsFromVersion: (
     version: number,
-    onLoad: (events: SyncEvent[]) => void
+    onLoadAction: (events: SyncEvent[]) => void
   ) => Promise<void>;
 
-  onSubscribe: (onSubscribeListener: (event: SyncEvent) => void) => void;
+  streamActions: (onLoadAction: (event: SyncEvent) => void) => void;
 }
 
 export const loadActions = (
@@ -23,7 +23,7 @@ export const loadActions = (
   eventLog: EventLog,
   loader: Loader
 ) => {
-  loader.loadFromVersion(eventLog.version, (events) => {
+  loader.loadActionsFromVersion(eventLog.version, (events) => {
     eventLog.setIsReplaying(true);
 
     for (const { version, action } of events) {
@@ -36,7 +36,7 @@ export const loadActions = (
     eventLog.setIsReplaying(false);
   });
 
-  loader.onSubscribe(({ version, action }) => {
+  loader.streamActions(({ version, action }) => {
     eventLog.setIsReplaying(true);
 
     if (version === eventLog.version) {
