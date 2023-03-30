@@ -14,8 +14,13 @@
       }
     },
     "owner": "rosswaredev",
+    "userInterfaceStyle": "automatic",
     "ios": {
-      "bundleIdentifier": "com.rosswaredev.ultrasuite"
+      "bundleIdentifier": "com.rosswaredev.ultrasuite",
+      "userInterfaceStyle": "automatic"
+    },
+    "android": {
+      "userInterfaceStyle": "automatic"
     }
   }
 }
