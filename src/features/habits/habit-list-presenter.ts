@@ -1,6 +1,5 @@
 import { isSameDay } from "date-fns";
 import { makeAutoObservable } from "mobx";
-import { rootStore } from "../../init";
 import { HabitStore } from "./habit-store";
 
 export type HabitViewModel = {
@@ -45,6 +44,3 @@ export class HabitListPresenter {
     }));
   }
 }
-
-export const createHabitListPresenter = () =>
-  new HabitListPresenter(rootStore.habitStore);

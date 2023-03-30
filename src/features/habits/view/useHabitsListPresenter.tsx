@@ -1,10 +1,6 @@
 import { createContext, useContext, useRef, PropsWithChildren } from "react";
-import {
-  createHabitListPresenter,
-  HabitListPresenter,
-} from "../habit-list-presenter";
-
-const habitListPresenter = createHabitListPresenter();
+import { rootStore } from "../../../init";
+import { HabitListPresenter } from "../habit-list-presenter";
 
 const HabitListPresenterContext = createContext<HabitListPresenter | null>(
   null
@@ -13,6 +9,10 @@ const HabitListPresenterContext = createContext<HabitListPresenter | null>(
 export const HabitListPresenterProvider = ({
   children,
 }: PropsWithChildren<unknown>) => {
+  const habitListPresenter = useRef(
+    new HabitListPresenter(rootStore.habitStore)
+  ).current;
+
   return (
     <HabitListPresenterContext.Provider value={habitListPresenter}>
       {children}
