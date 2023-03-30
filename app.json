@@ -1,5 +1,7 @@
 {
   "expo": {
+    "privacy": "public",
+    "icon": "./assets/icon.png",
     "scheme": "acme",
     "web": {
       "bundler": "metro"
