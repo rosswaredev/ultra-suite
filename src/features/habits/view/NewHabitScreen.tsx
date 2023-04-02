@@ -40,7 +40,7 @@ const NewHabitForm = () => {
   };
 
   return (
-    <ScrollView className="px-4" contentInsetAdjustmentBehavior="automatic">
+    <ScrollView className="px-4" contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled">
       <Text className="text-base-content text-lg font-semibold mb-1">
         Title
       </Text>
@@ -49,6 +49,8 @@ const NewHabitForm = () => {
         placeholder={NEW_HABIT_PLACEHOLDER}
         onChangeText={handleNewHabitTextChange}
         className="text-base-content text-md bg-base-200 py-4 px-3 rounded-lg mb-2"
+        autoFocus
+        onSubmitEditing={handleAddHabit}
       />
       <View className="items-end">
         <Pressable
