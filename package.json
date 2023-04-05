@@ -12,6 +12,7 @@
     "typegen": "yarn typegen:pocket-base",
     "typegen:pocket-base": "pocketbase-typegen -d ./db/pocket-base/pb_data/data.db -o ./src/features/sync/pocket-base/types.ts",
     "pb:serve": "./db/pocket-base/pocketbase serve",
+    "pb:clean": "node ./scripts/clean-pocket-base.js",
     "styles": "yarn styles:build && yarn styles:fix",
     "styles:prepare": "./scripts/prepare-styles.sh",
     "styles:build": "yarn tailwindcss -i ./src/theme/tailwind-input.css -o ./app/styles.css",
