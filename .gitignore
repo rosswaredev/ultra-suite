@@ -19,3 +19,4 @@ db/pocket-base/pb_data
 yarn-error.log
 app/styles.css
 yarn-error.log
+.env

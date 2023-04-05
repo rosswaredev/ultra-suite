@@ -6,20 +6,14 @@ export class PocketBaseLoader implements Loader {
     version: number,
     onLoad: (events: SyncEvent[]) => void
   ) {
-    try {
-      const records = await pocketBaseClient.collection("events").getFullList({
-        filter: `version >= ${version}`,
-      });
-      const events = records.map(({ version, action }) => ({
-        version,
-        action,
-      }));
-      onLoad(events);
-    } catch (err) {
-      console.error(
-        `Error fetching new events for version "${version}": ${err}`
-      );
-    }
+    const records = await pocketBaseClient.collection("events").getFullList({
+      filter: `version >= ${version}`,
+    });
+    const events = records.map(({ version, action }) => ({
+      version,
+      action,
+    }));
+    onLoad(events);
   }
 
   streamActions(onSubscribeListener: (event: SyncEvent) => void) {

@@ -5,4 +5,5 @@ import eventsource from "react-native-sse";
 global.EventSource = eventsource;
 
 const url = process.env.POCKETBASE_URL ?? "http://127.0.0.1:8090";
+console.log("PocketBase URL: ", url);
 export const pocketBaseClient = new PocketBase(url);

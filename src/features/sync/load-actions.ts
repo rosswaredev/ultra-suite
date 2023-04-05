@@ -26,9 +26,22 @@ export const loadActions = (
   loader.loadActionsFromVersion(eventLog.version, (events) => {
     eventLog.setIsReplaying(true);
 
+    console.log(`Replaying ${events.length} events`);
+
     for (const { version, action } of events) {
       if (version === eventLog.version) {
-        applySerializedActionAndSyncNewModelIds(subtreeRoot, action);
+        try {
+          console.log(`Applying action ${version}:`);
+          applySerializedActionAndSyncNewModelIds(subtreeRoot, action);
+        } catch (err) {
+          console.error(
+            `Error applying action ${version}:\n\n${JSON.stringify(
+              action,
+              null,
+              2
+            )}\n\n${err}`
+          );
+        }
         eventLog.bumpVersion();
       }
     }
