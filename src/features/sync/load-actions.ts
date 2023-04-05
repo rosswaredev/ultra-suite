@@ -1,8 +1,8 @@
 import {
   applySerializedActionAndSyncNewModelIds,
   SerializedActionCallWithModelIdOverrides,
-} from 'mobx-keystone';
-import { EventLog } from './event-log';
+} from "mobx-keystone";
+import { EventLog } from "./event-log";
 
 export type SyncEvent = {
   version: number;
@@ -25,8 +25,6 @@ export const loadActions = (
 ) => {
   loader.loadActionsFromVersion(eventLog.version, (events) => {
     eventLog.setIsReplaying(true);
-
-    console.log(`Replaying ${events.length} events`);
 
     for (const { version, action } of events) {
       if (version === eventLog.version) {
