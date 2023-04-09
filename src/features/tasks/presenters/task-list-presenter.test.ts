@@ -1,5 +1,5 @@
 import { TaskListPresenter } from './task-list-presenter';
-import { TaskStore } from './task-store';
+import { TaskStore } from '../task-store';
 
 const setup = () => {
   const taskStore = new TaskStore({});

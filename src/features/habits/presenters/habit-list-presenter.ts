@@ -16,8 +16,16 @@ export class HabitListPresenter {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  addHabit(title: string) {
-    return this.habitStore.addHabit(title);
+  addHabit(
+    title: string,
+    targetCompletionCount: number,
+    targetCompletionPeriod: number
+  ) {
+    return this.habitStore.addHabit(
+      title,
+      targetCompletionCount,
+      targetCompletionPeriod
+    );
   }
 
   toggleCompletedForSelectedDate(habitId: string) {

@@ -6,7 +6,7 @@ describe('HabitListPresenter', () => {
     const habitStore = new HabitStore({});
     const habitListPresenter = new HabitListPresenter(habitStore);
 
-    habitListPresenter.addHabit('test habit');
+    habitListPresenter.addHabit('test habit', 1, 7);
 
     expect(habitListPresenter.habits.length).toEqual(1);
   });
@@ -14,7 +14,7 @@ describe('HabitListPresenter', () => {
   it('complete habit for today', () => {
     const habitStore = new HabitStore({});
     const habitListPresenter = new HabitListPresenter(habitStore);
-    habitListPresenter.addHabit('test habit');
+    habitListPresenter.addHabit('test habit', 1, 7);
     let habitViewModel = habitListPresenter.habits[0];
 
     habitViewModel.toggleCompleted();
@@ -26,7 +26,7 @@ describe('HabitListPresenter', () => {
   it('when completion is for other day, habit is not completed for today', () => {
     const habitStore = new HabitStore({});
     const habitListPresenter = new HabitListPresenter(habitStore);
-    habitListPresenter.addHabit('test habit');
+    habitListPresenter.addHabit('test habit', 1, 7);
     let habitViewModel = habitListPresenter.habits[0];
 
     habitViewModel.toggleCompleted();
@@ -40,7 +40,7 @@ describe('HabitListPresenter', () => {
   it('when completion is for other day, habit is completed for that day', () => {
     const habitStore = new HabitStore({});
     const habitListPresenter = new HabitListPresenter(habitStore);
-    habitListPresenter.addHabit('test habit');
+    habitListPresenter.addHabit('test habit', 1, 7);
     habitListPresenter.selectDate(new Date(2020, 1, 1));
     let habitViewModel = habitListPresenter.habits[0];
 

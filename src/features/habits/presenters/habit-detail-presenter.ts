@@ -12,6 +12,14 @@ export class HabitDetailPresenter {
     return this.habit.title;
   }
 
+  get targetCount() {
+    return this.habit.targetCount;
+  }
+
+  get targetPeriod() {
+    return this.habit.targetPeriod;
+  }
+
   updateTitle(title: string) {
     this.habitStore.updateHabitTitle(this.habitId, title);
   }

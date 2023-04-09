@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { TaskStore } from './task-store';
+import { TaskStore } from '../task-store';
 
 export type TaskViewModel = {
   id: string;

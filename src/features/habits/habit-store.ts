@@ -1,7 +1,5 @@
 import { isSameDay } from 'date-fns';
 import {
-  getParent,
-  getRoot,
   idProp,
   model,
   Model,
@@ -14,6 +12,8 @@ import {
 export class Habit extends Model({
   id: idProp,
   title: prop<string>(),
+  targetCount: prop<number>(),
+  targetPeriod: prop<number>(),
 }) {}
 
 @model('app/HabitCompletion')
@@ -29,8 +29,12 @@ class HabitStore extends Model({
   completions: prop<HabitCompletion[]>(() => []),
 }) {
   @modelAction
-  addHabit(title: string) {
-    const habit = new Habit({ title });
+  addHabit(title: string, targetCount: number, targetPeriod: number) {
+    const habit = new Habit({
+      title,
+      targetCount,
+      targetPeriod,
+    });
     this.habits.push(habit);
     return habit.id;
   }

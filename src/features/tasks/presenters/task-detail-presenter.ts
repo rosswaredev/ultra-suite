@@ -1,5 +1,5 @@
 import { makeAutoObservable } from 'mobx';
-import { Task, TaskStore } from './task-store';
+import { Task, TaskStore } from '../task-store';
 
 export class TaskDetailPresenter {
   private task: Task;
