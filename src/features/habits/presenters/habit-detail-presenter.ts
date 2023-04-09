@@ -15,4 +15,8 @@ export class HabitDetailPresenter {
   updateTitle(title: string) {
     this.habitStore.updateHabitTitle(this.habitId, title);
   }
+
+  removeHabit() {
+    this.habitStore.removeHabit(this.habitId);
+  }
 }

@@ -36,6 +36,11 @@ class HabitStore extends Model({
   }
 
   @modelAction
+  removeHabit(habitId: string) {
+    this.habits = this.habits.filter((h) => h.id !== habitId);
+  }
+
+  @modelAction
   updateHabitTitle(habitId: string, title: string) {
     const habit = this.habits.find((h) => h.id === habitId);
     if (!habit) return;

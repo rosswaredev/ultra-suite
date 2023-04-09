@@ -5,7 +5,7 @@ const setup = () => {
   const habitStore = new HabitStore({});
   const habitId = habitStore.addHabit('test habit');
   const habitDetailPresenter = new HabitDetailPresenter(habitStore, habitId);
-  return { habitDetailPresenter };
+  return { habitDetailPresenter, habitStore, habitId };
 };
 
 describe('HabitDetailPresenter', () => {
@@ -15,5 +15,14 @@ describe('HabitDetailPresenter', () => {
     habitDetailPresenter.updateTitle('new title');
 
     expect(habitDetailPresenter.title).toBe('new title');
+  });
+
+  it('should remove habit', () => {
+    const { habitDetailPresenter, habitStore, habitId } = setup();
+
+    habitDetailPresenter.removeHabit();
+    const maybeHabit = habitStore.habits.find((task) => task.id === habitId);
+
+    expect(maybeHabit).toBeUndefined();
   });
 });
