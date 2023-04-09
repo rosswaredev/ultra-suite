@@ -1,20 +1,5 @@
-import { makeAutoObservable } from 'mobx';
+import { TaskDetailPresenter } from './task-detail-presenter';
 import { TaskStore } from './task-store';
-
-class TaskDetailPresenter {
-  constructor(private taskStore: TaskStore, private taskId: string) {
-    makeAutoObservable(this);
-  }
-
-  get title() {
-    return this.taskStore.tasks.find((task) => task.id === this.taskId)?.title;
-  }
-
-  get completed() {
-    return this.taskStore.tasks.find((task) => task.id === this.taskId)
-      ?.completed;
-  }
-}
 
 const setup = () => {
   const taskStore = new TaskStore({});

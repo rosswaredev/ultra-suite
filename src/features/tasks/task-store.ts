@@ -1,7 +1,7 @@
 import { Model, idProp, model, modelAction, prop } from 'mobx-keystone';
 
 @model('app/Task')
-class Task extends Model({
+export class Task extends Model({
   id: idProp,
   title: prop<string>(),
   completed: prop<boolean>(() => false),
