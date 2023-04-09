@@ -5,12 +5,7 @@ import { FloatingButton } from '../../../components/FloatingButton';
 import { observer } from 'mobx-react';
 import { TaskListItem } from './TaskListItem';
 import { Separator } from '../../../components/ListSeparator';
-
-export type TaskViewModel = {
-  id: string;
-  title: string;
-  completed: boolean;
-};
+import { TaskViewModel } from '../task-list-presenter';
 
 export const TaskList = observer(() => {
   const router = useRouter();
