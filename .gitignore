@@ -20,3 +20,4 @@ yarn-error.log
 app/styles.css
 yarn-error.log
 .env
+.vscode/settings.json
