@@ -45,8 +45,8 @@ export const HabitListDateSelector = observer(() => {
     return (
       <TouchableOpacity
         className={cn(
-          'w-11 py-2 rounded-lg border-2',
-          item.isSelected ? 'border-accent-base' : 'border-base-200',
+          'w-11 py-2 rounded-lg border',
+          item.isSelected ? 'border-accent-base' : 'border-base-300',
           item.isSelected && isToday ? 'bg-accent-base' : 'bg-base-200'
         )}
         onPress={() => {
@@ -79,7 +79,7 @@ export const HabitListDateSelector = observer(() => {
 
   return (
     <FlatList
-      className="mb-2"
+      className="mb-4"
       data={days}
       renderItem={renderItem}
       keyExtractor={(item) => item.date.toISOString()}
