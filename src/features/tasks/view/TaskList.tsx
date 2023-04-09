@@ -1,4 +1,4 @@
-import { View, FlatList, ListRenderItem } from 'react-native';
+import { View, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
 import { useTaskListPresenter } from './useTaskListPresenter';
 import { useRouter } from 'expo-router';
 import { FloatingButton } from '../../../components/FloatingButton';
@@ -13,10 +13,13 @@ export const TaskList = observer(() => {
 
   const handleNewTask = () => router.push('/tasks/new');
 
+  const handlePressTask = (taskId: string) => () =>
+    router.push(`/tasks/${taskId}`);
+
   const renderItem: ListRenderItem<TaskViewModel> = ({ item }) => (
-    <View className="px-4">
+    <TouchableOpacity className="px-4" onPress={handlePressTask(item.id)}>
       <TaskListItem item={item} />
-    </View>
+    </TouchableOpacity>
   );
 
   return (
