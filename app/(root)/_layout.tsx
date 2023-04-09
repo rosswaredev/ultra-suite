@@ -1,12 +1,12 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { Octicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { ComponentProps } from "react";
 import colors from "../../src/theme/colors.json";
 
 const tabBarIcon =
-  (name: ComponentProps<typeof MaterialCommunityIcons>["name"]) =>
+  (name: ComponentProps<typeof Octicons>["name"]) =>
   ({ size, color }) =>
-    <MaterialCommunityIcons name={name} size={size} color={color} />;
+    <Octicons name={name} size={size} color={color} />;
 
 export default function Home() {
   return (
@@ -28,12 +28,12 @@ export default function Home() {
           name="habits"
           options={{
             title: "Habits",
-            tabBarIcon: tabBarIcon("playlist-check"),
+            tabBarIcon: tabBarIcon("graph"),
           }}
         />
         <Tabs.Screen
           name="flows/index"
-          options={{ title: "Flows", tabBarIcon: tabBarIcon("playlist-play") }}
+          options={{ title: "Flows", tabBarIcon: tabBarIcon("list-ordered") }}
         />
         <Tabs.Screen
           name="calendar/index"
