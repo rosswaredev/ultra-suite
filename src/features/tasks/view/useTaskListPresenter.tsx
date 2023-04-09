@@ -1,12 +1,14 @@
-import { createContext, PropsWithChildren, useContext } from "react";
-import { rootStore } from "../../../init";
-import { TaskListPresenter } from "../task-list-presenter";
+import { createContext, PropsWithChildren, useContext } from 'react';
+import { rootStore } from '../../../init';
+import { TaskListPresenter } from '../task-list-presenter';
 
 const taskListPresenter = new TaskListPresenter(rootStore.taskStore);
 
-const TaskListPresenterContext = createContext<TaskListPresenter | null>(
-  null
-);
+// TODO Remove
+// taskListPresenter.addTask('Walk the cat');
+// taskListPresenter.addTask('Take out the trash');
+
+const TaskListPresenterContext = createContext<TaskListPresenter | null>(null);
 
 export const TaskListPresenterProvider = ({
   children,
@@ -23,7 +25,7 @@ export const useTaskListPresenter = () => {
 
   if (context === null) {
     throw new Error(
-      "useTaskListPresenter must be used within a TaskListPresenterProvider"
+      'useTaskListPresenter must be used within a TaskListPresenterProvider'
     );
   }
 
