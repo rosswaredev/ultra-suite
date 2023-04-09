@@ -1,11 +1,11 @@
 import { useRouter } from 'expo-router';
 import { observer } from 'mobx-react';
 import { FlatList, ListRenderItem, View } from 'react-native';
-import { FloatingButton } from '../../../components/FloatingButton';
-import { HabitViewModel } from '../habit-list-presenter';
+import { FloatingButton } from '../../../../components/FloatingButton';
+import { HabitViewModel } from '../../presenters/habit-list-presenter';
 import { HabitListItem } from './HabitListItem';
-import { useHabitListPresenter } from './useHabitsListPresenter';
-import { Separator } from '../../../components/ListSeparator';
+import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
+import { Separator } from '../../../../components/ListSeparator';
 
 type HabitsListProps = {
   header?: React.ReactElement;

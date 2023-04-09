@@ -1,11 +1,11 @@
 import { View, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
-import { useTaskListPresenter } from './useTaskListPresenter';
+import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
 import { useRouter } from 'expo-router';
-import { FloatingButton } from '../../../components/FloatingButton';
+import { FloatingButton } from '../../../../components/FloatingButton';
 import { observer } from 'mobx-react';
 import { TaskListItem } from './TaskListItem';
-import { Separator } from '../../../components/ListSeparator';
-import { TaskViewModel } from '../task-list-presenter';
+import { Separator } from '../../../../components/ListSeparator';
+import { TaskViewModel } from '../../presenters/task-list-presenter';
 
 export const TaskList = observer(() => {
   const router = useRouter();

@@ -1,12 +1,12 @@
-import { format, isToday } from "date-fns";
-import { observer } from "mobx-react-lite";
-import { View, Text } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { HabitListDateSelector } from "./HabitListDateSelector";
+import { format, isToday } from 'date-fns';
+import { observer } from 'mobx-react-lite';
+import { View, Text } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import { HabitListDateSelector } from './HabitListDateSelector';
 import {
   HabitListPresenterProvider,
   useHabitListPresenter,
-} from "./useHabitsListPresenter";
+} from '../hooks/useHabitsListPresenter';
 
 export const HabitListHeader = () => {
   const { top } = useSafeAreaInsets();
@@ -26,8 +26,8 @@ const HabitListHeaderTitle = observer(() => {
   const habitListPresenter = useHabitListPresenter();
 
   const title = isToday(new Date(habitListPresenter.selectedDate))
-    ? "Today"
-    : format(new Date(habitListPresenter.selectedDate), "MMM d");
+    ? 'Today'
+    : format(new Date(habitListPresenter.selectedDate), 'MMM d');
 
   return (
     <View className="flex-row items-center justify-center">

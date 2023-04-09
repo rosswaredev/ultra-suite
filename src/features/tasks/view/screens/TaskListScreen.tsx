@@ -1,6 +1,6 @@
 import { Stack } from 'expo-router';
-import { TaskList } from './TaskList';
-import { TaskListPresenterProvider } from './useTaskListPresenter';
+import { TaskList } from '../components/TaskList';
+import { TaskListPresenterProvider } from '../hooks/useTaskListPresenter';
 
 export const TaskListScreen = () => {
   return (

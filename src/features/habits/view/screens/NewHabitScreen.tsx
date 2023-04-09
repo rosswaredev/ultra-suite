@@ -1,5 +1,5 @@
-import { Stack, useRouter } from "expo-router";
-import React, { useState } from "react";
+import { Stack, useRouter } from 'expo-router';
+import React, { useState } from 'react';
 import {
   Button,
   Pressable,
@@ -7,27 +7,27 @@ import {
   Text,
   TextInput,
   View,
-} from "react-native";
+} from 'react-native';
 import {
   HabitListPresenterProvider,
   useHabitListPresenter,
-} from "./useHabitsListPresenter";
+} from '../hooks/useHabitsListPresenter';
 
 export const NewHabitScreen = () => {
   return (
     <HabitListPresenterProvider>
-      <Stack.Screen options={{ title: "New Habit" }} />
+      <Stack.Screen options={{ title: 'New Habit' }} />
       <NewHabitForm />
     </HabitListPresenterProvider>
   );
 };
 
-const NEW_HABIT_PLACEHOLDER = "New habit";
+const NEW_HABIT_PLACEHOLDER = 'New habit';
 
 const NewHabitForm = () => {
   const router = useRouter();
   const habitListPresenter = useHabitListPresenter();
-  const [newHabitTitle, setNewHabitTitle] = useState("");
+  const [newHabitTitle, setNewHabitTitle] = useState('');
 
   const handleNewHabitTextChange = (text: string) => setNewHabitTitle(text);
 
@@ -40,7 +40,11 @@ const NewHabitForm = () => {
   };
 
   return (
-    <ScrollView className="px-4" contentInsetAdjustmentBehavior="automatic" keyboardShouldPersistTaps="handled">
+    <ScrollView
+      className="px-4"
+      contentInsetAdjustmentBehavior="automatic"
+      keyboardShouldPersistTaps="handled"
+    >
       <Text className="text-base-content text-lg font-semibold mb-1">
         Title
       </Text>

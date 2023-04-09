@@ -1,6 +1,6 @@
-import { isSameDay } from "date-fns";
-import { makeAutoObservable } from "mobx";
-import { HabitStore } from "./habit-store";
+import { isSameDay } from 'date-fns';
+import { makeAutoObservable } from 'mobx';
+import { HabitStore } from '../habit-store';
 
 export type HabitViewModel = {
   id: string;

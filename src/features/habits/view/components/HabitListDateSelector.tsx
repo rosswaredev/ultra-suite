@@ -1,4 +1,4 @@
-import { format, isSameDay, sub } from "date-fns";
+import { format, isSameDay, sub } from 'date-fns';
 import {
   View,
   Text,
@@ -6,13 +6,13 @@ import {
   ListRenderItem,
   TouchableOpacity,
   ViewToken,
-} from "react-native";
-import { default as cn } from "classnames";
-import { useHabitListPresenter } from "./useHabitsListPresenter";
-import { observer } from "mobx-react-lite";
-import * as Haptics from "expo-haptics";
-import { useCallback } from "react";
-import { slop } from "../../../utils/slop";
+} from 'react-native';
+import { default as cn } from 'classnames';
+import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
+import { observer } from 'mobx-react-lite';
+import * as Haptics from 'expo-haptics';
+import { useCallback } from 'react';
+import { slop } from '../../../../utils/slop';
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -45,9 +45,9 @@ export const HabitListDateSelector = observer(() => {
     return (
       <TouchableOpacity
         className={cn(
-          "w-11 py-2 rounded-lg border-2",
-          item.isSelected ? "border-accent-base" : "border-base-200",
-          item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
+          'w-11 py-2 rounded-lg border-2',
+          item.isSelected ? 'border-accent-base' : 'border-base-200',
+          item.isSelected && isToday ? 'bg-accent-base' : 'bg-base-200'
         )}
         onPress={() => {
           // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
@@ -56,22 +56,22 @@ export const HabitListDateSelector = observer(() => {
         hitSlop={slop.all(5)}
       >
         <Text
-          className={cn("font-bold text-center", {
-            "text-base-content": !isToday,
-            "text-base-100": item.isSelected && isToday,
-            "text-accent-base": !item.isSelected && isToday,
+          className={cn('font-bold text-center', {
+            'text-base-content': !isToday,
+            'text-base-100': item.isSelected && isToday,
+            'text-accent-base': !item.isSelected && isToday,
           })}
         >
-          {format(item.date, "d")}
+          {format(item.date, 'd')}
         </Text>
         <Text
-          className={cn("text-center", {
-            "text-base-content": !isToday,
-            "text-base-100": item.isSelected && isToday,
-            "text-accent-base": !item.isSelected && isToday,
+          className={cn('text-center', {
+            'text-base-content': !isToday,
+            'text-base-100': item.isSelected && isToday,
+            'text-accent-base': !item.isSelected && isToday,
           })}
         >
-          {format(item.date, "EEE").toUpperCase()}
+          {format(item.date, 'EEE').toUpperCase()}
         </Text>
       </TouchableOpacity>
     );

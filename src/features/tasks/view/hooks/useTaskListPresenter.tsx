@@ -1,6 +1,6 @@
 import { createContext, PropsWithChildren, useContext } from 'react';
-import { rootStore } from '../../../init';
-import { TaskListPresenter } from '../task-list-presenter';
+import { rootStore } from '../../../../init';
+import { TaskListPresenter } from '../../task-list-presenter';
 
 const taskListPresenter = new TaskListPresenter(rootStore.taskStore);
 

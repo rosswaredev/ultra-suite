@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react';
 import { Text, View } from 'react-native';
-import { Checkbox } from '../../../components/Checkbox';
-import { HabitViewModel } from '../habit-list-presenter';
-import { ListItem } from '../../../components/ListItem';
+import { Checkbox } from '../../../../components/Checkbox';
+import { HabitViewModel } from '../../presenters/habit-list-presenter';
+import { ListItem } from '../../../../components/ListItem';
 
 type HabitListItemProps = {
   item: HabitViewModel;
