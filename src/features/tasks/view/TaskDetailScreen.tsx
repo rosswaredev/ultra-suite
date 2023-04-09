@@ -1,12 +1,28 @@
-import { useSearchParams } from 'expo-router';
-import { Text, ScrollView } from 'react-native';
+import { Stack, useSearchParams } from 'expo-router';
+import { Text, ScrollView, View } from 'react-native';
+import { Checkbox } from '../../../components/Checkbox';
+import { useTaskDetailPresenter } from './useTaskDetailPresenter';
+
+const useTaskId = () => {
+  const { taskId } = useSearchParams();
+  const id =
+    typeof taskId !== 'string' && taskId[0] ? taskId[0] : (taskId as string);
+  return id;
+};
 
 export const TaskDetailScreen = () => {
-  const { taskId } = useSearchParams();
+  const taskId = useTaskId();
+  const task = useTaskDetailPresenter(taskId);
+
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Text className="text-base-content">Home page</Text>
-      <Text className="text-base-content">{taskId}</Text>
+      <Stack.Screen options={{ headerLargeTitle: false, title: '' }} />
+      <View className="flex-row items-center">
+        <Checkbox size="lg" isChecked={task.completed} onToggle={() => null} />
+        <Text className="text-base-content text-3xl font-semibold">
+          {task.title}
+        </Text>
+      </View>
     </ScrollView>
   );
 };
