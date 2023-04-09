@@ -1,8 +1,8 @@
 import {
   applySerializedActionAndSyncNewModelIds,
   SerializedActionCallWithModelIdOverrides,
-} from "mobx-keystone";
-import { EventLog } from "./event-log";
+} from 'mobx-keystone';
+import { EventLog } from './event-log';
 
 export type SyncEvent = {
   version: number;
@@ -31,7 +31,7 @@ export const loadActions = (
     for (const { version, action } of events) {
       if (version === eventLog.version) {
         try {
-          console.log(`Applying action ${version}:`);
+          console.log(`Apply (${version}) [${action.actionName}]`);
           applySerializedActionAndSyncNewModelIds(subtreeRoot, action);
         } catch (err) {
           console.error(
