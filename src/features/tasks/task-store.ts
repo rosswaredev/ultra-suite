@@ -30,4 +30,12 @@ export class TaskStore extends Model({
       task.completed = !task.completed;
     }
   }
+
+  @modelAction
+  updateTitle(id: string, title: string) {
+    const task = this.tasks.find((task) => task.id === id);
+    if (task) {
+      task.title = title;
+    }
+  }
 }

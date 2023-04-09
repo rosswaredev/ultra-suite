@@ -23,6 +23,12 @@ describe('TaskDetailPresenter', () => {
     expect(taskDetailPresenter.completed).toBe(true);
   });
 
-  it.todo('should update title');
+  it('should update title', () => {
+    const { taskDetailPresenter } = setup();
+
+    taskDetailPresenter.updateTitle('new title');
+    expect(taskDetailPresenter.title).toBe('new title');
+  });
+
   it.todo('should delete task');
 });

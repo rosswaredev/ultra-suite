@@ -20,4 +20,8 @@ export class TaskDetailPresenter {
   toggleCompletion() {
     this.taskStore.toggleCompletion(this.taskId);
   }
+
+  updateTitle(title: string) {
+    this.taskStore.updateTitle(this.taskId, title);
+  }
 }
