@@ -2,6 +2,8 @@ import { View, Text, FlatList, ListRenderItem } from 'react-native';
 import { useTaskListPresenter } from './useTaskListPresenter';
 import { useRouter } from 'expo-router';
 import { FloatingButton } from '../../../components/FloatingButton';
+import { observer } from 'mobx-react';
+import { Checkbox } from '../../../components/Checkbox';
 
 type TaskViewModel = {
   id: string;
@@ -11,14 +13,14 @@ type TaskViewModel = {
 
 const TaskListItem = ({ item }: { item: TaskViewModel }) => {
   return (
-    <View className="flex-row items-center justify-between">
-      <Text>{item.title}</Text>
-      <Text>{item.completed ? 'Completed' : 'Not completed'}</Text>
+    <View className="bg-base-200 rounded-lg px-3 py-3 flex-row items-center">
+      <Checkbox isChecked={item.completed} onToggle={() => null} />
+      <Text className="text-base-content ml-3">{item.title}</Text>
     </View>
   );
 };
 
-export const TaskList = () => {
+export const TaskList = observer(() => {
   const router = useRouter();
   const taskListPresenter = useTaskListPresenter();
 
@@ -43,6 +45,6 @@ export const TaskList = () => {
       <FloatingButton onPress={handleNewTask} />
     </>
   );
-};
+});
 
 const Separator = () => <View className="h-1" />;
