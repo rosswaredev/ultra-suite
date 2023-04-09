@@ -1,37 +1,10 @@
 import { Stack, useSearchParams } from 'expo-router';
 import { observer } from 'mobx-react';
 import { useState } from 'react';
-import { ScrollView, TextInput, View } from 'react-native';
-import { Checkbox } from '../../../components/Checkbox';
+import { ScrollView } from 'react-native';
 import { useTaskDetailPresenter } from './useTaskDetailPresenter';
+import { TaskDetailHeader } from './TaskDetailHeader';
 
-type TaskDetailHeaderProps = {
-  title: string;
-  completed: boolean;
-  onChangeTitle: (title: string) => void;
-  onToggleCompletion: () => void;
-  onSubmitTitle: () => void;
-};
-
-const TaskDetailHeader = ({
-  title,
-  completed,
-  onChangeTitle,
-  onToggleCompletion,
-  onSubmitTitle,
-}: TaskDetailHeaderProps) => {
-  return (
-    <View className="flex-row items-center px-5 py-3">
-      <Checkbox size="lg" isChecked={completed} onToggle={onToggleCompletion} />
-      <TextInput
-        className="text-base-content text-3xl font-semibold ml-3"
-        value={title}
-        onChangeText={onChangeTitle}
-        onEndEditing={onSubmitTitle}
-      />
-    </View>
-  );
-};
 const useTaskId = () => {
   const { taskId } = useSearchParams();
   const id =
