@@ -1509,11 +1509,11 @@
       },
       "error": {
         "base": {
-          "value": "{core.colors.red.400}",
+          "value": "{core.colors.red.600}",
           "type": "color"
         },
         "content": {
-          "value": "{core.colors.red.900}",
+          "value": "{core.colors.red.100}",
           "type": "color"
         }
       },
@@ -1529,15 +1529,15 @@
       },
       "primary": {
         "base": {
-          "value": "{core.colors.violet.600}",
+          "value": "{core.colors.teal.400}",
           "type": "color"
         },
         "focus": {
-          "value": "{core.colors.violet.700}",
+          "value": "{core.colors.teal.500}",
           "type": "color"
         },
         "content": {
-          "value": "{core.colors.violet.100}",
+          "value": "{core.colors.neutral.900}",
           "type": "color"
         }
       },
@@ -1617,6 +1617,10 @@
   },
   "$themes": [],
   "$metadata": {
-    "tokenSetOrder": ["global", "semantic", "components"]
+    "tokenSetOrder": [
+      "global",
+      "semantic",
+      "components"
+    ]
   }
 }

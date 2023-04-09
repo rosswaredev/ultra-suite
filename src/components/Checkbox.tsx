@@ -29,7 +29,7 @@ export const Checkbox = ({
         <Octicons
           name="check"
           size={size === 'md' ? 16 : 20}
-          color={colors['base-content']}
+          color={colors['primary-content']}
         />
       ) : null}
     </View>

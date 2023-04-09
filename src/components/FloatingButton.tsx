@@ -1,6 +1,8 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
+import colors from '../theme/colors.json';
+
 export const FloatingButton = ({ onPress }: TouchableOpacityProps) => {
   return (
     <TouchableOpacity
@@ -18,7 +20,11 @@ export const FloatingButton = ({ onPress }: TouchableOpacityProps) => {
         justifyContent: 'center',
       }}
     >
-      <MaterialCommunityIcons name="plus" size={24} color="white" />
+      <MaterialCommunityIcons
+        name="plus"
+        size={24}
+        color={colors['primary-content']}
+      />
     </TouchableOpacity>
   );
 };

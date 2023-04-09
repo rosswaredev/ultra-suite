@@ -68,10 +68,10 @@ export const HabitDetailScreen = observer(() => {
         </View>
         <View className="h-2" />
         <TouchableOpacity
-          className="p-2 bg-error-base rounded-lg"
+          className="p-2 bg-error-base/25 rounded-full"
           onPress={handleDelete}
         >
-          <Text className="text-lg text-error-content text-center">
+          <Text className="text-lg text-error-base text-center">
             Delete Habit
           </Text>
         </TouchableOpacity>
