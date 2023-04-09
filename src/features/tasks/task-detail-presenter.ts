@@ -5,7 +5,7 @@ export class TaskDetailPresenter {
   private task: Task;
 
   constructor(private taskStore: TaskStore, private taskId: string) {
-    makeAutoObservable(this);
+    makeAutoObservable(this, {}, { autoBind: true });
     this.task = taskStore.tasks.find((task) => task.id === taskId);
   }
 
@@ -15,5 +15,9 @@ export class TaskDetailPresenter {
 
   get completed() {
     return this.task.completed;
+  }
+
+  toggleCompletion() {
+    this.taskStore.toggleCompletion(this.taskId);
   }
 }

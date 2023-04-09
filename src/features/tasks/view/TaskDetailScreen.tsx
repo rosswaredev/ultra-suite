@@ -2,7 +2,30 @@ import { Stack, useSearchParams } from 'expo-router';
 import { Text, ScrollView, View } from 'react-native';
 import { Checkbox } from '../../../components/Checkbox';
 import { useTaskDetailPresenter } from './useTaskDetailPresenter';
+import { observer } from 'mobx-react';
 
+type TaskDetailHeaderProps = {
+  title: string;
+  completed: boolean;
+  onChangeTitle: (title: string) => void;
+  onToggleCompletion: () => void;
+};
+
+const TaskDetailHeader = ({
+  title,
+  completed,
+  onChangeTitle,
+  onToggleCompletion,
+}: TaskDetailHeaderProps) => {
+  return (
+    <View className="flex-row items-center px-5 py-3">
+      <Checkbox size="lg" isChecked={completed} onToggle={onToggleCompletion} />
+      <Text className="text-base-content text-3xl font-semibold ml-3">
+        {title}
+      </Text>
+    </View>
+  );
+};
 const useTaskId = () => {
   const { taskId } = useSearchParams();
   const id =
@@ -10,19 +33,19 @@ const useTaskId = () => {
   return id;
 };
 
-export const TaskDetailScreen = () => {
+export const TaskDetailScreen = observer(() => {
   const taskId = useTaskId();
   const task = useTaskDetailPresenter(taskId);
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Stack.Screen options={{ headerLargeTitle: false, title: '' }} />
-      <View className="flex-row items-center">
-        <Checkbox size="lg" isChecked={task.completed} onToggle={() => null} />
-        <Text className="text-base-content text-3xl font-semibold">
-          {task.title}
-        </Text>
-      </View>
+      <TaskDetailHeader
+        title={task.title}
+        completed={task.completed}
+        onToggleCompletion={task.toggleCompletion}
+        onChangeTitle={() => null}
+      />
     </ScrollView>
   );
-};
+});

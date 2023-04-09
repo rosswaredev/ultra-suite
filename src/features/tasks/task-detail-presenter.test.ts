@@ -16,7 +16,13 @@ describe('TaskDetailPresenter', () => {
     expect(taskDetailPresenter.completed).toBe(false);
   });
 
-  it.todo('should toggle completed');
+  it('should toggle completion', () => {
+    const { taskDetailPresenter } = setup();
+
+    taskDetailPresenter.toggleCompletion();
+    expect(taskDetailPresenter.completed).toBe(true);
+  });
+
   it.todo('should update title');
   it.todo('should delete task');
 });
