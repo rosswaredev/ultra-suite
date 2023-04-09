@@ -5,20 +5,20 @@ import { FloatingButton } from '../../../components/FloatingButton';
 import { observer } from 'mobx-react';
 import { Checkbox } from '../../../components/Checkbox';
 
-type TaskViewModel = {
+export type TaskViewModel = {
   id: string;
   title: string;
   completed: boolean;
 };
 
-const TaskListItem = ({ item }: { item: TaskViewModel }) => {
+const TaskListItem = observer(({ item }: { item: TaskViewModel }) => {
   return (
     <View className="bg-base-200 rounded-lg px-3 py-3 flex-row items-center">
       <Checkbox isChecked={item.completed} onToggle={() => null} />
       <Text className="text-base-content ml-3">{item.title}</Text>
     </View>
   );
-};
+});
 
 export const TaskList = observer(() => {
   const router = useRouter();
