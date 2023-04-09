@@ -1,24 +1,16 @@
-import { View, Text, FlatList, ListRenderItem } from 'react-native';
+import { View, FlatList, ListRenderItem } from 'react-native';
 import { useTaskListPresenter } from './useTaskListPresenter';
 import { useRouter } from 'expo-router';
 import { FloatingButton } from '../../../components/FloatingButton';
 import { observer } from 'mobx-react';
-import { Checkbox } from '../../../components/Checkbox';
+import { TaskListItem } from './TaskListItem';
+import { Separator } from '../../../components/ListSeparator';
 
 export type TaskViewModel = {
   id: string;
   title: string;
   completed: boolean;
 };
-
-const TaskListItem = observer(({ item }: { item: TaskViewModel }) => {
-  return (
-    <View className="bg-base-200 rounded-lg px-3 py-3 flex-row items-center">
-      <Checkbox isChecked={item.completed} onToggle={() => null} />
-      <Text className="text-base-content ml-3">{item.title}</Text>
-    </View>
-  );
-});
 
 export const TaskList = observer(() => {
   const router = useRouter();
@@ -46,5 +38,3 @@ export const TaskList = observer(() => {
     </>
   );
 });
-
-const Separator = () => <View className="h-1" />;

@@ -5,6 +5,7 @@ import { FloatingButton } from '../../../components/FloatingButton';
 import { HabitViewModel } from '../habit-list-presenter';
 import { HabitListItem } from './HabitListItem';
 import { useHabitListPresenter } from './useHabitsListPresenter';
+import { Separator } from '../../../components/ListSeparator';
 
 type HabitsListProps = {
   header?: React.ReactElement;
@@ -37,5 +38,3 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
     </>
   );
 });
-
-const Separator = () => <View className="h-1" />;
