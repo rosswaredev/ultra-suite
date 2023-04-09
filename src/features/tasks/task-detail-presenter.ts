@@ -24,4 +24,8 @@ export class TaskDetailPresenter {
   updateTitle(title: string) {
     this.taskStore.updateTitle(this.taskId, title);
   }
+
+  removeTask() {
+    this.taskStore.removeTask(this.taskId);
+  }
 }

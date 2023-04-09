@@ -5,7 +5,7 @@ const setup = () => {
   const taskStore = new TaskStore({});
   const taskId = taskStore.addTask('test task');
   const taskDetailPresenter = new TaskDetailPresenter(taskStore, taskId);
-  return { taskDetailPresenter };
+  return { taskDetailPresenter, taskStore, taskId };
 };
 
 describe('TaskDetailPresenter', () => {
@@ -30,5 +30,12 @@ describe('TaskDetailPresenter', () => {
     expect(taskDetailPresenter.title).toBe('new title');
   });
 
-  it.todo('should delete task');
+  it('should remove task', () => {
+    const { taskDetailPresenter, taskStore, taskId } = setup();
+
+    taskDetailPresenter.removeTask();
+    const maybeTask = taskStore.tasks.find((task) => task.id === taskId);
+
+    expect(maybeTask).toBeUndefined();
+  });
 });
