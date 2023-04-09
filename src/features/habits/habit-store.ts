@@ -1,4 +1,4 @@
-import { isSameDay } from "date-fns";
+import { isSameDay } from 'date-fns';
 import {
   getParent,
   getRoot,
@@ -8,22 +8,22 @@ import {
   modelAction,
   prop,
   timestampToDateTransform,
-} from "mobx-keystone";
+} from 'mobx-keystone';
 
-@model("app/Habit")
+@model('app/Habit')
 export class Habit extends Model({
   id: idProp,
   title: prop<string>(),
 }) {}
 
-@model("app/HabitCompletion")
+@model('app/HabitCompletion')
 export class HabitCompletion extends Model({
   id: idProp,
   habitId: prop<string>(),
   date: prop<number>().withTransform(timestampToDateTransform()),
 }) {}
 
-@model("appp/HabitStore")
+@model('appp/HabitStore')
 class HabitStore extends Model({
   habits: prop<Habit[]>(() => []),
   completions: prop<HabitCompletion[]>(() => []),
@@ -32,6 +32,15 @@ class HabitStore extends Model({
   addHabit(title: string) {
     const habit = new Habit({ title });
     this.habits.push(habit);
+    return habit.id;
+  }
+
+  @modelAction
+  updateHabitTitle(habitId: string, title: string) {
+    const habit = this.habits.find((h) => h.id === habitId);
+    if (!habit) return;
+
+    habit.title = title;
   }
 
   @modelAction
@@ -53,7 +62,5 @@ class HabitStore extends Model({
     }
   }
 }
-
-
 
 export { HabitStore };
