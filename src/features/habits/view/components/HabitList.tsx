@@ -16,10 +16,11 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
   const habitListPresenter = useHabitListPresenter();
 
   const handleNewHabit = () => router.push('/habits/new');
+  const handleHabitPress = (id: string) => () => router.push(`/habits/${id}`);
 
   const renderItem: ListRenderItem<HabitViewModel> = ({ item }) => (
     <View className="px-4">
-      <HabitListItem item={item} />
+      <HabitListItem item={item} onPress={handleHabitPress(item.id)} />
     </View>
   );
 

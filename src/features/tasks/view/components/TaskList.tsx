@@ -1,11 +1,11 @@
-import { View, FlatList, ListRenderItem, TouchableOpacity } from 'react-native';
-import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
 import { useRouter } from 'expo-router';
-import { FloatingButton } from '../../../../components/FloatingButton';
 import { observer } from 'mobx-react';
-import { TaskListItem } from './TaskListItem';
+import { FlatList, ListRenderItem, View } from 'react-native';
+import { FloatingButton } from '../../../../components/FloatingButton';
 import { Separator } from '../../../../components/ListSeparator';
 import { TaskViewModel } from '../../presenters/task-list-presenter';
+import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
+import { TaskListItem } from './TaskListItem';
 
 export const TaskList = observer(() => {
   const router = useRouter();
@@ -17,9 +17,9 @@ export const TaskList = observer(() => {
     router.push(`/tasks/${taskId}`);
 
   const renderItem: ListRenderItem<TaskViewModel> = ({ item }) => (
-    <TouchableOpacity className="px-4" onPress={handlePressTask(item.id)}>
-      <TaskListItem item={item} />
-    </TouchableOpacity>
+    <View className="px-4">
+      <TaskListItem item={item} onPress={handlePressTask(item.id)} />
+    </View>
   );
 
   return (

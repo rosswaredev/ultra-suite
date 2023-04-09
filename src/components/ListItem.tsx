@@ -1,8 +1,15 @@
-import { PropsWithChildren } from 'react';
-import { View } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
 
-export const ListItem = ({ children }: PropsWithChildren<unknown>) => (
-  <View className="bg-base-200 rounded-lg px-3 py-3 border-base-300 border">
+export type ListItemProps = {} & Pick<
+  TouchableOpacityProps,
+  'children' | 'onPress'
+>;
+
+export const ListItem = ({ children, onPress }: ListItemProps) => (
+  <TouchableOpacity
+    className="bg-base-200 rounded-lg px-3 py-3 border-base-300 border"
+    onPress={onPress}
+  >
     {children}
-  </View>
+  </TouchableOpacity>
 );
