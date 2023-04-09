@@ -1,5 +1,5 @@
 import { Stack, useRouter } from 'expo-router';
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import {
   Pressable,
   ScrollView,
@@ -23,12 +23,24 @@ const DetailedInput = ({
   value,
   onChangeText,
 }: DetailedInputProps) => {
+  const inputRef = useRef<TextInput | null>(null);
+
+  const handlePress = () => {
+    inputRef.current.focus();
+  };
+
   return (
-    <TouchableOpacity className="bg-base-200 rounded-lg flex-row flex-1 items-center">
+    <TouchableOpacity
+      className="bg-base-200 rounded-lg flex-row flex-1 items-center"
+      onPress={handlePress}
+    >
       <TextInput
+        ref={inputRef}
         className="text-md text-base-content px-3 py-4"
+        keyboardType="number-pad"
         value={value}
         onChangeText={onChangeText}
+        onEndEditing={() => value === '' && onChangeText('1')}
       />
       <Text className="text-md text-base-content">{trailingText}</Text>
     </TouchableOpacity>
@@ -49,22 +61,23 @@ const NEW_HABIT_PLACEHOLDER = 'New habit';
 const NewHabitForm = () => {
   const router = useRouter();
   const habitListPresenter = useHabitListPresenter();
-  const [title, settitle] = useState('');
-  const [targetCompletionCount, setTargetCompletionCount] = useState(1);
-  const [targetCompletionPeriod, setTargetCompletionPeriod] = useState(7);
+  const [title, setTitle] = useState('');
+  const [targetCountInput, setTargetCountInput] = useState('1');
+  const [targetPeriodInput, setTargetPeriodInput] = useState('7');
 
-  const handleNewHabitTextChange = (text: string) => settitle(text);
-  const handleTargetCompletionCountChange = (text: string) =>
-    setTargetCompletionCount(Number(text));
-  const handleTargetCompletionPeriodChange = (text: string) =>
-    setTargetCompletionPeriod(Number(text));
+  const targetCount = Number(targetCountInput);
+  const targetPeriod = Number(targetPeriodInput);
+
+  const handleNewHabitTextChange = (text: string) => setTitle(text);
+  const handleTargetCountChange = (text: string) => setTargetCountInput(text);
+  const handleTargetPeriodChange = (text: string) => setTargetPeriodInput(text);
 
   const handleAddHabit = () => {
     const trimmedTitle = title.trim();
     habitListPresenter.addHabit(
       trimmedTitle.length > 0 ? trimmedTitle : NEW_HABIT_PLACEHOLDER,
-      targetCompletionCount,
-      targetCompletionPeriod
+      targetCount,
+      targetPeriod
     );
     router.back();
   };
@@ -88,15 +101,15 @@ const NewHabitForm = () => {
       />
       <View className="flex-row items-center mb-4">
         <DetailedInput
-          trailingText={targetCompletionCount === 1 ? 'time' : 'times'}
-          value={`${targetCompletionCount}`}
-          onChangeText={handleTargetCompletionCountChange}
+          trailingText={targetCount === 1 ? 'time' : 'times'}
+          value={`${targetCountInput}`}
+          onChangeText={handleTargetCountChange}
         />
         <Text className="text-base-content text-m px-2">in</Text>
         <DetailedInput
-          trailingText="days"
-          value={`${targetCompletionPeriod}`}
-          onChangeText={handleTargetCompletionPeriodChange}
+          trailingText={targetPeriod === 1 ? 'day' : 'days'}
+          value={`${targetPeriodInput}`}
+          onChangeText={handleTargetPeriodChange}
         />
       </View>
       <View className="items-end">
