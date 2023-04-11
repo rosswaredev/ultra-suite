@@ -8,12 +8,15 @@ async function main() {
   if (totalItems === 0) return console.log("No records to delete");
   console.log(`Found ${totalItems} records to delete`);
 
-  for (const { id } of items) {
-    await fetch(
-      `https://thousands-bed.pockethost.io/api/collections/events/records/${id}`,
-      { method: "DELETE" }
-    );
-  }
+  console.log("Deleting records...");
+  await Promise.all(
+    items.map(({ id }) =>
+      fetch(
+        `https://thousands-bed.pockethost.io/api/collections/events/records/${id}`,
+        { method: "DELETE" }
+      )
+    )
+  );
 
   console.log("Done!");
 }
