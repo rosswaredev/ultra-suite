@@ -1,12 +1,13 @@
 import { Stack, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { Pressable, ScrollView, TextInput, View } from "react-native";
+import { ScrollView, TextInput, View } from "react-native";
+import { Text } from "../../../../components";
+import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import {
   TaskListPresenterProvider,
   useTaskListPresenter,
 } from "../hooks/useTaskListPresenter";
-import { Text } from "../../../../components";
 
 export const NewTaskScreen = () => {
   return (
@@ -47,19 +48,12 @@ const NewTaskForm = () => {
         value={newTaskTitle}
         placeholder={NEW_TASK_PLACEHOLDER}
         onChangeText={handleNewTaskTextChange}
-        style={tw`text-base-content text-md bg-base-200 py-4 px-3 rounded-lg mb-2`}
+        style={tw`text-base-content text-base bg-base-200 py-4 px-3 rounded-lg mb-2`}
         autoFocus
         onSubmitEditing={handleAddTask}
       />
       <View style={tw`items-end`}>
-        <Pressable
-          style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
-          onPress={handleAddTask}
-        >
-          <View style={tw`bg-primary-base/25 px-4 py-2 rounded-full`}>
-            <Text style={tw`text-primary-base text-lg`}>Add Habit</Text>
-          </View>
-        </Pressable>
+        <Button variant="primary" title="Add Task" onPress={handleAddTask} />
       </View>
     </ScrollView>
   );

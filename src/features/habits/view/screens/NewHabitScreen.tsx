@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import {
   HabitListPresenterProvider,
@@ -114,14 +115,7 @@ const NewHabitForm = () => {
         />
       </View>
       <View style={tw`items-end`}>
-        <Pressable
-          style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
-          onPress={handleAddHabit}
-        >
-          <View style={tw`bg-primary-base/25 px-4 py-2 rounded-full`}>
-            <Text style={tw`text-primary-base text-lg`}>Add Habit</Text>
-          </View>
-        </Pressable>
+        <Button variant="primary" title="Add Habit" onPress={handleAddHabit} />
       </View>
     </ScrollView>
   );

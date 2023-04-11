@@ -8,9 +8,9 @@ export const FloatingButton = ({ onPress }: TouchableOpacityProps) => {
   return (
     <TouchableOpacity
       onPress={onPress}
-      style={tw`bg-primary-base rounded-full w-12 h-12 items-center justify-center`}
+      style={tw`bg-primary-base/25 rounded-full w-12 h-12 items-center justify-center`}
     >
-      <Plus size={24} color={colors["primary-content"]} />
+      <Plus size={24} color={tw.color("primary-base")} />
     </TouchableOpacity>
   );
 };

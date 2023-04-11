@@ -6,11 +6,14 @@ import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
 import { TaskDetailHeader } from "../components/TaskDetailHeader";
 import { Text } from "../../../../components";
 import { tw } from "../../../../theme";
+import { Button } from "../../../../components/Button";
 
 const useTaskId = () => {
   const { taskId } = useSearchParams();
   const id =
-    typeof taskId !== "string" && taskId[0] ? taskId[0] : (taskId as string);
+    typeof taskId !== "string" && taskId && taskId[0]
+      ? taskId[0]
+      : (taskId as string);
   return id;
 };
 
@@ -38,14 +41,7 @@ export const TaskDetailScreen = observer(() => {
         onSubmitTitle={handleSubmitTitle}
       />
       <View style={tw`px-3`}>
-        <TouchableOpacity
-          style={tw`p-2 bg-error-base/25 rounded-full`}
-          onPress={handleDelete}
-        >
-          <Text style={tw`text-lg text-error-base text-center`}>
-            Delete Task
-          </Text>
-        </TouchableOpacity>
+        <Button variant="error" title="Delete Task" onPress={handleDelete} />
       </View>
     </ScrollView>
   );

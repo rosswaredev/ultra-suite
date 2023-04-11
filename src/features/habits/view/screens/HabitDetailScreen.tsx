@@ -8,6 +8,7 @@ import {
   View,
   TouchableOpacityProps,
 } from "react-native";
+import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
 import { HabitDetailHeader } from "./HabitDetailHeader";
@@ -15,7 +16,7 @@ import { HabitDetailHeader } from "./HabitDetailHeader";
 const useHabitId = () => {
   const { habitId } = useSearchParams();
   const id =
-    typeof habitId !== "string" && habitId[0]
+    typeof habitId !== "string" && habitId && habitId[0]
       ? habitId[0]
       : (habitId as string);
   return id;
@@ -68,14 +69,7 @@ export const HabitDetailScreen = observer(() => {
           </DetailCard>
         </View>
         <View style={tw`h-2`} />
-        <TouchableOpacity
-          style={tw`p-2 bg-error-base/25 rounded-full`}
-          onPress={handleDelete}
-        >
-          <Text style={tw`text-lg text-error-base text-center`}>
-            Delete Habit
-          </Text>
-        </TouchableOpacity>
+        <Button variant="error" title="Delete Habit" onPress={handleDelete} />
       </View>
     </ScrollView>
   );

@@ -8,6 +8,7 @@ import { tw } from "../theme";
 const VARIANT_STYLES_MAP = {
   title: tw`text-base-content text-2xl font-semibold`,
   heading: tw`text-base-content text-lg font-semibold`,
+  bold: tw`text-base-content text-base font-semibold`,
   body: tw`text-base-content text-base`,
   small: tw`text-base-content text-sm`,
 } as const;
