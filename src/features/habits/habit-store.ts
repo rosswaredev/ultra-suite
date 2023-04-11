@@ -1,4 +1,4 @@
-import { isSameDay } from 'date-fns';
+import { isSameDay } from "date-fns";
 import {
   idProp,
   model,
@@ -6,9 +6,9 @@ import {
   modelAction,
   prop,
   timestampToDateTransform,
-} from 'mobx-keystone';
+} from "mobx-keystone";
 
-@model('app/Habit')
+@model("app/Habit")
 export class Habit extends Model({
   id: idProp,
   title: prop<string>(),
@@ -16,14 +16,14 @@ export class Habit extends Model({
   targetPeriod: prop<number>(),
 }) {}
 
-@model('app/HabitCompletion')
+@model("app/HabitCompletion")
 export class HabitCompletion extends Model({
   id: idProp,
   habitId: prop<string>(),
   date: prop<number>().withTransform(timestampToDateTransform()),
 }) {}
 
-@model('appp/HabitStore')
+@model("appp/HabitStore")
 class HabitStore extends Model({
   habits: prop<Habit[]>(() => []),
   completions: prop<HabitCompletion[]>(() => []),
@@ -50,6 +50,22 @@ class HabitStore extends Model({
     if (!habit) return;
 
     habit.title = title;
+  }
+
+  @modelAction
+  updateHabitTargetCount(habitId: string, targetCount: number) {
+    const habit = this.habits.find((h) => h.id === habitId);
+    if (!habit) return;
+
+    habit.targetCount = targetCount;
+  }
+
+  @modelAction
+  updateHabitTargetPeriod(habitId: string, targetPeriod: number) {
+    const habit = this.habits.find((h) => h.id === habitId);
+    if (!habit) return;
+
+    habit.targetPeriod = targetPeriod;
   }
 
   @modelAction

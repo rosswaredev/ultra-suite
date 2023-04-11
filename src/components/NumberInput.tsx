@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Pressable, TextInputProps } from "react-native";
-import { Text, TextInput } from ".";
+import { Text } from "./Text";
+import { TextInput } from "./TextInput";
 import { tw } from "../theme";
 
 export type NumberInput = {

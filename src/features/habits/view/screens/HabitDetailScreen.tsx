@@ -39,12 +39,28 @@ export const HabitDetailScreen = observer(() => {
   const habitId = useHabitId();
   const habit = useHabitDetailPresenter(habitId);
   const [habitTitle, setHabitTitle] = useState(habit.title);
+  const [targetCountInput, setTargetCountInput] = useState(
+    `${habit.targetCount}`
+  );
+  const [targetPeriodInput, setTargetPeriodInput] = useState(
+    `${habit.targetPeriod}`
+  );
 
   const handleChangeTitle = (title: string) => setHabitTitle(title);
   const handleSubmitTitle = () => habit.updateTitle(habitTitle);
   const handleDelete = () => {
     habit.removeHabit();
     router.back();
+  };
+  const handleUpdateTargetCount = (text: string) => {
+    setTargetCountInput(text);
+    const targetCount = Number(text);
+    if (targetCount > 0) habit.updateTargetCount(targetCount);
+  };
+  const handleUpdateTargetPeriod = (text: string) => {
+    setTargetPeriodInput(text);
+    const targetPeriod = Number(text);
+    if (targetPeriod > 0) habit.updateTargetPeriod(targetPeriod);
   };
 
   return (
@@ -57,8 +73,10 @@ export const HabitDetailScreen = observer(() => {
           onSubmitTitle={handleSubmitTitle}
         />
         <HabitCriteriaRow
-          targetCount={habit.targetCount}
-          targetPeriod={habit.targetPeriod}
+          targetCount={targetCountInput}
+          targetPeriod={targetPeriodInput}
+          onTargetCountChange={handleUpdateTargetCount}
+          onTargetPeriodChange={handleUpdateTargetPeriod}
         />
         <View style={tw`h-2`} />
         <Button variant="error" title="Delete Habit" onPress={handleDelete} />

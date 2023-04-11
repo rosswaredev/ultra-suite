@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
-import { Habit, HabitStore } from '../habit-store';
+import { makeAutoObservable } from "mobx";
+import { Habit, HabitStore } from "../habit-store";
 
 export class HabitDetailPresenter {
   private habit: Habit;
@@ -22,6 +22,14 @@ export class HabitDetailPresenter {
 
   updateTitle(title: string) {
     this.habitStore.updateHabitTitle(this.habitId, title);
+  }
+
+  updateTargetCount(targetCount: number) {
+    this.habitStore.updateHabitTargetCount(this.habitId, targetCount);
+  }
+
+  updateTargetPeriod(targetPeriod: number) {
+    this.habitStore.updateHabitTargetPeriod(this.habitId, targetPeriod);
   }
 
   removeHabit() {
