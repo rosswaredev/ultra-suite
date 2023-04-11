@@ -19,7 +19,7 @@ const BUTTON_VARIANT_STYLES = {
 };
 type ButtonVariants = keyof typeof BUTTON_VARIANT_STYLES;
 
-type ButtonProps = {
+export type ButtonProps = {
   variant?: ButtonVariants;
   icon?: IconName;
   title?: string;

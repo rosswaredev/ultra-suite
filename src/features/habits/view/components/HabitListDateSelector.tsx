@@ -11,7 +11,7 @@ import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
 import * as Haptics from "expo-haptics";
 import { useCallback } from "react";
-import { slop } from "../../../../utils/slop";
+import { slop } from "../../../../utils";
 import { tw } from "../../../../theme";
 import { Text } from "../../../../components";
 

@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
-import { TaskStore } from '../task-store';
+import { makeAutoObservable } from "mobx";
+import { TaskStore } from "../task-store";
 
 export type TaskViewModel = {
   id: string;
@@ -32,5 +32,9 @@ export class TaskListPresenter {
       completed: task.completed,
       toggleCompletion: () => this.toggleCompletion(task.id),
     }));
+  }
+
+  get hasTasks() {
+    return this.tasks.length > 0;
   }
 }

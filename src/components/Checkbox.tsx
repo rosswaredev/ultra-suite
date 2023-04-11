@@ -1,6 +1,6 @@
 import { default as cn } from "classnames";
 import { TouchableOpacity, View } from "react-native";
-import { slop } from "../utils/slop";
+import { slop } from "../utils";
 
 import { Check } from "lucide-react-native";
 import colors from "../theme/colors.json";

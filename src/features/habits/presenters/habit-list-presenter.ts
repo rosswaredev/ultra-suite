@@ -1,6 +1,6 @@
-import { isSameDay } from 'date-fns';
-import { makeAutoObservable } from 'mobx';
-import { HabitStore } from '../habit-store';
+import { isSameDay } from "date-fns";
+import { makeAutoObservable } from "mobx";
+import { HabitStore } from "../habit-store";
 
 export type HabitViewModel = {
   id: string;
@@ -50,5 +50,9 @@ export class HabitListPresenter {
       ),
       toggleCompleted: () => this.toggleCompletedForSelectedDate(habit.id),
     }));
+  }
+
+  get hasHabits() {
+    return this.habits.length > 0;
   }
 }

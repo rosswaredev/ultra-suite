@@ -1,5 +1,3 @@
-import { Platform } from "react-native";
-
 import {
   Check,
   TrendingUp,
@@ -7,7 +5,6 @@ import {
   Calendar,
   Settings,
   Plus,
-  Delete,
   Trash,
 } from "lucide-react-native";
 
