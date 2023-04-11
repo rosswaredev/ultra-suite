@@ -6,15 +6,15 @@ import { Text } from "./Text";
 const BUTTON_VARIANT_STYLES = {
   primary: {
     base: `bg-primary-base/25 border-primary-base/50`,
-    text: `text-primary-base text-center`,
+    text: `text-primary-base`,
   },
   default: {
     base: `bg-base-200 border-base-300`,
-    text: `text-base-content text-center`,
+    text: `text-base-content`,
   },
   error: {
     base: `bg-error-base/25 border-error-base/50`,
-    text: `text-error-base text-center`,
+    text: `text-error-base`,
   },
 };
 type ButtonVariants = keyof typeof BUTTON_VARIANT_STYLES;
@@ -22,7 +22,7 @@ type ButtonVariants = keyof typeof BUTTON_VARIANT_STYLES;
 type ButtonProps = {
   variant?: ButtonVariants;
   icon?: IconName;
-  title: string;
+  title?: string;
   round?: boolean;
 } & Pick<PressableProps, "onPress">;
 
@@ -42,16 +42,19 @@ export const Button = ({
           `py-3 pr-7 border`,
           "flex-row items-center justify-center",
           icon ? "pl-6" : "pl-7",
+          !title && "px-3",
           pressed && "opacity-70",
           round ? "rounded-full" : "rounded-lg"
         ),
       ]}
       onPress={onPress}
     >
-      {icon && <Icon name={icon} color={tw.color(text)} size={24} />}
-      <Text variant="bold" style={tw.style(text, icon && "ml-3")}>
-        {title}
-      </Text>
+      {!!icon && <Icon name={icon} color={tw.color(text)} size={24} />}
+      {!!title && (
+        <Text variant="bold" style={tw.style(text, icon && "ml-3")}>
+          {title}
+        </Text>
+      )}
     </Pressable>
   );
 };

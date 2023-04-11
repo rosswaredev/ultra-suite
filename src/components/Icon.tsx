@@ -24,7 +24,6 @@ export const ICONS = {
 export type IconName = keyof typeof ICONS;
 
 export const Icon = ({ name, size, color }) => {
-  console.log(Platform.OS);
   const IconComponent = ICONS[name];
   return <IconComponent size={size} color={color} />;
 };

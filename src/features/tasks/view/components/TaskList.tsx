@@ -1,11 +1,7 @@
 import { useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import { FlatList, ListRenderItem, View } from "react-native";
-import {
-  AbsolutePosition,
-  FloatingButton,
-  Separator,
-} from "../../../../components";
+import { AbsolutePosition, Button, Separator } from "../../../../components";
 import { tw } from "../../../../theme";
 import { TaskViewModel } from "../../presenters/task-list-presenter";
 import { useTaskListPresenter } from "../hooks/useTaskListPresenter";
@@ -37,7 +33,7 @@ export const TaskList = observer(() => {
         ItemSeparatorComponent={Separator}
       />
       <AbsolutePosition bottom={16} right={16}>
-        <FloatingButton onPress={handleNewTask} />
+        <Button variant="primary" icon="plus" round onPress={handleNewTask} />
       </AbsolutePosition>
     </>
   );

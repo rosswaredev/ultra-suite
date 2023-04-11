@@ -1,11 +1,7 @@
 import { useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import { FlatList, ListRenderItem, View } from "react-native";
-import {
-  AbsolutePosition,
-  FloatingButton,
-  Separator,
-} from "../../../../components";
+import { AbsolutePosition, Button, Separator } from "../../../../components";
 import { tw } from "../../../../theme";
 import { HabitViewModel } from "../../presenters/habit-list-presenter";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
@@ -40,7 +36,7 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
         ItemSeparatorComponent={Separator}
       />
       <AbsolutePosition bottom={16} right={16}>
-        <FloatingButton onPress={handleNewHabit} />
+        <Button variant="primary" icon="plus" round onPress={handleNewHabit} />
       </AbsolutePosition>
     </>
   );

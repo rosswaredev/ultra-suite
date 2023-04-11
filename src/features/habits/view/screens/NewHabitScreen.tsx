@@ -31,20 +31,20 @@ const DetailedInput = ({
   };
 
   return (
-    <TouchableOpacity
+    <Pressable
       style={tw`bg-base-200 rounded-lg flex-row flex-1 items-center`}
       onPress={handlePress}
     >
       <TextInput
         ref={inputRef}
-        style={tw`text-md text-base-content px-3 py-4`}
+        style={tw`text-base leading-tight text text-base-content flex-1 py-4 pl-3`}
         keyboardType="number-pad"
         value={value}
         onChangeText={onChangeText}
         onEndEditing={() => value === "" && onChangeText("1")}
       />
-      <Text>{trailingText}</Text>
-    </TouchableOpacity>
+      <Text style={tw`px-3`}>{trailingText}</Text>
+    </Pressable>
   );
 };
 
@@ -96,7 +96,7 @@ const NewHabitForm = () => {
         value={title}
         placeholder={NEW_HABIT_PLACEHOLDER}
         onChangeText={handleNewHabitTextChange}
-        style={tw`text-base-content text-md bg-base-200 py-4 px-3 rounded-lg mb-2`}
+        style={tw`text-base-content text-base leading-tight bg-base-200 py-4 px-3 rounded-lg mb-2 focus:border`}
         autoFocus
         onSubmitEditing={handleAddHabit}
       />
@@ -106,7 +106,7 @@ const NewHabitForm = () => {
           value={`${targetCountInput}`}
           onChangeText={handleTargetCountChange}
         />
-        <Text style={tw`text-base-content text-m px-2`}>in</Text>
+        <Text style={tw`px-2`}>in</Text>
         <DetailedInput
           trailingText={targetPeriod === 1 ? "day" : "days"}
           value={`${targetPeriodInput}`}
