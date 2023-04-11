@@ -1,11 +1,12 @@
 import { Stack, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { Pressable, ScrollView, TextInput, View } from "react-native";
 import { tw } from "../../../../theme";
 import {
   TaskListPresenterProvider,
   useTaskListPresenter,
 } from "../hooks/useTaskListPresenter";
+import { Text } from "../../../../components";
 
 export const NewTaskScreen = () => {
   return (
@@ -39,7 +40,7 @@ const NewTaskForm = () => {
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
     >
-      <Text style={tw`text-base-content text-lg font-semibold mb-1`}>
+      <Text variant="heading" style={tw`mb-1`}>
         Title
       </Text>
       <TextInput

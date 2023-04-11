@@ -1,9 +1,10 @@
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { observer } from "mobx-react";
 import { useState } from "react";
-import { ScrollView, TouchableOpacity, Text, View } from "react-native";
+import { ScrollView, TouchableOpacity, View } from "react-native";
 import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
 import { TaskDetailHeader } from "../components/TaskDetailHeader";
+import { Text } from "../../../../components";
 import { tw } from "../../../../theme";
 
 const useTaskId = () => {
