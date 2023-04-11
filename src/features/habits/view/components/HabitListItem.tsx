@@ -17,9 +17,9 @@ type HabitListItemProps = {
 export const HabitListItem = observer(
   ({ item, onPress }: HabitListItemProps) => (
     <ListItem onPress={onPress}>
-      <View style={tw`flex-row justify-between items-center`}>
-        <Progress value={0.5} />
-        <Text>{item.title}</Text>
+      <View style={tw`flex-row items-center`}>
+        <Progress value={0.666} />
+        <Text style={tw`flex-1 mx-3`}>{item.title}</Text>
         <Checkbox
           isChecked={item.isCompletedForSelectedDate}
           onToggle={() => {
