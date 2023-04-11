@@ -1,9 +1,8 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 import { Plus } from "lucide-react-native";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
-import colors from "../theme/colors.json";
 import { tw } from "../theme";
+import colors from "../theme/colors.json";
 
 export const FloatingButton = ({ onPress }: TouchableOpacityProps) => {
   return (

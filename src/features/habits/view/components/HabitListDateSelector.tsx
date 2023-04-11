@@ -1,7 +1,6 @@
 import { format, isSameDay, sub } from "date-fns";
 import {
   View,
-  Text,
   FlatList,
   ListRenderItem,
   TouchableOpacity,
@@ -14,6 +13,7 @@ import * as Haptics from "expo-haptics";
 import { useCallback } from "react";
 import { slop } from "../../../../utils/slop";
 import { tw } from "../../../../theme";
+import { Text } from "../../../../components";
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -57,8 +57,8 @@ export const HabitListDateSelector = observer(() => {
         hitSlop={slop.all(5)}
       >
         <Text
+          variant="small"
           style={tw`${cn("font-bold text-center", {
-            "text-base-content": !isToday,
             "text-base-100": item.isSelected && isToday,
             "text-accent-base": !item.isSelected && isToday,
           })}`}
@@ -66,8 +66,8 @@ export const HabitListDateSelector = observer(() => {
           {format(item.date, "d")}
         </Text>
         <Text
+          variant="small"
           style={tw`${cn("text-center", {
-            "text-base-content": !isToday,
             "text-base-100": item.isSelected && isToday,
             "text-accent-base": !item.isSelected && isToday,
           })}`}

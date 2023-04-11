@@ -1,9 +1,13 @@
 import { observer } from "mobx-react";
-import { Text, View } from "react-native";
-import { Checkbox } from "../../../../components/Checkbox";
-import { HabitViewModel } from "../../presenters/habit-list-presenter";
-import { ListItem, ListItemProps } from "../../../../components/ListItem";
+import { View } from "react-native";
+import {
+  Checkbox,
+  ListItem,
+  ListItemProps,
+  Text,
+} from "../../../../components";
 import { tw } from "../../../../theme";
+import { HabitViewModel } from "../../presenters/habit-list-presenter";
 
 type HabitListItemProps = {
   item: HabitViewModel;
@@ -13,7 +17,7 @@ export const HabitListItem = observer(
   ({ item, onPress }: HabitListItemProps) => (
     <ListItem onPress={onPress}>
       <View style={tw`flex-row justify-between items-center`}>
-        <Text style={tw`text-base-content`}>{item.title}</Text>
+        <Text>{item.title}</Text>
         <Checkbox
           isChecked={item.isCompletedForSelectedDate}
           onToggle={() => {
