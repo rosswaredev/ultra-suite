@@ -1,13 +1,12 @@
-import { Stack, useRouter, useSearchParams } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import { useState } from "react";
-import { ScrollView, TouchableOpacity, View } from "react-native";
-import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
-import { TaskDetailHeader } from "../components/TaskDetailHeader";
-import { Text } from "../../../../components";
-import { tw } from "../../../../theme";
+import { ScrollView, View } from "react-native";
 import { Button } from "../../../../components/Button";
 import { useParam } from "../../../../hooks/useParam";
+import { tw } from "../../../../theme";
+import { TaskDetailHeader } from "../components/TaskDetailHeader";
+import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
 
 export const TaskDetailScreen = observer(() => {
   const router = useRouter();
