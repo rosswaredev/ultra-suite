@@ -7,19 +7,11 @@ import { TaskDetailHeader } from "../components/TaskDetailHeader";
 import { Text } from "../../../../components";
 import { tw } from "../../../../theme";
 import { Button } from "../../../../components/Button";
-
-const useTaskId = () => {
-  const { taskId } = useSearchParams();
-  const id =
-    typeof taskId !== "string" && taskId && taskId[0]
-      ? taskId[0]
-      : (taskId as string);
-  return id;
-};
+import { useParam } from "../../../../hooks/useParam";
 
 export const TaskDetailScreen = observer(() => {
   const router = useRouter();
-  const taskId = useTaskId();
+  const taskId = useParam("taskId");
   const task = useTaskDetailPresenter(taskId);
   const [taskTitle, setTaskTitle] = useState(task.title);
 

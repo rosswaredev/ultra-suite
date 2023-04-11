@@ -1,42 +1,17 @@
-import { Stack, useRouter, useSearchParams } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import React, { useState } from "react";
-import {
-  ScrollView,
-  TouchableOpacity,
-  Text,
-  View,
-  TouchableOpacityProps,
-} from "react-native";
+import { ScrollView, View } from "react-native";
 import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
 import { HabitCriteriaRow } from "./HabitCriteriaRow";
 import { HabitDetailHeader } from "./HabitDetailHeader";
-
-const useHabitId = () => {
-  const { habitId } = useSearchParams();
-  const id =
-    typeof habitId !== "string" && habitId && habitId[0]
-      ? habitId[0]
-      : (habitId as string);
-  return id;
-};
-
-type DetailCardProps = {} & Pick<TouchableOpacityProps, "children" | "onPress">;
-
-const DetailCard = ({ children, onPress }: DetailCardProps) => (
-  <TouchableOpacity
-    style={tw`bg-base-200 flex-1 py-5 rounded-xl`}
-    onPress={onPress}
-  >
-    {children}
-  </TouchableOpacity>
-);
+import { useParam } from "../../../../hooks/useParam";
 
 export const HabitDetailScreen = observer(() => {
   const router = useRouter();
-  const habitId = useHabitId();
+  const habitId = useParam("habitId");
   const habit = useHabitDetailPresenter(habitId);
   const [habitTitle, setHabitTitle] = useState(habit.title);
   const [targetCountInput, setTargetCountInput] = useState(
