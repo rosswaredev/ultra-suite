@@ -1,6 +1,6 @@
 import { default as cn } from "classnames";
 import { TouchableOpacity, View } from "react-native";
-import { slop } from "../utils";
+import { haptics, slop } from "../utils";
 
 import { Check } from "lucide-react-native";
 import colors from "../theme/colors.json";
@@ -17,7 +17,13 @@ export const Checkbox = ({
   onToggle,
   size = "md",
 }: CheckboxProps) => (
-  <TouchableOpacity onPress={onToggle} hitSlop={slop.all(20)}>
+  <TouchableOpacity
+    onPress={() => {
+      isChecked ? haptics.medium() : haptics.success();
+      onToggle();
+    }}
+    hitSlop={slop.all(20)}
+  >
     <View
       style={tw`${cn(
         "border-2 rounded-full justify-center items-center",

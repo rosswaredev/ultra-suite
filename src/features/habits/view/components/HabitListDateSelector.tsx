@@ -9,9 +9,8 @@ import {
 import { default as cn } from "classnames";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
-import * as Haptics from "expo-haptics";
 import { useCallback } from "react";
-import { slop } from "../../../../utils";
+import { haptics, slop } from "../../../../utils";
 import { tw } from "../../../../theme";
 import { Text } from "../../../../components";
 
@@ -35,8 +34,7 @@ export const HabitListDateSelector = observer(() => {
   const handleViewableItemsChanged = useCallback(
     ({ changed }: { changed: ViewToken[] }) => {
       const hasAnItemBecomeHidden = changed.some((token) => !token.isViewable);
-      // if (hasAnItemBecomeHidden)
-      //   Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+      if (hasAnItemBecomeHidden) haptics.light();
     },
     []
   );
@@ -51,7 +49,7 @@ export const HabitListDateSelector = observer(() => {
           item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
         )}`}
         onPress={() => {
-          // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
+          haptics.heavy();
           habitListPresenter.selectDate(item.date);
         }}
         hitSlop={slop.all(5)}

@@ -1,5 +1,6 @@
 import { Pressable, PressableProps } from "react-native";
 import { tw } from "../theme";
+import { haptics } from "../utils";
 import { Icon, IconName } from "./Icon";
 import { Text } from "./Text";
 
@@ -47,7 +48,10 @@ export const Button = ({
           round ? "rounded-full" : "rounded-lg"
         ),
       ]}
-      onPress={onPress}
+      onPress={(event) => {
+        if (onPress) haptics.medium();
+        onPress?.(event);
+      }}
     >
       {!!icon && <Icon name={icon} color={tw.color(text)} size={24} />}
       {!!title && (

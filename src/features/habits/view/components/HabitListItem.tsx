@@ -22,12 +22,7 @@ export const HabitListItem = observer(
         <Text style={tw`flex-1 mx-3`}>{item.title}</Text>
         <Checkbox
           isChecked={item.isCompletedForSelectedDate}
-          onToggle={() => {
-            // item.isCompletedForSelectedDate
-            //   ? Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light)
-            //   : Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-            item.toggleCompleted();
-          }}
+          onToggle={item.toggleCompleted}
         />
       </View>
     </ListItem>
