@@ -49,7 +49,6 @@ const NewTaskForm = () => {
         placeholder={NEW_TASK_PLACEHOLDER}
         onChangeText={handleNewTaskTextChange}
         style={tw`mb-2`}
-        autoFocus
         onSubmitEditing={handleAddTask}
       />
       <View style={tw`items-end`}>
