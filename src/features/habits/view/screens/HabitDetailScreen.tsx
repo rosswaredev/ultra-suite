@@ -1,6 +1,6 @@
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { observer } from "mobx-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import {
   ScrollView,
   TouchableOpacity,
@@ -11,6 +11,7 @@ import {
 import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
+import { HabitCriteriaRow } from "./HabitCriteriaRow";
 import { HabitDetailHeader } from "./HabitDetailHeader";
 
 const useHabitId = () => {
@@ -55,19 +56,10 @@ export const HabitDetailScreen = observer(() => {
           onChangeTitle={handleChangeTitle}
           onSubmitTitle={handleSubmitTitle}
         />
-        <View style={tw`flex-row`}>
-          <DetailCard>
-            <Text style={tw`text-lg text-primary-content text-center`}>
-              {`${habit.targetCount} times`}
-            </Text>
-          </DetailCard>
-          <View style={tw`w-2`} />
-          <DetailCard>
-            <Text style={tw`text-lg text-primary-content text-center`}>
-              {`every ${habit.targetPeriod} days`}
-            </Text>
-          </DetailCard>
-        </View>
+        <HabitCriteriaRow
+          targetCount={habit.targetCount}
+          targetPeriod={habit.targetPeriod}
+        />
         <View style={tw`h-2`} />
         <Button variant="error" title="Delete Habit" onPress={handleDelete} />
       </View>

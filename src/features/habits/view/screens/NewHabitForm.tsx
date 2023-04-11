@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Button, NumberInput, Text, TextInput } from "../../../../components";
+import { Button, Text, TextInput } from "../../../../components";
 import { tw } from "../../../../theme";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
+import { HabitCriteriaRow } from "./HabitCriteriaRow";
 
 const NEW_HABIT_PLACEHOLDER = "New habit";
 export const NewHabitForm = () => {
@@ -46,19 +47,12 @@ export const NewHabitForm = () => {
         style={tw`mb-2`}
         onSubmitEditing={handleAddHabit}
       />
-      <View style={tw`flex-row items-center mb-4`}>
-        <NumberInput
-          trailingText={targetCount === 1 ? "time" : "times"}
-          value={`${targetCountInput}`}
-          onChangeText={handleTargetCountChange}
-        />
-        <Text style={tw`px-2`}>in</Text>
-        <NumberInput
-          trailingText={targetPeriod === 1 ? "day" : "days"}
-          value={`${targetPeriodInput}`}
-          onChangeText={handleTargetPeriodChange}
-        />
-      </View>
+      <HabitCriteriaRow
+        targetCount={targetCountInput}
+        targetPeriod={targetPeriodInput}
+        onTargetCountChange={handleTargetCountChange}
+        onTargetPeriodChange={handleTargetPeriodChange}
+      />
       <View style={tw`items-end`}>
         <Button
           variant="primary"
