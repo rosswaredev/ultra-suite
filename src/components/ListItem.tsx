@@ -1,13 +1,14 @@
-import { TouchableOpacity, TouchableOpacityProps } from 'react-native';
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { tw } from "../theme";
 
 export type ListItemProps = {} & Pick<
   TouchableOpacityProps,
-  'children' | 'onPress'
+  "children" | "onPress"
 >;
 
 export const ListItem = ({ children, onPress }: ListItemProps) => (
   <TouchableOpacity
-    className="bg-base-200 rounded-lg px-3 py-3 border-base-300 border"
+    style={tw`bg-base-200 rounded-lg px-3 py-3 border-base-300 border`}
     onPress={onPress}
   >
     {children}

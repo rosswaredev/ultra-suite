@@ -1,5 +1,6 @@
-import { TextInput, View } from 'react-native';
-import { Checkbox } from '../../../../components/Checkbox';
+import { TextInput, View } from "react-native";
+import { Checkbox } from "../../../../components/Checkbox";
+import { tw } from "../../../../theme";
 
 type TaskDetailHeaderProps = {
   title: string;
@@ -16,10 +17,10 @@ export const TaskDetailHeader = ({
   onSubmitTitle,
 }: TaskDetailHeaderProps) => {
   return (
-    <View className="flex-row items-center px-5 py-3">
+    <View style={tw`flex-row items-center px-5 py-3`}>
       <Checkbox size="lg" isChecked={completed} onToggle={onToggleCompletion} />
       <TextInput
-        className="text-base-content text-3xl font-semibold ml-3"
+        style={tw`text-base-content text-3xl font-semibold ml-3`}
         value={title}
         onChangeText={onChangeTitle}
         onEndEditing={onSubmitTitle}

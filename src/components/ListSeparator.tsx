@@ -1,3 +1,4 @@
-import { View } from 'react-native';
+import { View } from "react-native";
+import { tw } from "../theme";
 
-export const Separator = () => <View className="h-1" />;
+export const Separator = () => <View style={tw`h-1`} />;

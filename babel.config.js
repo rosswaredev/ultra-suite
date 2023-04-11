@@ -3,11 +3,10 @@ module.exports = function (api) {
   return {
     presets: ["babel-preset-expo"],
     plugins: [
-      'transform-inline-environment-variables',
+      "transform-inline-environment-variables",
       "@babel/plugin-proposal-export-namespace-from",
       "react-native-reanimated/plugin",
       require.resolve("expo-router/babel"),
-      "nativewind/babel",
     ],
   };
 };

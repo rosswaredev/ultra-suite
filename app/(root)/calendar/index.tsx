@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import * as Calendar from "expo-calendar";
+import { tw } from "../../../src/theme";
 
 export default function CalendarHome() {
   const [myCalendars, setCalendars] = React.useState<
@@ -24,7 +25,6 @@ export default function CalendarHome() {
         );
         setCalendars(calendars);
         console.log("Here are all your calendars:");
-        // console.log(JSON.stringify(calendars));
       }
     })();
   }, []);
@@ -58,27 +58,10 @@ export default function CalendarHome() {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      {/* <Text>Calendar Home</Text>
-      {Object.entries(groupedCalendars ?? {}).map(([sourceId, calendars]) => (
-        <View key={sourceId}>
-          <Text className="text-base-content text-lg">
-            {calendars[0].source.name}
-          </Text>
-          {calendars.map((calendar) => (
-            <View key={calendar.id} className="">
-              <Text className="text-primary-base">{calendar.title}</Text>
-              <Text className="text-base-content">
-                {JSON.stringify(calendar, null, 2)}
-              </Text>
-            </View>
-          ))}
-        </View>
-      ))}
-      <Button title="Create a new calendar" onPress={createCalendar} /> */}
       {myEvents?.map((event) => (
-        <View key={event.id} className="">
-          <Text className="text-primary-base">{event.title}</Text>
-          <Text className="text-base-content">
+        <View key={event.id}>
+          <Text style={tw`text-primary-base`}>{event.title}</Text>
+          <Text style={tw`text-base-content`}>
             {JSON.stringify(event, null, 2)}
           </Text>
         </View>

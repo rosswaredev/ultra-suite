@@ -1,14 +1,15 @@
-import { Stack, useRouter, useSearchParams } from 'expo-router';
-import { observer } from 'mobx-react';
-import { useState } from 'react';
-import { ScrollView, TouchableOpacity, Text, View } from 'react-native';
-import { useTaskDetailPresenter } from '../hooks/useTaskDetailPresenter';
-import { TaskDetailHeader } from '../components/TaskDetailHeader';
+import { Stack, useRouter, useSearchParams } from "expo-router";
+import { observer } from "mobx-react";
+import { useState } from "react";
+import { ScrollView, TouchableOpacity, Text, View } from "react-native";
+import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
+import { TaskDetailHeader } from "../components/TaskDetailHeader";
+import { tw } from "../../../../theme";
 
 const useTaskId = () => {
   const { taskId } = useSearchParams();
   const id =
-    typeof taskId !== 'string' && taskId[0] ? taskId[0] : (taskId as string);
+    typeof taskId !== "string" && taskId[0] ? taskId[0] : (taskId as string);
   return id;
 };
 
@@ -27,7 +28,7 @@ export const TaskDetailScreen = observer(() => {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Stack.Screen options={{ headerLargeTitle: false, title: '' }} />
+      <Stack.Screen options={{ headerLargeTitle: false, title: "" }} />
       <TaskDetailHeader
         title={taskTitle}
         completed={task.completed}
@@ -35,12 +36,12 @@ export const TaskDetailScreen = observer(() => {
         onChangeTitle={handleChangeTitle}
         onSubmitTitle={handleSubmitTitle}
       />
-      <View className="px-3">
+      <View style={tw`px-3`}>
         <TouchableOpacity
-          className="p-2 bg-error-base/25 rounded-full"
+          style={tw`p-2 bg-error-base/25 rounded-full`}
           onPress={handleDelete}
         >
-          <Text className="text-lg text-error-base text-center">
+          <Text style={tw`text-lg text-error-base text-center`}>
             Delete Task
           </Text>
         </TouchableOpacity>

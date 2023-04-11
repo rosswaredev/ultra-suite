@@ -1,5 +1,6 @@
-import { observer } from 'mobx-react';
-import { View, TextInput } from 'react-native';
+import { observer } from "mobx-react";
+import { View, TextInput } from "react-native";
+import { tw } from "../../../../theme";
 
 type HabitDetailHeaderProps = {
   title: string;
@@ -9,9 +10,9 @@ type HabitDetailHeaderProps = {
 export const HabitDetailHeader = observer(
   ({ title, onChangeTitle, onSubmitTitle }: HabitDetailHeaderProps) => {
     return (
-      <View className="flex-row justify-between items-center px-4 py-3">
+      <View style={tw`flex-row justify-between items-center px-4 py-3`}>
         <TextInput
-          className="text-2xl font-bold text-base-content"
+          style={tw`text-2xl font-bold text-base-content`}
           value={title}
           onChangeText={onChangeTitle}
           onEndEditing={onSubmitTitle}

@@ -4,6 +4,7 @@ import { slop } from "../utils/slop";
 
 import { Check } from "lucide-react-native";
 import colors from "../theme/colors.json";
+import { tw } from "../theme";
 
 export type CheckboxProps = {
   isChecked: boolean;
@@ -18,12 +19,12 @@ export const Checkbox = ({
 }: CheckboxProps) => (
   <TouchableOpacity onPress={onToggle} hitSlop={slop.all(20)}>
     <View
-      className={cn(
+      style={tw`${cn(
         "border-2 rounded-full justify-center items-center",
         size === "md" ? "w-6 h-6" : "w-8 h-8",
         isChecked ? "bg-primary-base" : "bg-base-200",
         isChecked ? "border-primary-base" : "border-primary-base/50"
-      )}
+      )}`}
     >
       {isChecked ? (
         <Check

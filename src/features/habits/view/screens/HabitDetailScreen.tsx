@@ -1,30 +1,31 @@
-import { Stack, useRouter, useSearchParams } from 'expo-router';
-import { observer } from 'mobx-react';
-import { useState } from 'react';
+import { Stack, useRouter, useSearchParams } from "expo-router";
+import { observer } from "mobx-react";
+import { useState } from "react";
 import {
   ScrollView,
   TouchableOpacity,
   Text,
   View,
   TouchableOpacityProps,
-} from 'react-native';
-import { useHabitDetailPresenter } from '../hooks/useHabitDetailPresenter';
-import { HabitDetailHeader } from './HabitDetailHeader';
+} from "react-native";
+import { tw } from "../../../../theme";
+import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
+import { HabitDetailHeader } from "./HabitDetailHeader";
 
 const useHabitId = () => {
   const { habitId } = useSearchParams();
   const id =
-    typeof habitId !== 'string' && habitId[0]
+    typeof habitId !== "string" && habitId[0]
       ? habitId[0]
       : (habitId as string);
   return id;
 };
 
-type DetailCardProps = {} & Pick<TouchableOpacityProps, 'children' | 'onPress'>;
+type DetailCardProps = {} & Pick<TouchableOpacityProps, "children" | "onPress">;
 
 const DetailCard = ({ children, onPress }: DetailCardProps) => (
   <TouchableOpacity
-    className="bg-base-200 flex-1 py-5 rounded-xl"
+    style={tw`bg-base-200 flex-1 py-5 rounded-xl`}
     onPress={onPress}
   >
     {children}
@@ -46,32 +47,32 @@ export const HabitDetailScreen = observer(() => {
 
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
-      <Stack.Screen options={{ headerLargeTitle: false, title: '' }} />
-      <View className="px-3">
+      <Stack.Screen options={{ headerLargeTitle: false, title: "" }} />
+      <View style={tw`px-3`}>
         <HabitDetailHeader
           title={habitTitle}
           onChangeTitle={handleChangeTitle}
           onSubmitTitle={handleSubmitTitle}
         />
-        <View className="flex-row">
+        <View style={tw`flex-row`}>
           <DetailCard>
-            <Text className="text-lg text-primary-content text-center">
+            <Text style={tw`text-lg text-primary-content text-center`}>
               {`${habit.targetCount} times`}
             </Text>
           </DetailCard>
-          <View className="w-2" />
+          <View style={tw`w-2`} />
           <DetailCard>
-            <Text className="text-lg text-primary-content text-center">
+            <Text style={tw`text-lg text-primary-content text-center`}>
               {`every ${habit.targetPeriod} days`}
             </Text>
           </DetailCard>
         </View>
-        <View className="h-2" />
+        <View style={tw`h-2`} />
         <TouchableOpacity
-          className="p-2 bg-error-base/25 rounded-full"
+          style={tw`p-2 bg-error-base/25 rounded-full`}
           onPress={handleDelete}
         >
-          <Text className="text-lg text-error-base text-center">
+          <Text style={tw`text-lg text-error-base text-center`}>
             Delete Habit
           </Text>
         </TouchableOpacity>

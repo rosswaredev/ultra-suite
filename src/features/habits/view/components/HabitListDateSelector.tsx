@@ -1,4 +1,4 @@
-import { format, isSameDay, sub } from 'date-fns';
+import { format, isSameDay, sub } from "date-fns";
 import {
   View,
   Text,
@@ -6,13 +6,14 @@ import {
   ListRenderItem,
   TouchableOpacity,
   ViewToken,
-} from 'react-native';
-import { default as cn } from 'classnames';
-import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
-import { observer } from 'mobx-react-lite';
-import * as Haptics from 'expo-haptics';
-import { useCallback } from 'react';
-import { slop } from '../../../../utils/slop';
+} from "react-native";
+import { default as cn } from "classnames";
+import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
+import { observer } from "mobx-react-lite";
+import * as Haptics from "expo-haptics";
+import { useCallback } from "react";
+import { slop } from "../../../../utils/slop";
+import { tw } from "../../../../theme";
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -44,11 +45,11 @@ export const HabitListDateSelector = observer(() => {
     const isToday = isSameDay(item.date, new Date());
     return (
       <TouchableOpacity
-        className={cn(
-          'w-11 py-2 rounded-lg border',
-          item.isSelected ? 'border-accent-base' : 'border-base-300',
-          item.isSelected && isToday ? 'bg-accent-base' : 'bg-base-200'
-        )}
+        style={tw`${cn(
+          "w-11 py-2 rounded-lg border",
+          item.isSelected ? "border-accent-base" : "border-base-300",
+          item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
+        )}`}
         onPress={() => {
           // Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy);
           habitListPresenter.selectDate(item.date);
@@ -56,22 +57,22 @@ export const HabitListDateSelector = observer(() => {
         hitSlop={slop.all(5)}
       >
         <Text
-          className={cn('font-bold text-center', {
-            'text-base-content': !isToday,
-            'text-base-100': item.isSelected && isToday,
-            'text-accent-base': !item.isSelected && isToday,
-          })}
+          style={tw`${cn("font-bold text-center", {
+            "text-base-content": !isToday,
+            "text-base-100": item.isSelected && isToday,
+            "text-accent-base": !item.isSelected && isToday,
+          })}`}
         >
-          {format(item.date, 'd')}
+          {format(item.date, "d")}
         </Text>
         <Text
-          className={cn('text-center', {
-            'text-base-content': !isToday,
-            'text-base-100': item.isSelected && isToday,
-            'text-accent-base': !item.isSelected && isToday,
-          })}
+          style={tw`${cn("text-center", {
+            "text-base-content": !isToday,
+            "text-base-100": item.isSelected && isToday,
+            "text-accent-base": !item.isSelected && isToday,
+          })}`}
         >
-          {format(item.date, 'EEE').toUpperCase()}
+          {format(item.date, "EEE").toUpperCase()}
         </Text>
       </TouchableOpacity>
     );
@@ -79,12 +80,12 @@ export const HabitListDateSelector = observer(() => {
 
   return (
     <FlatList
-      className="mb-4"
+      style={tw`mb-4`}
       data={days}
       renderItem={renderItem}
       keyExtractor={(item) => item.date.toISOString()}
-      ListHeaderComponent={() => <View className="w-4" />}
-      ItemSeparatorComponent={() => <View className="w-1" />}
+      ListHeaderComponent={() => <View style={tw`w-4`} />}
+      ItemSeparatorComponent={() => <View style={tw`w-1`} />}
       onViewableItemsChanged={handleViewableItemsChanged}
       viewabilityConfig={{
         itemVisiblePercentThreshold: 0.4,

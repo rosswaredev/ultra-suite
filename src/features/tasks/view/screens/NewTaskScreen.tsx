@@ -1,26 +1,27 @@
-import { Stack, useRouter } from 'expo-router';
-import React, { useState } from 'react';
-import { Pressable, ScrollView, Text, TextInput, View } from 'react-native';
+import { Stack, useRouter } from "expo-router";
+import React, { useState } from "react";
+import { Pressable, ScrollView, Text, TextInput, View } from "react-native";
+import { tw } from "../../../../theme";
 import {
   TaskListPresenterProvider,
   useTaskListPresenter,
-} from '../hooks/useTaskListPresenter';
+} from "../hooks/useTaskListPresenter";
 
 export const NewTaskScreen = () => {
   return (
     <TaskListPresenterProvider>
-      <Stack.Screen options={{ title: 'New Task' }} />
+      <Stack.Screen options={{ title: "New Task" }} />
       <NewTaskForm />
     </TaskListPresenterProvider>
   );
 };
 
-const NEW_TASK_PLACEHOLDER = 'New task';
+const NEW_TASK_PLACEHOLDER = "New task";
 
 const NewTaskForm = () => {
   const router = useRouter();
   const taskListPresenter = useTaskListPresenter();
-  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [newTaskTitle, setNewTaskTitle] = useState("");
 
   const handleNewTaskTextChange = (text: string) => setNewTaskTitle(text);
 
@@ -34,28 +35,28 @@ const NewTaskForm = () => {
 
   return (
     <ScrollView
-      className="px-4"
+      style={tw`px-4`}
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
     >
-      <Text className="text-base-content text-lg font-semibold mb-1">
+      <Text style={tw`text-base-content text-lg font-semibold mb-1`}>
         Title
       </Text>
       <TextInput
         value={newTaskTitle}
         placeholder={NEW_TASK_PLACEHOLDER}
         onChangeText={handleNewTaskTextChange}
-        className="text-base-content text-md bg-base-200 py-4 px-3 rounded-lg mb-2"
+        style={tw`text-base-content text-md bg-base-200 py-4 px-3 rounded-lg mb-2`}
         autoFocus
         onSubmitEditing={handleAddTask}
       />
-      <View className="items-end">
+      <View style={tw`items-end`}>
         <Pressable
           style={({ pressed }) => [{ opacity: pressed ? 0.7 : 1 }]}
           onPress={handleAddTask}
         >
-          <View className="bg-primary-base/25 px-4 py-2 rounded-full">
-            <Text className="text-primary-base text-lg">Add Habit</Text>
+          <View style={tw`bg-primary-base/25 px-4 py-2 rounded-full`}>
+            <Text style={tw`text-primary-base text-lg`}>Add Habit</Text>
           </View>
         </Pressable>
       </View>

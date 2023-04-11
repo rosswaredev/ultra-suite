@@ -45,7 +45,7 @@
     "mobx-keystone": "^1.4.1",
     "mobx-react": "^7.6.0",
     "nanoid": "^4.0.1",
-    "nativewind": "^2.0.11",
+    "npm": "^9.6.4",
     "pocketbase": "^0.12.1",
     "pocketbase-ts": "^0.0.3",
     "react": "18.2.0",
@@ -59,6 +59,7 @@
     "react-native-sse": "^1.1.0",
     "react-native-svg": "^12.0.0",
     "react-native-web": "~0.18.7",
+    "twrnc": "^3.0.2-beta.1",
     "typescript": "^4.9.4",
     "vite": "^4.2.1",
     "vitest": "^0.29.7",
@@ -67,12 +68,17 @@
   "devDependencies": {
     "@babel/core": "^7.19.3",
     "@babel/plugin-proposal-export-namespace-from": "^7.18.9",
+    "@hyrious/esbuild-plugin-commonjs": "^0.2.2",
     "@types/react-native": "^0.71.3",
+    "@vitejs/plugin-react": "^3.1.0",
+    "autoprefixer": "^10.4.14",
     "babel-plugin-transform-inline-environment-variables": "^0.4.4",
     "pocketbase-typegen": "^1.1.7",
+    "postcss": "^8.4.21",
     "style-dictionary": "^3.7.2",
     "tailwindcss": "^3.2.7",
-    "token-transformer": "^0.0.30"
+    "token-transformer": "^0.0.30",
+    "vite-plugin-commonjs": "^0.6.2"
   },
   "resolutions": {
     "metro": "^0.73.7",
