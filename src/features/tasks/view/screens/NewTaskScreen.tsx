@@ -1,7 +1,7 @@
 import { Stack, useRouter } from "expo-router";
 import React, { useState } from "react";
-import { ScrollView, TextInput, View } from "react-native";
-import { Text } from "../../../../components";
+import { ScrollView, View } from "react-native";
+import { Text, TextInput } from "../../../../components";
 import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import {
@@ -48,7 +48,7 @@ const NewTaskForm = () => {
         value={newTaskTitle}
         placeholder={NEW_TASK_PLACEHOLDER}
         onChangeText={handleNewTaskTextChange}
-        style={tw`text-base-content text-base bg-base-200 py-4 px-3 rounded-lg mb-2`}
+        style={tw`mb-2`}
         autoFocus
         onSubmitEditing={handleAddTask}
       />

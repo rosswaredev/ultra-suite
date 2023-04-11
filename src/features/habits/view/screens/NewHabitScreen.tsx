@@ -1,52 +1,12 @@
 import { Stack, useRouter } from "expo-router";
-import React, { useRef, useState } from "react";
-import {
-  Pressable,
-  ScrollView,
-  TextInput,
-  TextInputProps,
-  TouchableOpacity,
-  View,
-} from "react-native";
-import { Button, Text } from "../../../../components";
+import React, { useState } from "react";
+import { ScrollView, View } from "react-native";
+import { Button, NumberInput, Text, TextInput } from "../../../../components";
 import { tw } from "../../../../theme";
 import {
   HabitListPresenterProvider,
   useHabitListPresenter,
 } from "../hooks/useHabitsListPresenter";
-
-type DetailedInputProps = {
-  trailingText: string;
-} & Pick<TextInputProps, "value" | "onChangeText">;
-
-const DetailedInput = ({
-  trailingText,
-  value,
-  onChangeText,
-}: DetailedInputProps) => {
-  const inputRef = useRef<TextInput | null>(null);
-
-  const handlePress = () => {
-    inputRef.current.focus();
-  };
-
-  return (
-    <Pressable
-      style={tw`bg-base-200 rounded-lg flex-row flex-1 items-center`}
-      onPress={handlePress}
-    >
-      <TextInput
-        ref={inputRef}
-        style={tw`text-base leading-tight text text-base-content flex-1 py-4 pl-3`}
-        keyboardType="number-pad"
-        value={value}
-        onChangeText={onChangeText}
-        onEndEditing={() => value === "" && onChangeText("1")}
-      />
-      <Text style={tw`px-3`}>{trailingText}</Text>
-    </Pressable>
-  );
-};
 
 export const NewHabitScreen = () => {
   return (
@@ -96,18 +56,17 @@ const NewHabitForm = () => {
         value={title}
         placeholder={NEW_HABIT_PLACEHOLDER}
         onChangeText={handleNewHabitTextChange}
-        style={tw`text-base-content text-base leading-tight bg-base-200 py-4 px-3 rounded-lg mb-2 focus:border`}
-        autoFocus
+        style={tw`mb-2`}
         onSubmitEditing={handleAddHabit}
       />
       <View style={tw`flex-row items-center mb-4`}>
-        <DetailedInput
+        <NumberInput
           trailingText={targetCount === 1 ? "time" : "times"}
           value={`${targetCountInput}`}
           onChangeText={handleTargetCountChange}
         />
         <Text style={tw`px-2`}>in</Text>
-        <DetailedInput
+        <NumberInput
           trailingText={targetPeriod === 1 ? "day" : "days"}
           value={`${targetPeriodInput}`}
           onChangeText={handleTargetPeriodChange}
