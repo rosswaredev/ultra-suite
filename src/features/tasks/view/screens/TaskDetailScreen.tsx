@@ -41,7 +41,12 @@ export const TaskDetailScreen = observer(() => {
         onSubmitTitle={handleSubmitTitle}
       />
       <View style={tw`px-3`}>
-        <Button variant="error" title="Delete Task" onPress={handleDelete} />
+        <Button
+          variant="error"
+          icon="delete"
+          title="Delete Task"
+          onPress={handleDelete}
+        />
       </View>
     </ScrollView>
   );

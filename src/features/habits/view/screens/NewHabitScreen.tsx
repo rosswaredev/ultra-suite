@@ -3,13 +3,12 @@ import React, { useRef, useState } from "react";
 import {
   Pressable,
   ScrollView,
-  Text,
   TextInput,
   TextInputProps,
   TouchableOpacity,
   View,
 } from "react-native";
-import { Button } from "../../../../components/Button";
+import { Button, Text } from "../../../../components";
 import { tw } from "../../../../theme";
 import {
   HabitListPresenterProvider,
@@ -44,7 +43,7 @@ const DetailedInput = ({
         onChangeText={onChangeText}
         onEndEditing={() => value === "" && onChangeText("1")}
       />
-      <Text style={tw`text-md text-base-content`}>{trailingText}</Text>
+      <Text>{trailingText}</Text>
     </TouchableOpacity>
   );
 };
@@ -90,7 +89,7 @@ const NewHabitForm = () => {
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
     >
-      <Text style={tw`text-base-content text-lg font-semibold mb-1`}>
+      <Text variant="heading" style={tw`mb-1`}>
         Title
       </Text>
       <TextInput
@@ -115,7 +114,12 @@ const NewHabitForm = () => {
         />
       </View>
       <View style={tw`items-end`}>
-        <Button variant="primary" title="Add Habit" onPress={handleAddHabit} />
+        <Button
+          variant="primary"
+          icon="plus"
+          title="Add Habit"
+          onPress={handleAddHabit}
+        />
       </View>
     </ScrollView>
   );

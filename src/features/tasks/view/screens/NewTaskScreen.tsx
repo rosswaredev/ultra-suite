@@ -53,7 +53,12 @@ const NewTaskForm = () => {
         onSubmitEditing={handleAddTask}
       />
       <View style={tw`items-end`}>
-        <Button variant="primary" title="Add Task" onPress={handleAddTask} />
+        <Button
+          variant="primary"
+          icon="plus"
+          title="Add Task"
+          onPress={handleAddTask}
+        />
       </View>
     </ScrollView>
   );

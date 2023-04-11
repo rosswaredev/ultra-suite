@@ -7901,6 +7901,11 @@ lucide-react-native@^0.138.0:
   resolved "https://registry.yarnpkg.com/lucide-react-native/-/lucide-react-native-0.138.0.tgz#f8e2759f79df04375083e2f84770a5bf55b2dac0"
   integrity sha512-ol+ZzX0aWOtVIKjgUjrx376qkZYHDK84iVzoUcfmNj6N9Y255ic7f5q5SvvYK44XmPPVUvKOTipW2N+ouVoJjw==
 
+lucide-react@^0.139.0:
+  version "0.139.0"
+  resolved "https://registry.yarnpkg.com/lucide-react/-/lucide-react-0.139.0.tgz#99ea9847101bc8b4567bff5bf1867c809ffce958"
+  integrity sha512-QVCqbEEEnlfX/wUjvXY5K9PMpDiFWfAQskUgSM9pATi326zSs2I0UzX4VIlFtRhRNn/aB6q+4gho7XsHg1J69A==
+
 magic-string@^0.27.0:
   version "0.27.0"
   resolved "https://registry.yarnpkg.com/magic-string/-/magic-string-0.27.0.tgz#e4a3413b4bab6d98d2becffd48b4a257effdbbf3"
@@ -11051,10 +11056,10 @@ react-native-sse@^1.1.0:
   resolved "https://registry.npmjs.org/react-native-sse/-/react-native-sse-1.1.0.tgz"
   integrity sha512-qPhZwuVg7ry0Cw8Q2+0VH90on223obZcfB5a/2ktoD3951zWx7HXAtrqQtDfLGjv7ncSJoswd+efn2k0uoR5lw==
 
-react-native-svg@^12.0.0:
-  version "12.5.1"
-  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-12.5.1.tgz#7dfd9daf2f8ed7843c0f3e7a16af193bd5f9b287"
-  integrity sha512-c374ENsq2MWCfr+7jC7TGwSeOAuC1Dp0osh2pw8PjpYFxmmB/toFIwcnCLz+SgBd6iLJClRhbATealqM05HOGg==
+react-native-svg@13.4.0:
+  version "13.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-svg/-/react-native-svg-13.4.0.tgz#82399ba0956c454144618aa581e2d748dd3f010a"
+  integrity sha512-B3TwK+H0+JuRhYPzF21AgqMt4fjhCwDZ9QUtwNstT5XcslJBXC0FoTkdZo8IEb1Sv4suSqhZwlAY6lwOv3tHag==
   dependencies:
     css-select "^5.1.0"
     css-tree "^1.1.3"
