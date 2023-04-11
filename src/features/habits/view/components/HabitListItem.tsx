@@ -6,6 +6,7 @@ import {
   ListItemProps,
   Text,
 } from "../../../../components";
+import { Progress } from "../../../../components/Progress";
 import { tw } from "../../../../theme";
 import { HabitViewModel } from "../../presenters/habit-list-presenter";
 
@@ -17,6 +18,7 @@ export const HabitListItem = observer(
   ({ item, onPress }: HabitListItemProps) => (
     <ListItem onPress={onPress}>
       <View style={tw`flex-row justify-between items-center`}>
+        <Progress value={0.5} />
         <Text>{item.title}</Text>
         <Checkbox
           isChecked={item.isCompletedForSelectedDate}

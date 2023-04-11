@@ -8,3 +8,5 @@ export * from "./TextInput";
 export * from "./NumberInput";
 export * from "./Icon";
 export * from "./ListEmptyState";
+export * from "./Space";
+export * from "./Progress";

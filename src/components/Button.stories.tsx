@@ -2,6 +2,7 @@ import { Plus } from "lucide-react-native";
 import { View } from "react-native";
 import { tw } from "../theme";
 import { Button } from "./Button";
+import { Space } from "./Space";
 
 export const Index = () => (
   <View>
@@ -40,5 +41,3 @@ export const Index = () => (
     </View>
   </View>
 );
-
-const Space = () => <View style={tw`w-2`} />;
