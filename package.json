@@ -19,12 +19,14 @@
     "styles:fix": "./scripts/fix-styles.sh",
     "setup": "yarn typegen && yarn tokens && yarn styles",
     "build": "yarn build:preview:ios",
-    "build:preview:ios": "eas build --profile preview --platform ios"
+    "build:preview:ios": "eas build --profile preview --platform ios",
+    "ui": "yarn ladle serve"
   },
   "dependencies": {
     "@expo/config-plugins": "~6.0.0",
     "@expo/vector-icons": "^13.0.0",
     "@expo/webpack-config": "^18.0.1",
+    "@ladle/react": "^2.11.0",
     "@react-navigation/native": "^6.1.6",
     "@types/react": "~18.0.27",
     "classnames": "^2.3.2",
