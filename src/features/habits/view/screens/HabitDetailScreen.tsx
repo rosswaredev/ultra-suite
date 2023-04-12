@@ -5,8 +5,8 @@ import { ScrollView, View } from "react-native";
 import { Button } from "../../../../components/Button";
 import { tw } from "../../../../theme";
 import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
-import { HabitCriteriaRow } from "./HabitCriteriaRow";
-import { HabitDetailHeader } from "./HabitDetailHeader";
+import { HabitCriteriaRow } from "../components/HabitCriteriaRow";
+import { HabitDetailHeader } from "../components/HabitDetailHeader";
 import { useParam } from "../../../../hooks/useParam";
 
 export const HabitDetailScreen = observer(() => {

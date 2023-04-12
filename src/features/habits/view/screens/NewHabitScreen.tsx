@@ -1,7 +1,7 @@
 import { Stack } from "expo-router";
 import React from "react";
 import { HabitListPresenterProvider } from "../hooks/useHabitsListPresenter";
-import { NewHabitForm } from "./NewHabitForm";
+import { NewHabitForm } from "../components/NewHabitForm";
 
 export const NewHabitScreen = () => {
   return (
