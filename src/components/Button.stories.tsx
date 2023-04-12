@@ -30,7 +30,7 @@ export const Index = () => {
         <Space />
         <Button icon="delete" round />
       </View>
-      <View style={tw`flex-row`}>
+      <View style={tw`flex-row mb-4`}>
         <Button variant="error" title="Error" />
         <Space />
         <Button variant="error" title="Error" round />

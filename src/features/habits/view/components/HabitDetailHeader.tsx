@@ -1,6 +1,6 @@
 import { observer } from "mobx-react";
 import { View, TextInput } from "react-native";
-import { tw } from "../../../../theme";
+import { tw } from "src/theme";
 
 type HabitDetailHeaderProps = {
   title: string;

@@ -1,10 +1,10 @@
 import { default as cn } from "classnames";
 import { TouchableOpacity, View } from "react-native";
-import { haptics, slop } from "../utils";
+import { haptics, slop } from "src/utils";
 
 import { Check } from "lucide-react-native";
-import colors from "../theme/colors.json";
-import { tw } from "../theme";
+import colors from "src/theme/colors.json";
+import { tw } from "src/theme";
 
 export type CheckboxProps = {
   isChecked: boolean;

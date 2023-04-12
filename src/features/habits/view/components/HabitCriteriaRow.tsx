@@ -1,7 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { NumberInput, Text } from "../../../../components";
-import { tw } from "../../../../theme";
+import { NumberInput, Text } from "src/components";
+import { tw } from "src/theme";
 
 type HabitCriteraProps = {
   targetCount: string | number;

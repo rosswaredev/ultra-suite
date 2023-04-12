@@ -7,8 +7,8 @@ import {
   HabitListPresenterProvider,
   useHabitListPresenter,
 } from "../hooks/useHabitsListPresenter";
-import { tw } from "../../../../theme";
-import { Text } from "../../../../components";
+import { tw } from "src/theme";
+import { Text } from "src/components";
 
 export const HabitListHeader = () => {
   const { top } = useSafeAreaInsets();

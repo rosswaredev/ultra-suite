@@ -2,8 +2,8 @@ import { View } from "react-native";
 import { Button, ButtonProps } from "./Button";
 import { Text } from "./Text";
 import { Icon, IconName } from "./Icon";
-import { tw } from "../theme";
-import { capitalize } from "../utils";
+import { tw } from "src/theme";
+import { capitalize } from "src/utils";
 
 type ListEmptyStateProps = {
   title: string;

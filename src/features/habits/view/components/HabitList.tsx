@@ -6,8 +6,8 @@ import {
   Button,
   ListEmptyState,
   Separator,
-} from "../../../../components";
-import { tw } from "../../../../theme";
+} from "src/components";
+import { tw } from "src/theme";
 import { HabitViewModel } from "../../presenters/habit-list-presenter";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
 import { HabitListItem } from "./HabitListItem";

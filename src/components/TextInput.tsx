@@ -4,7 +4,7 @@ import {
   TextInput as RNTextInput,
   TextInputProps as RNTextInputProps,
 } from "react-native";
-import { tw } from "../theme";
+import { tw } from "src/theme";
 
 export type TextInputProps = {} & RNTextInputProps;
 

@@ -10,9 +10,9 @@ import { default as cn } from "classnames";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
 import { useCallback } from "react";
-import { haptics, slop } from "../../../../utils";
-import { tw } from "../../../../theme";
-import { Text } from "../../../../components";
+import { haptics, slop } from "src/utils";
+import { tw } from "src/theme";
+import { Text } from "src/components";
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })

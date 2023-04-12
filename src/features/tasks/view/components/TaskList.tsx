@@ -1,11 +1,15 @@
 import { useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import { FlatList, ListRenderItem, View } from "react-native";
-import { AbsolutePosition, Button, Separator } from "../../../../components";
-import { tw } from "../../../../theme";
+import {
+  AbsolutePosition,
+  Button,
+  ListEmptyState,
+  Separator,
+} from "src/components";
+import { tw } from "src/theme";
 import { TaskViewModel } from "../../presenters/task-list-presenter";
 import { useTaskListPresenter } from "../hooks/useTaskListPresenter";
-import { ListEmptyState } from "../../../../components/ListEmptyState";
 import { TaskListItem } from "./TaskListItem";
 
 export const TaskList = observer(() => {

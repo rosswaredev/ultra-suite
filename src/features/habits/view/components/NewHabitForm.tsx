@@ -1,8 +1,8 @@
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Button, Text, TextInput } from "../../../../components";
-import { tw } from "../../../../theme";
+import { Button, Text, TextInput } from "src/components";
+import { tw } from "src/theme";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
 import { HabitCriteriaRow } from "./HabitCriteriaRow";
 

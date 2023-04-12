@@ -2,7 +2,7 @@ import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
 import { Button, DateInput, Text, TextInput } from "src/components";
-import { tw } from "../../../../theme";
+import { tw } from "src/theme";
 import { useTaskListPresenter } from "../hooks/useTaskListPresenter";
 
 const NEW_TASK_PLACEHOLDER = "New task";

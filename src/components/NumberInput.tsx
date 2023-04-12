@@ -2,7 +2,7 @@ import React, { useRef, useState } from "react";
 import { Pressable, TextInputProps } from "react-native";
 import { Text } from "./Text";
 import { TextInput } from "./TextInput";
-import { tw } from "../theme";
+import { tw } from "src/theme";
 
 export type NumberInput = {
   trailingText: string;

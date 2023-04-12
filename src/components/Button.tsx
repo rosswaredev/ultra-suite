@@ -1,5 +1,5 @@
 import { Pressable, PressableProps, StyleSheet, ViewProps } from "react-native";
-import { tw } from "../theme";
+import { tw } from "src/theme";
 import { haptics } from "src/utils/haptics";
 import { Icon, IconName } from "./Icon";
 import { Text } from "./Text";

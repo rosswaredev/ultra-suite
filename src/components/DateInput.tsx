@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Modal, View } from "react-native";
 import { Button } from "./Button";
-import { tw } from "../theme";
+import { tw } from "src/theme";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";

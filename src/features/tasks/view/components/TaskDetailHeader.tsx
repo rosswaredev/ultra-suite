@@ -1,6 +1,6 @@
 import { TextInput, View } from "react-native";
-import { Checkbox } from "../../../../components/Checkbox";
-import { tw } from "../../../../theme";
+import { Checkbox } from "src/components/Checkbox";
+import { tw } from "src/theme";
 
 type TaskDetailHeaderProps = {
   title: string;

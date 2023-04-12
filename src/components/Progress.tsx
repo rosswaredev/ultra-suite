@@ -1,6 +1,6 @@
 import { View } from "react-native";
 import { Svg, Path } from "react-native-svg";
-import { tw } from "../theme";
+import { tw } from "src/theme";
 import { Icon } from "./Icon";
 import { Text } from "./Text";
 

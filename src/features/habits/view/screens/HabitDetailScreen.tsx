@@ -2,12 +2,12 @@ import { Stack, useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Button } from "../../../../components/Button";
-import { tw } from "../../../../theme";
+import { Button } from "src/components/Button";
+import { tw } from "src/theme";
 import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
 import { HabitCriteriaRow } from "../components/HabitCriteriaRow";
 import { HabitDetailHeader } from "../components/HabitDetailHeader";
-import { useParam } from "../../../../hooks/useParam";
+import { useParam } from "src/hooks/useParam";
 
 export const HabitDetailScreen = observer(() => {
   const router = useRouter();

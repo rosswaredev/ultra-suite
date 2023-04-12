@@ -1,12 +1,7 @@
 import { observer } from "mobx-react";
 import { View } from "react-native";
-import {
-  Checkbox,
-  ListItem,
-  ListItemProps,
-  Text,
-} from "../../../../components";
-import { tw } from "../../../../theme";
+import { Checkbox, ListItem, ListItemProps, Text } from "src/components";
+import { tw } from "src/theme";
 import { TaskViewModel } from "../../presenters/task-list-presenter";
 
 export type TaskListItemProps = {

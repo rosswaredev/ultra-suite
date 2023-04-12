@@ -1,6 +1,6 @@
-import { createContext, PropsWithChildren, useContext } from 'react';
-import { rootStore } from '../../../../init';
-import { HabitListPresenter } from '../../presenters/habit-list-presenter';
+import { createContext, PropsWithChildren, useContext } from "react";
+import { rootStore } from "src/init";
+import { HabitListPresenter } from "../../presenters/habit-list-presenter";
 
 const habitListPresenter = new HabitListPresenter(rootStore.habitStore);
 
@@ -23,7 +23,7 @@ export const useHabitListPresenter = () => {
 
   if (context === null) {
     throw new Error(
-      'useHabitListPresenter must be used within a HabitListPresenterProvider'
+      "useHabitListPresenter must be used within a HabitListPresenterProvider"
     );
   }
 

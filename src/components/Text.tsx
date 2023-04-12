@@ -3,7 +3,7 @@ import {
   TextProps as RNTextProps,
   StyleSheet,
 } from "react-native";
-import { tw } from "../theme";
+import { tw } from "src/theme";
 
 const VARIANT_STYLES_MAP = {
   title: tw`text-base-content text-2xl font-semibold`,

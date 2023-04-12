@@ -1,6 +1,6 @@
 import { TouchableOpacity, TouchableOpacityProps } from "react-native";
-import { tw } from "../theme";
-import { haptics } from "../utils";
+import { tw } from "src/theme";
+import { haptics } from "src/utils";
 
 export type ListItemProps = {} & Pick<
   TouchableOpacityProps,

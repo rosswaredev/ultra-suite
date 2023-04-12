@@ -2,9 +2,9 @@ import { Stack, useRouter } from "expo-router";
 import { observer } from "mobx-react";
 import { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Button } from "../../../../components/Button";
-import { useParam } from "../../../../hooks/useParam";
-import { tw } from "../../../../theme";
+import { Button } from "src/components/Button";
+import { useParam } from "src/hooks/useParam";
+import { tw } from "src/theme";
 import { TaskDetailHeader } from "../components/TaskDetailHeader";
 import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
 
