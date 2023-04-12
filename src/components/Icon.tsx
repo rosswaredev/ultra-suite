@@ -7,6 +7,7 @@ import {
   Plus,
   Trash,
   Star,
+  Award,
 } from "lucide-react-native";
 
 export const ICONS = {
@@ -18,6 +19,7 @@ export const ICONS = {
   calendar: Calendar,
   settings: Settings,
   star: Star,
+  award: Award,
 };
 
 export type IconName = keyof typeof ICONS;

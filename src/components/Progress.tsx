@@ -37,7 +37,7 @@ export const Progress = ({ value }: ProgressProps) => {
         </Text>
       )}
       {roundedValue === 100 && (
-        <Icon name="star" size={14} color={tw.color("base-200")} />
+        <Icon name="award" size={14} color={tw.color("base-200")} />
       )}
     </View>
   );
