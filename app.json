@@ -21,6 +21,12 @@
     },
     "android": {
       "userInterfaceStyle": "automatic"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "updates": {
+      "url": "https://u.expo.dev/884b97df-a784-4ec7-8f59-1de4333ed3d4"
     }
   }
 }
