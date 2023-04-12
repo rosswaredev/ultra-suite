@@ -21,6 +21,10 @@ export class TaskDetailPresenter {
     this.taskStore.updateDueDate(this.taskId, dueDate);
   }
 
+  clearDueDate() {
+    this.taskStore.clearDueDate(this.taskId);
+  }
+
   removeTask() {
     this.taskStore.removeTask(this.taskId);
   }

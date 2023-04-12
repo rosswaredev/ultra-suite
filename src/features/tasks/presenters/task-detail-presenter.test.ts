@@ -40,6 +40,14 @@ describe("TaskDetailPresenter", () => {
     expect(isSameDay(taskDetailPresenter.dueDate, newDueDate)).toBeTruthy();
   });
 
+  it("should clear due date", () => {
+    const { taskDetailPresenter } = setup();
+
+    taskDetailPresenter.clearDueDate();
+
+    expect(taskDetailPresenter.dueDate).toBeNull();
+  });
+
   it("should remove task", () => {
     const { taskDetailPresenter, taskStore, taskId } = setup();
 

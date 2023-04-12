@@ -17,10 +17,10 @@ export const TaskDetailHeader = ({
   onSubmitTitle,
 }: TaskDetailHeaderProps) => {
   return (
-    <View style={tw`flex-row items-center px-5 py-3`}>
+    <View style={tw`flex-row items-center px-6 py-3`}>
       <Checkbox size="lg" isChecked={completed} onToggle={onToggleCompletion} />
       <TextInput
-        style={tw`text-base-content text-base text-3xl font-semibold ml-3`}
+        style={tw`text-base-content text-base text-3xl font-semibold ml-6`}
         value={title}
         onChangeText={onChangeTitle}
         onEndEditing={onSubmitTitle}

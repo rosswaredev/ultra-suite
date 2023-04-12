@@ -43,6 +43,14 @@ export class TaskStore extends Model({
   }
 
   @modelAction
+  clearDueDate(id: string) {
+    const task = this.tasks.find((task) => task.id === id);
+    if (task) {
+      task.dueDate = undefined;
+    }
+  }
+
+  @modelAction
   toggleCompletion(id: string) {
     const task = this.tasks.find((task) => task.id === id);
     if (task) {

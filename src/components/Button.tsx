@@ -27,21 +27,26 @@ type ButtonVariants = keyof typeof BUTTON_VARIANT_STYLES;
 export type ButtonProps = {
   variant?: ButtonVariants;
   icon?: IconName;
+  iconColor?: string;
   title?: string;
   round?: boolean;
+  textStyle?: ViewProps["style"];
 } & Pick<PressableProps, "onPress"> &
   Pick<ViewProps, "style">;
 
 export const Button = ({
   style,
+  textStyle,
   variant,
   icon,
+  iconColor,
   title,
   round,
   onPress,
 }: ButtonProps) => {
   const { base, text } = BUTTON_VARIANT_STYLES[variant || "default"];
   const styles = StyleSheet.flatten(style);
+  const textStyles = StyleSheet.flatten(textStyle);
 
   return (
     <Pressable
@@ -62,9 +67,14 @@ export const Button = ({
         onPress?.(event);
       }}
     >
-      {!!icon && <Icon name={icon} color={tw.color(text)} size={24} />}
+      {!!icon && (
+        <Icon name={icon} color={tw.color(iconColor ?? text)} size={24} />
+      )}
       {!!title && (
-        <Text variant="bold" style={tw.style(text, icon && "ml-3")}>
+        <Text
+          variant="bold"
+          style={[tw.style(text, icon && "ml-3"), textStyles]}
+        >
           {title}
         </Text>
       )}

@@ -5,7 +5,6 @@ import { Button } from "./Button";
 import { Space } from "./Space";
 
 export const Index = () => {
-  console.log(Platform.OS);
   return (
     <View>
       <View style={tw`flex-row mb-4`}>
