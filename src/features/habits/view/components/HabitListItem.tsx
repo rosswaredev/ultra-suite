@@ -12,7 +12,7 @@ type HabitListItemProps = {
 export const HabitListItem = observer(
   ({ item, onPress }: HabitListItemProps) => (
     <ListItem onPress={onPress}>
-      <View style={tw`flex-row items-center`}>
+      <View style={tw`flex-row items-center py-2`}>
         <Progress value={0.666} />
         <Text style={tw`flex-1 mx-3`}>{item.title}</Text>
         <Checkbox

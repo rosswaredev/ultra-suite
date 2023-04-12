@@ -12,15 +12,15 @@ export type TaskListItemProps = {
 export const TaskListItem = observer(({ item, onPress }: TaskListItemProps) => {
   return (
     <ListItem onPress={onPress}>
-      <View style={tw`flex-row items-center`}>
+      <View style={tw.style(`flex-row items-center`, !item.dueDate && `py-2`)}>
         <Checkbox isChecked={item.completed} onToggle={item.toggleCompletion} />
         <View style={tw`ml-3`}>
           <Text>{item.title}</Text>
           {item.dueDate && (
             <View style={tw`flex-row items-center`}>
-              <Icon name="calendar" color={tw.color(`base-400`)} size={12} />
-              <Text variant="tiny" style={tw`text-base-400 ml-1`}>
-                {format(item.dueDate, "dd/mm")}
+              <Icon name="calendar" color={tw.color(`base-500`)} size={12} />
+              <Text variant="tiny" style={tw`text-base-500 ml-1`}>
+                {format(item.dueDate, "d/M")}
               </Text>
             </View>
           )}

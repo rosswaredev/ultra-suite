@@ -9,7 +9,7 @@ export type ListItemProps = {} & Pick<
 
 export const ListItem = ({ children, onPress }: ListItemProps) => (
   <TouchableOpacity
-    style={tw`bg-base-200 rounded-lg px-3 py-2 border-base-300 border`}
+    style={tw`bg-base-200 rounded-lg px-3 py-1 border-base-300 border`}
     onPress={(event) => {
       if (onPress) haptics.medium();
       onPress?.(event);
