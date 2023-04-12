@@ -7,6 +7,7 @@ import { useParam } from "src/hooks/useParam";
 import { tw } from "src/theme";
 import { TaskDetailHeader } from "../components/TaskDetailHeader";
 import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
+import { DateInput, Space } from "src/components";
 
 export const TaskDetailScreen = observer(() => {
   const router = useRouter();
@@ -20,9 +21,13 @@ export const TaskDetailScreen = observer(() => {
     task.removeTask();
     router.back();
   };
+  const handleUpdateDueDate = (date: Date) => task.updateDueDate(date);
 
   return (
-    <ScrollView contentInsetAdjustmentBehavior="automatic">
+    <ScrollView
+      contentInsetAdjustmentBehavior="automatic"
+      contentContainerStyle={tw`flex-1`}
+    >
       <Stack.Screen options={{ headerLargeTitle: false, title: "" }} />
       <TaskDetailHeader
         title={taskTitle}
@@ -31,7 +36,13 @@ export const TaskDetailScreen = observer(() => {
         onChangeTitle={handleChangeTitle}
         onSubmitTitle={handleSubmitTitle}
       />
-      <View style={tw`px-3`}>
+      <View style={tw`px-3 flex-1`}>
+        <DateInput
+          title="Due Date"
+          value={task.dueDate}
+          onChange={handleUpdateDueDate}
+        />
+        <Space />
         <Button
           variant="error"
           icon="delete"

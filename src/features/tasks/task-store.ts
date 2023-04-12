@@ -1,26 +1,45 @@
-import { Model, idProp, model, modelAction, prop } from 'mobx-keystone';
+import {
+  Model,
+  idProp,
+  model,
+  modelAction,
+  prop,
+  timestampToDateTransform,
+} from "mobx-keystone";
 
-@model('app/Task')
+@model("app/Task")
 export class Task extends Model({
   id: idProp,
   title: prop<string>(),
   completed: prop<boolean>(() => false),
+  dueDate: prop<number>().withTransform(timestampToDateTransform()),
 }) {}
 
-@model('app/TaskStore')
+@model("app/TaskStore")
 export class TaskStore extends Model({
   tasks: prop<Task[]>(() => []),
 }) {
   @modelAction
-  addTask(title: string) {
-    const newTask = new Task({ title });
+  addTask(title: string, dueDate: Date) {
+    const newTask = new Task({ title, dueDate });
     this.tasks.push(newTask);
     return newTask.id;
   }
 
   @modelAction
-  removeTask(id: string) {
-    this.tasks = this.tasks.filter((task) => task.id !== id);
+  updateTitle(id: string, title: string) {
+    const task = this.tasks.find((task) => task.id === id);
+    if (task) {
+      task.title = title;
+    }
+  }
+
+  @modelAction
+  updateDueDate(id: string, dueDate: Date) {
+    const task = this.tasks.find((task) => task.id === id);
+    if (task) {
+      task.dueDate = dueDate;
+    }
   }
 
   @modelAction
@@ -32,10 +51,7 @@ export class TaskStore extends Model({
   }
 
   @modelAction
-  updateTitle(id: string, title: string) {
-    const task = this.tasks.find((task) => task.id === id);
-    if (task) {
-      task.title = title;
-    }
+  removeTask(id: string) {
+    this.tasks = this.tasks.filter((task) => task.id !== id);
   }
 }

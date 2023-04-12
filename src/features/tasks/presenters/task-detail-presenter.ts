@@ -1,5 +1,5 @@
-import { makeAutoObservable } from 'mobx';
-import { Task, TaskStore } from '../task-store';
+import { makeAutoObservable } from "mobx";
+import { Task, TaskStore } from "../task-store";
 
 export class TaskDetailPresenter {
   private task: Task;
@@ -7,14 +7,6 @@ export class TaskDetailPresenter {
   constructor(private taskStore: TaskStore, private taskId: string) {
     makeAutoObservable(this, {}, { autoBind: true });
     this.task = taskStore.tasks.find((task) => task.id === taskId);
-  }
-
-  get title() {
-    return this.task.title;
-  }
-
-  get completed() {
-    return this.task.completed;
   }
 
   toggleCompletion() {
@@ -25,7 +17,23 @@ export class TaskDetailPresenter {
     this.taskStore.updateTitle(this.taskId, title);
   }
 
+  updateDueDate(dueDate: Date) {
+    this.taskStore.updateDueDate(this.taskId, dueDate);
+  }
+
   removeTask() {
     this.taskStore.removeTask(this.taskId);
+  }
+
+  get title() {
+    return this.task.title;
+  }
+
+  get completed() {
+    return this.task.completed;
+  }
+
+  get dueDate() {
+    return this.task.dueDate;
   }
 }

@@ -11,15 +11,25 @@ describe("TaskListPresenter", () => {
   it("should add a task", () => {
     const { taskListPresenter } = setup();
 
-    taskListPresenter.addTask("test task");
+    taskListPresenter.addTask("test task", new Date());
 
     expect(taskListPresenter.tasks).toHaveLength(1);
   });
 
+  it("should add a task without a due date", () => {
+    const { taskListPresenter } = setup();
+
+    const taskId = taskListPresenter.addTask("test task", null);
+
+    expect(taskListPresenter.tasks).toContainEqual(
+      expect.objectContaining({ id: taskId, dueDate: null })
+    );
+  });
+
   it("should delete a task", () => {
     const { taskListPresenter } = setup();
-    taskListPresenter.addTask("test task");
-    const taskId = taskListPresenter.addTask("test task 2");
+    taskListPresenter.addTask("test task", new Date());
+    const taskId = taskListPresenter.addTask("test task 2", new Date());
 
     taskListPresenter.removeTask(taskId);
 
@@ -30,7 +40,7 @@ describe("TaskListPresenter", () => {
 
   it("should toggle completion", () => {
     const { taskListPresenter } = setup();
-    const taskId = taskListPresenter.addTask("test task");
+    const taskId = taskListPresenter.addTask("test task", new Date());
 
     taskListPresenter.toggleCompletion(taskId);
 
@@ -46,7 +56,7 @@ describe("TaskListPresenter", () => {
 
   it("should indicate if there are tasks", () => {
     const { taskListPresenter } = setup();
-    taskListPresenter.addTask("test task");
+    taskListPresenter.addTask("test task", new Date());
 
     expect(taskListPresenter.hasTasks).toBe(true);
   });

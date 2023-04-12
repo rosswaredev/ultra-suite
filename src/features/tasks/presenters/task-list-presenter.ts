@@ -5,6 +5,7 @@ export type TaskViewModel = {
   id: string;
   title: string;
   completed: boolean;
+  dueDate: Date;
   toggleCompletion: () => void;
 };
 
@@ -13,8 +14,8 @@ export class TaskListPresenter {
     makeAutoObservable(this, {}, { autoBind: true });
   }
 
-  addTask(title: string) {
-    return this.taskStore.addTask(title);
+  addTask(title: string, dueDate: Date) {
+    return this.taskStore.addTask(title, dueDate);
   }
 
   removeTask(id: string) {
@@ -30,6 +31,7 @@ export class TaskListPresenter {
       id: task.id,
       title: task.title,
       completed: task.completed,
+      dueDate: task.dueDate,
       toggleCompletion: () => this.toggleCompletion(task.id),
     }));
   }

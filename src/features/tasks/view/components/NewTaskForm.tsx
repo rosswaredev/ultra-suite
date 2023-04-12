@@ -10,14 +10,18 @@ export const NewTaskForm = () => {
   const router = useRouter();
   const taskListPresenter = useTaskListPresenter();
   const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [dueDate, setDueDate] = useState<Date | null>(new Date());
+  const [dueDate, setDueDate] = useState<Date | null>(null);
 
   const handleNewTaskTextChange = (text: string) => setNewTaskTitle(text);
 
   const handleAddTask = () => {
     const trimmedTitle = newTaskTitle.trim();
+
+    console.log({ dueDate });
+
     taskListPresenter.addTask(
-      trimmedTitle.length > 0 ? trimmedTitle : NEW_TASK_PLACEHOLDER
+      trimmedTitle.length > 0 ? trimmedTitle : NEW_TASK_PLACEHOLDER,
+      dueDate
     );
     router.back();
   };

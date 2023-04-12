@@ -1,13 +1,12 @@
-import React, { useState } from "react";
-import { Modal, View } from "react-native";
-import { Button } from "./Button";
-import { tw } from "src/theme";
+import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
 import DateTimePicker, {
   DateTimePickerEvent,
 } from "@react-native-community/datetimepicker";
-import { BlurView } from "expo-blur";
-import { format, isSameMonth } from "date-fns";
-import { isSameYear } from "date-fns";
+import { format, isSameMonth, isSameYear } from "date-fns";
+import React, { useRef, useState } from "react";
+import { View } from "react-native";
+import { tw } from "src/theme";
+import { Button } from "./Button";
 
 type DateInputProps = {
   title: string;
@@ -15,7 +14,8 @@ type DateInputProps = {
   onChange: (date: Date) => void;
 };
 export const DateInput = ({ title, value, onChange }: DateInputProps) => {
-  const [date, setDate] = useState<Date | null>(null);
+  const bottomSheetRef = useRef<BottomSheet>(null);
+  const [date, setDate] = useState<Date | null>(value);
   const [isShowingDatePicker, setIsShowingDatePicker] = useState(false);
 
   const handleButtonPress = () => {
@@ -26,14 +26,18 @@ export const DateInput = ({ title, value, onChange }: DateInputProps) => {
 
   return (
     <>
-      <Modal visible={isShowingDatePicker} animationType="fade" transparent>
-        <View style={tw`absolute h-2/4 w-full bottom-8 px-4`}>
-          <View
-            style={tw`border border-primary-base rounded-lg overflow-hidden`}
-          >
-            <BlurView intensity={100} tint="dark" style={tw`rounded-lg`}>
+      {isShowingDatePicker && (
+        <BottomSheet
+          ref={bottomSheetRef}
+          index={0}
+          snapPoints={[340]}
+          backgroundStyle={tw`bg-base-300`}
+          handleIndicatorStyle={tw`bg-primary-base`}
+        >
+          <BottomSheetView>
+            <View style={tw`flex-1`}>
               <DateTimePicker
-                value={date}
+                value={date ?? new Date()}
                 mode="date"
                 display="inline"
                 accentColor={tw.color("primary-base")}
@@ -42,12 +46,13 @@ export const DateInput = ({ title, value, onChange }: DateInputProps) => {
                     setIsShowingDatePicker(false);
                   }
                   setDate(newDate);
+                  onChange(newDate);
                 }}
               />
-            </BlurView>
-          </View>
-        </View>
-      </Modal>
+            </View>
+          </BottomSheetView>
+        </BottomSheet>
+      )}
       <Button
         style={tw.style(isShowingDatePicker && `border-primary-base`)}
         title={date ? format(date, "EEE, d LLL") : title}
