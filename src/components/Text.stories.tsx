@@ -8,5 +8,6 @@ export const Index = () => (
     <Text variant="bold">This is an example of some Bold text.</Text>
     <Text variant="body">This is an example of some Body text.</Text>
     <Text variant="small">This is an example of some Small text.</Text>
+    <Text variant="tiny">This is an example of some Tiny text.</Text>
   </View>
 );

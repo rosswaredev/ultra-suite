@@ -11,6 +11,7 @@ const VARIANT_STYLES_MAP = {
   bold: tw`text-base-content text-base font-semibold`,
   body: tw`text-base-content text-base`,
   small: tw`text-base-content text-sm`,
+  tiny: tw`text-base-content text-xs`,
 } as const;
 type TextVariants = keyof typeof VARIANT_STYLES_MAP;
 

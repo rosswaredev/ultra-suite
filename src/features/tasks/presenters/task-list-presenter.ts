@@ -5,7 +5,7 @@ export type TaskViewModel = {
   id: string;
   title: string;
   completed: boolean;
-  dueDate: Date;
+  dueDate?: Date;
   toggleCompletion: () => void;
 };
 

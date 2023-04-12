@@ -12,7 +12,7 @@ export class Task extends Model({
   id: idProp,
   title: prop<string>(),
   completed: prop<boolean>(() => false),
-  dueDate: prop<number>().withTransform(timestampToDateTransform()),
+  dueDate: prop<number | undefined>().withTransform(timestampToDateTransform()),
 }) {}
 
 @model("app/TaskStore")
