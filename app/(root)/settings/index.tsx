@@ -1,6 +1,6 @@
 import { Stack } from "expo-router";
 import { ScrollView } from "react-native";
-import { Text } from "../../../src/components";
+import { Text } from "src/components";
 
 export default function SettingsHome() {
   return (

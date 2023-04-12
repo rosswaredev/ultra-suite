@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import colors from "../../../src/theme/colors.json";
+import colors from "src/theme/colors.json";
 
 export default function HabitsLayout() {
   return (

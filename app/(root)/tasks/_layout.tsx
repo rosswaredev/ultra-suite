@@ -1,5 +1,5 @@
-import { Stack } from 'expo-router';
-import colors from '../../../src/theme/colors.json';
+import { Stack } from "expo-router";
+import colors from "src/theme/colors.json";
 
 export default function TasksLayout() {
   return (
@@ -7,7 +7,7 @@ export default function TasksLayout() {
       screenOptions={{
         headerLargeTitle: true,
         headerLargeTitleShadowVisible: false,
-        headerStyle: { backgroundColor: colors['base-100'] },
+        headerStyle: { backgroundColor: colors["base-100"] },
       }}
     />
   );

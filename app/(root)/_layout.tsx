@@ -1,7 +1,7 @@
 import { Tabs } from "expo-router";
-import colors from "../../src/theme/colors.json";
+import colors from "src/theme/colors.json";
 
-import { IconName, Icon } from "../../src/components/Icon";
+import { IconName, Icon } from "src/components/Icon";
 
 const tabBarIcon =
   (name: IconName) =>

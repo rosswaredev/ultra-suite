@@ -1,14 +1,7 @@
-import React, { useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  Button,
-  Platform,
-  ScrollView,
-} from "react-native";
 import * as Calendar from "expo-calendar";
-import { tw } from "../../../src/theme";
+import React, { useEffect } from "react";
+import { ScrollView, Text, View } from "react-native";
+import { tw } from "src/theme";
 
 export default function CalendarHome() {
   const [myCalendars, setCalendars] = React.useState<
