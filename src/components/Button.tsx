@@ -1,6 +1,6 @@
-import { Pressable, PressableProps } from "react-native";
+import { Pressable, PressableProps, StyleSheet, ViewProps } from "react-native";
 import { tw } from "../theme";
-import { haptics } from "../utils";
+import { haptics } from "src/utils/haptics";
 import { Icon, IconName } from "./Icon";
 import { Text } from "./Text";
 
@@ -12,6 +12,10 @@ const BUTTON_VARIANT_STYLES = {
   default: {
     base: `bg-base-200 border-base-300`,
     text: `text-base-content`,
+  },
+  ghost: {
+    base: `border-transparent`,
+    text: `text-primary-base`,
   },
   error: {
     base: `bg-error-base/25 border-error-base/50`,
@@ -25,9 +29,11 @@ export type ButtonProps = {
   icon?: IconName;
   title?: string;
   round?: boolean;
-} & Pick<PressableProps, "onPress">;
+} & Pick<PressableProps, "onPress"> &
+  Pick<ViewProps, "style">;
 
 export const Button = ({
+  style,
   variant,
   icon,
   title,
@@ -35,6 +41,8 @@ export const Button = ({
   onPress,
 }: ButtonProps) => {
   const { base, text } = BUTTON_VARIANT_STYLES[variant || "default"];
+  const styles = StyleSheet.flatten(style);
+
   return (
     <Pressable
       style={({ pressed }) => [
@@ -47,6 +55,7 @@ export const Button = ({
           pressed && "opacity-70",
           round ? "rounded-full" : "rounded-lg"
         ),
+        styles,
       ]}
       onPress={(event) => {
         if (onPress) haptics.medium();

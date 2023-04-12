@@ -1,5 +1,4 @@
-import * as Haptics from "expo-haptics";
-import { Platform } from "react-native";
+export * from "./haptics";
 
 export const slop = {
   all: (value: number) => ({
@@ -12,18 +11,3 @@ export const slop = {
 
 export const capitalize = (str: string) =>
   str.charAt(0).toUpperCase() + str.slice(1);
-
-export const haptics = {
-  light: () =>
-    Platform.OS !== "web" &&
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light),
-  medium: () =>
-    Platform.OS !== "web" &&
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium),
-  heavy: () =>
-    Platform.OS !== "web" &&
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Heavy),
-  success: () =>
-    Platform.OS !== "web" &&
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success),
-};

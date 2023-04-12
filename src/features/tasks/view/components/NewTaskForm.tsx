@@ -1,8 +1,7 @@
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { ScrollView, View } from "react-native";
-import { Text, TextInput } from "../../../../components";
-import { Button } from "../../../../components/Button";
+import { Button, DateInput, Text, TextInput } from "src/components";
 import { tw } from "../../../../theme";
 import { useTaskListPresenter } from "../hooks/useTaskListPresenter";
 
@@ -11,6 +10,7 @@ export const NewTaskForm = () => {
   const router = useRouter();
   const taskListPresenter = useTaskListPresenter();
   const [newTaskTitle, setNewTaskTitle] = useState("");
+  const [dueDate, setDueDate] = useState<Date | null>(new Date());
 
   const handleNewTaskTextChange = (text: string) => setNewTaskTitle(text);
 
@@ -38,7 +38,12 @@ export const NewTaskForm = () => {
         style={tw`mb-2`}
         onSubmitEditing={handleAddTask}
       />
-      <View style={tw`items-end`}>
+      <Text variant="heading" style={tw`mb-1`}>
+        Due Date
+      </Text>
+      <DateInput title="Add Due Date" value={dueDate} onChange={setDueDate} />
+
+      <View style={tw`items-end mt-6`}>
         <Button
           variant="primary"
           icon="plus"

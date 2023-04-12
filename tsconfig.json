@@ -3,6 +3,10 @@
     "experimentalDecorators": true, // mobx-keystone
     "useDefineForClassFields": true, // mobx
     "types": ["vitest/globals"],
+    "baseUrl": ".",
+    "paths": {
+      "src/utils/haptics": ["./src/utils/haptics"]
+    }
   },
   "extends": "expo/tsconfig.base"
 }
