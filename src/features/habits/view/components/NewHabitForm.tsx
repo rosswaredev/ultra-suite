@@ -33,7 +33,7 @@ export const NewHabitForm = () => {
 
   return (
     <ScrollView
-      style={tw`px-4 bg-primary-base`}
+      style={tw`px-4`}
       contentInsetAdjustmentBehavior="automatic"
       keyboardShouldPersistTaps="handled"
     >
