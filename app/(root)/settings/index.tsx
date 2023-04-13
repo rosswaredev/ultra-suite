@@ -7,6 +7,7 @@ export default function SettingsHome() {
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Stack.Screen options={{ title: "Settings" }} />
       <Text>{process.env.POCKETBASE_URL}</Text>
+      <Text>Updooted</Text>
     </ScrollView>
   );
 }

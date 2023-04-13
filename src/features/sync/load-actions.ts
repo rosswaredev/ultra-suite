@@ -30,7 +30,7 @@ export const loadActions = (
     for (const { version, action } of events) {
       if (version === eventLog.version) {
         try {
-          console.log(`Apply (${version}) [${action.actionName}]`);
+          // console.log(`Apply (${version}) [${action.actionName}]`);
           applySerializedActionAndSyncNewModelIds(subtreeRoot, action);
         } catch (err) {
           console.log(
