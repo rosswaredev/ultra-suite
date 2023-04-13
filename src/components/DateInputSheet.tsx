@@ -31,7 +31,7 @@ export const DateInputSheet = ({
       ref={bottomSheetRef}
       index={-1}
       snapPoints={[340]}
-      backgroundStyle={tw`bg-base-300`}
+      backgroundStyle={tw`bg-base-200`}
       enablePanDownToClose={true}
       handleIndicatorStyle={tw`bg-base-500`}
     >
