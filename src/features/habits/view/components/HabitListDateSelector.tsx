@@ -45,8 +45,8 @@ export const HabitListDateSelector = observer(() => {
       <TouchableOpacity
         style={tw`${cn(
           "w-11 py-2 rounded-lg border",
-          item.isSelected ? "border-accent-base" : "border-base-300",
-          item.isSelected && isToday ? "bg-accent-base" : "bg-base-200"
+          item.isSelected && isToday ? "bg-accent-base" : "bg-base-200",
+          item.isSelected ? "border-accent-base" : "border-base-200"
         )}`}
         onPress={() => {
           haptics.heavy();

@@ -18,7 +18,6 @@ export const HabitListHeader = () => {
       <View style={{ marginTop: top }}>
         <HabitListHeaderTitle />
         <HabitListDateSelector />
-        <View style={tw`bg-base-300 h-px`} />
       </View>
     </HabitListPresenterProvider>
   );

@@ -7,6 +7,7 @@ export default function HabitsLayout() {
       screenOptions={{
         headerLargeTitle: true,
         headerLargeTitleShadowVisible: false,
+        headerShadowVisible: false,
         headerStyle: { backgroundColor: colors["base-100"] },
       }}
     />

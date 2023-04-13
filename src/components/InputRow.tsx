@@ -1,4 +1,4 @@
-import { Pressable, PressableProps } from "react-native";
+import { View, Pressable, PressableProps } from "react-native";
 import { tw } from "src/theme";
 import { Icon, IconName } from "./Icon";
 import { Text } from "./Text";
@@ -17,24 +17,31 @@ export const InputRow = ({
   onPress,
   onClear,
 }: InputRowProps) => (
-  <Pressable style={tw`flex-row items-center p-7`} onPress={onPress}>
-    <Icon
-      name={icon}
-      size={24}
-      color={tw.color(isSelected ? "primary-base" : "base-content")}
-    />
-    <Text
-      style={tw.style(
-        "flex-1 ml-7",
-        isSelected ? "text-primary-base" : "text-base-content"
-      )}
+  <View style={tw`flex-row items-center p-7`}>
+    <Pressable
+      style={({ pressed }) =>
+        tw.style(`flex-1 flex-row`, pressed && "opacity-70")
+      }
+      onPress={onPress}
     >
-      {title}
-    </Text>
+      <Icon
+        name={icon}
+        size={24}
+        color={tw.color(isSelected ? "primary-base" : "base-content")}
+      />
+      <Text
+        style={tw.style(
+          "flex-1 ml-7",
+          isSelected ? "text-primary-base" : "text-base-content"
+        )}
+      >
+        {title}
+      </Text>
+    </Pressable>
     {isSelected && (
       <Pressable onPress={onClear}>
         <Icon name="x" size={24} color={tw.color("base-300")} />
       </Pressable>
     )}
-  </Pressable>
+  </View>
 );

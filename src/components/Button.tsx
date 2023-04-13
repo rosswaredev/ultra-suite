@@ -6,19 +6,19 @@ import { Text } from "./Text";
 
 const BUTTON_VARIANT_STYLES = {
   primary: {
-    base: `bg-primary-base/25 border-primary-base/50`,
+    base: `bg-primary-base/25`,
     text: `text-primary-base`,
   },
   default: {
-    base: `bg-base-200 border-base-300`,
+    base: `bg-base-200 border border-base-200`,
     text: `text-base-content`,
   },
   ghost: {
-    base: `border-transparent`,
+    base: `border border-transparent`,
     text: `text-primary-base`,
   },
   error: {
-    base: `bg-error-base/25 border-error-base/50`,
+    base: `border bg-error-base/25`,
     text: `text-error-base`,
   },
 };
@@ -53,7 +53,7 @@ export const Button = ({
       style={({ pressed }) => [
         tw.style(
           base,
-          `py-3 pr-7 border`,
+          `py-3 pr-7`,
           "flex-row items-center justify-center",
           icon ? "pl-6" : "pl-7",
           !title && "px-3",
