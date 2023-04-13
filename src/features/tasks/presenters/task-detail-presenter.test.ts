@@ -45,7 +45,7 @@ describe("TaskDetailPresenter", () => {
 
     taskDetailPresenter.clearDueDate();
 
-    expect(taskDetailPresenter.dueDate).toBeNull();
+    expect(taskDetailPresenter.dueDate).toBeUndefined();
   });
 
   it("should remove task", () => {

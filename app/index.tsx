@@ -1,5 +1,5 @@
 import { Redirect } from "expo-router";
 
-export default function AppHome() {
-  return <Redirect href="/tasks" />;
+export default function App() {
+  return <Redirect href="habits" />;
 }
