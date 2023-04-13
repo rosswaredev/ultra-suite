@@ -43,11 +43,10 @@ export const HabitListDateSelector = observer(() => {
     const isToday = isSameDay(item.date, new Date());
     return (
       <TouchableOpacity
-        style={tw`${cn(
-          "w-11 py-2 rounded-lg border",
-          item.isSelected && isToday ? "bg-accent-base" : "bg-base-200",
-          item.isSelected ? "border-accent-base" : "border-base-200"
-        )}`}
+        style={tw.style(
+          "bg-base-200 w-11 py-2 rounded-lg border",
+          item.isSelected ? "border-primary-base" : "border border-transparent"
+        )}
         onPress={() => {
           haptics.heavy();
           habitListPresenter.selectDate(item.date);
@@ -56,19 +55,16 @@ export const HabitListDateSelector = observer(() => {
       >
         <Text
           variant="small"
-          style={tw`${cn("font-bold text-center", {
-            "text-base-100": item.isSelected && isToday,
-            "text-accent-base": !item.isSelected && isToday,
-          })}`}
+          style={tw.style(
+            "font-bold text-center",
+            isToday && "text-primary-base"
+          )}
         >
           {format(item.date, "d")}
         </Text>
         <Text
           variant="small"
-          style={tw`${cn("text-center", {
-            "text-base-100": item.isSelected && isToday,
-            "text-accent-base": !item.isSelected && isToday,
-          })}`}
+          style={tw.style("text-center", isToday && "text-primary-base")}
         >
           {format(item.date, "EEE").toUpperCase()}
         </Text>

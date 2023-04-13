@@ -21,7 +21,7 @@
     "build": "yarn build:preview:ios",
     "build:preview:ios": "eas build --profile preview --platform ios",
     "update": "yarn update:preview:ios",
-    "update:preview:ios": "eas update --branch preview --platform ios",
+    "update:preview:ios": "eas update --branch preview --platform ios --non-interactive --message",
     "ui": "yarn ladle serve"
   },
   "dependencies": {
