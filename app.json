@@ -2,11 +2,11 @@
   "expo": {
     "privacy": "public",
     "icon": "./assets/icon.png",
-    "scheme": "acme",
+    "scheme": "ultrasuite",
     "web": {
       "bundler": "metro"
     },
-    "name": "ultra-suite",
+    "name": "Ultra Suite",
     "slug": "ultra-suite",
     "extra": {
       "eas": {
