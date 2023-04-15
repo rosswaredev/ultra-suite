@@ -1,5 +1,5 @@
-import { TaskListScreen } from "src/features/tasks/view/screens/TaskListScreen";
+import { TaskHomeScreen } from 'src/features/tasks/view/screens/TaskHomeScreen';
 
 export default function TasksHome() {
-  return <TaskListScreen />;
+  return <TaskHomeScreen />;
 }
