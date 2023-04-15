@@ -1,4 +1,4 @@
-export * from "./haptics";
+export * from './haptics';
 
 export const slop = {
   all: (value: number) => ({
@@ -10,4 +10,4 @@ export const slop = {
 };
 
 export const capitalize = (str: string) =>
-  str.charAt(0).toUpperCase() + str.slice(1);
+  str.length > 0 ? str.charAt(0).toUpperCase() + str.slice(1) : str;

@@ -37,8 +37,16 @@ export class TaskListPresenter {
     }));
   }
 
+  get inbox(): TaskViewModel[] {
+    return this.tasks.filter((task) => !task.dueDate);
+  }
+
   get today(): TaskViewModel[] {
     return this.tasks.filter((task) => isSameDay(task.dueDate, new Date()));
+  }
+
+  get upcoming(): TaskViewModel[] {
+    return this.tasks.filter((task) => !!task.dueDate);
   }
 
   get hasTasks() {

@@ -14,10 +14,8 @@ type TaskHomeLinkProps = TaskHomeLink;
 
 const TaskHomeLink = ({ icon, title, href }: TaskHomeLinkProps) => {
   const router = useRouter();
-  const handlePress = () => {
-    router.push(href);
-    console.log('push', href);
-  };
+  const handlePress = () => router.push(href);
+
   return (
     <Pressable
       onPress={handlePress}

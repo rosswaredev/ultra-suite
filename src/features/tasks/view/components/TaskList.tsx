@@ -12,7 +12,12 @@ import { TaskViewModel } from '../../presenters/task-list-presenter';
 import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
 import { TaskListItem } from './TaskListItem';
 
-export type ListType = 'inbox' | 'today' | 'upcoming';
+export const ListType = {
+  inbox: 'inbox',
+  today: 'today',
+  upcoming: 'upcoming',
+} as const;
+export type ListType = keyof typeof ListType;
 
 type TaskListProps = {
   list?: ListType;

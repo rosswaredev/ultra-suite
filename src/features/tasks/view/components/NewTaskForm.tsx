@@ -1,17 +1,17 @@
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
-import { ScrollView, View } from "react-native";
-import { Button, DateInputSheet, Text, TextInput } from "src/components";
-import { tw } from "src/theme";
-import { useTaskListPresenter } from "../hooks/useTaskListPresenter";
-import { InputRow } from "src/components/InputRow";
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { ScrollView, View } from 'react-native';
+import { Button, DateInputSheet, Text, TextInput } from 'src/components';
+import { tw } from 'src/theme';
+import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
+import { InputRow } from 'src/components/InputRow';
 
-const NEW_TASK_PLACEHOLDER = "New task";
+const NEW_TASK_PLACEHOLDER = 'New task';
 export const NewTaskForm = () => {
   const router = useRouter();
   const taskListPresenter = useTaskListPresenter();
-  const [newTaskTitle, setNewTaskTitle] = useState("");
-  const [dueDate, setDueDate] = useState<Date | null>(new Date());
+  const [newTaskTitle, setNewTaskTitle] = useState('');
+  const [dueDate, setDueDate] = useState<Date | null>(null);
   const [isShowingDateInputSheet, setIsShowingDateInputSheet] = useState(false);
 
   const handleNewTaskTextChange = (text: string) => setNewTaskTitle(text);
@@ -63,7 +63,7 @@ export const NewTaskForm = () => {
       </ScrollView>
       <DateInputSheet
         isOpen={isShowingDateInputSheet}
-        value={dueDate}
+        value={dueDate ?? new Date()}
         onChange={setDueDate}
       />
     </>

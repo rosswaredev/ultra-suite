@@ -61,13 +61,48 @@ describe('TaskListPresenter', () => {
     expect(taskListPresenter.hasTasks).toBe(true);
   });
 
+  describe('inbox', () => {
+    it('should return tasks without a due date', () => {
+      const { taskListPresenter } = setup();
+      taskListPresenter.addTask('task without date', null);
+      taskListPresenter.addTask('test with date', new Date());
+
+      expect(taskListPresenter.inbox).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ title: 'task without date' }),
+        ])
+      );
+    });
+  });
+
   describe('today', () => {
     it('should return tasks with a due date of today', () => {
       const { taskListPresenter } = setup();
-      taskListPresenter.addTask('test task', new Date());
-      taskListPresenter.addTask('test task 2', new Date('2020-01-01'));
+      taskListPresenter.addTask('task due today', new Date());
+      taskListPresenter.addTask(
+        'task due another time',
+        new Date('2020-01-01')
+      );
 
-      expect(taskListPresenter.today).toHaveLength(1);
+      expect(taskListPresenter.today).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ title: 'task due today' }),
+        ])
+      );
+    });
+  });
+
+  describe('upcoming', () => {
+    it('should return tasks with a due date', () => {
+      const { taskListPresenter } = setup();
+      taskListPresenter.addTask('task with due date', new Date('2030-01-01'));
+      taskListPresenter.addTask('task without due date', null);
+
+      expect(taskListPresenter.upcoming).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ title: 'task with due date' }),
+        ])
+      );
     });
   });
 });
