@@ -1,5 +1,6 @@
-import { makeAutoObservable } from "mobx";
-import { TaskStore } from "../task-store";
+import { makeAutoObservable } from 'mobx';
+import { TaskStore } from '../task-store';
+import { isSameDay } from 'date-fns';
 
 export type TaskViewModel = {
   id: string;
@@ -34,6 +35,10 @@ export class TaskListPresenter {
       dueDate: task.dueDate,
       toggleCompletion: () => this.toggleCompletion(task.id),
     }));
+  }
+
+  get today(): TaskViewModel[] {
+    return this.tasks.filter((task) => isSameDay(task.dueDate, new Date()));
   }
 
   get hasTasks() {
