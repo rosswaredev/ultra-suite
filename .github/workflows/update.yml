@@ -3,7 +3,7 @@ on: push
 
 jobs:
   update:
-    name: EAS update
+    name: EAS Update
     runs-on: ubuntu-latest
     steps:
       - name: Check for EXPO_TOKEN
@@ -29,7 +29,7 @@ jobs:
           token: ${{ secrets.EXPO_TOKEN }}
 
       - name: Install dependencies
-        run: yarn Install
+        run: yarn install
 
       - name: Publish update
         run: eas update --auto
