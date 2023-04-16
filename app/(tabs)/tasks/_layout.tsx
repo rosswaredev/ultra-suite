@@ -11,7 +11,7 @@ export default function TasksLayout() {
         headerStyle: { backgroundColor: colors['base-100'] },
       }}
     >
-      <Stack.Screen name="index" options={{ title: 'Lists' }} />
+      <Stack.Screen name="index" options={{ title: 'Tasks' }} />
     </Stack>
   );
 }
