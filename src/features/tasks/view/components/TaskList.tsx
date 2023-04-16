@@ -15,6 +15,7 @@ import DraggableFlatList, {
   RenderItemParams,
   ScaleDecorator,
 } from 'react-native-draggable-flatlist';
+import { FadeIn, FadeOut } from 'react-native-reanimated';
 
 export const ListType = {
   inbox: 'inbox',
@@ -67,6 +68,8 @@ export const TaskList = observer(({ list }: TaskListProps) => {
             taskListPresenter.reorderTasks(newOrder);
           }}
           ListHeaderComponent={() => <View style={tw`h-4`} />}
+          itemEnteringAnimation={FadeIn}
+          itemExitingAnimation={FadeOut}
         />
       ) : (
         <ListEmptyState title="task" icon="check" onPress={handleNewTask} />
