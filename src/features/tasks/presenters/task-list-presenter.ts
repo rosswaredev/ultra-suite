@@ -27,6 +27,10 @@ export class TaskListPresenter {
     this.taskStore.toggleCompletion(id);
   }
 
+  reorderTasks(ids: string[]) {
+    this.taskStore.reorderTasks(ids);
+  }
+
   get tasks(): TaskViewModel[] {
     return this.taskStore.tasks.map((task) => ({
       id: task.id,

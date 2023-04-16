@@ -48,6 +48,21 @@ describe('TaskListPresenter', () => {
     expect(task?.completed).toBe(true);
   });
 
+  it('should reorder tasks', () => {
+    const { taskListPresenter } = setup();
+    const taskId1 = taskListPresenter.addTask('test task 1', new Date());
+    const taskId2 = taskListPresenter.addTask('test task 2', new Date());
+    const taskId3 = taskListPresenter.addTask('test task 3', new Date());
+
+    taskListPresenter.reorderTasks([taskId3, taskId2, taskId1]);
+
+    expect(taskListPresenter.tasks).toEqual([
+      expect.objectContaining({ id: taskId3 }),
+      expect.objectContaining({ id: taskId2 }),
+      expect.objectContaining({ id: taskId1 }),
+    ]);
+  });
+
   it('should indicate if there are no tasks', () => {
     const { taskListPresenter } = setup();
 

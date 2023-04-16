@@ -5,9 +5,9 @@ import {
   modelAction,
   prop,
   timestampToDateTransform,
-} from "mobx-keystone";
+} from 'mobx-keystone';
 
-@model("app/Task")
+@model('app/Task')
 export class Task extends Model({
   id: idProp,
   title: prop<string>(),
@@ -15,7 +15,7 @@ export class Task extends Model({
   dueDate: prop<number | undefined>().withTransform(timestampToDateTransform()),
 }) {}
 
-@model("app/TaskStore")
+@model('app/TaskStore')
 export class TaskStore extends Model({
   tasks: prop<Task[]>(() => []),
 }) {
@@ -61,5 +61,10 @@ export class TaskStore extends Model({
   @modelAction
   removeTask(id: string) {
     this.tasks = this.tasks.filter((task) => task.id !== id);
+  }
+
+  @modelAction
+  reorderTasks(ids: string[]) {
+    this.tasks = ids.map((id) => this.tasks.find((task) => task.id === id)!);
   }
 }
