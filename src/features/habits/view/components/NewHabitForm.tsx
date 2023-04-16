@@ -1,18 +1,18 @@
-import { useRouter } from "expo-router";
-import React, { useState } from "react";
-import { ScrollView, View } from "react-native";
-import { Button, Text, TextInput } from "src/components";
-import { tw } from "src/theme";
-import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
-import { HabitCriteriaRow } from "./HabitCriteriaRow";
+import { useRouter } from 'expo-router';
+import React, { useState } from 'react';
+import { ScrollView, View } from 'react-native';
+import { Button, Text, TextInput } from 'src/components';
+import { tw } from 'src/theme';
+import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
+import { HabitCriteriaRow } from './HabitCriteriaRow';
 
-const NEW_HABIT_PLACEHOLDER = "New habit";
+const NEW_HABIT_PLACEHOLDER = 'New habit';
 export const NewHabitForm = () => {
   const router = useRouter();
   const habitListPresenter = useHabitListPresenter();
-  const [title, setTitle] = useState("");
-  const [targetCountInput, setTargetCountInput] = useState("1");
-  const [targetPeriodInput, setTargetPeriodInput] = useState("7");
+  const [title, setTitle] = useState('');
+  const [targetCountInput, setTargetCountInput] = useState('1');
+  const [targetPeriodInput, setTargetPeriodInput] = useState('1');
 
   const targetCount = Number(targetCountInput);
   const targetPeriod = Number(targetPeriodInput);

@@ -73,7 +73,7 @@ const TaskHomeLink = ({ icon, title, href, count }: TaskHomeLinkProps) => {
       <Text variant="heading" style={tw`ml-4 flex-1`}>
         {title}
       </Text>
-      {count && <Text variant="heading">{count}</Text>}
+      {!!count && <Text variant="heading">{count}</Text>}
     </Pressable>
   );
 };
