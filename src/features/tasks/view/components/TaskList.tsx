@@ -57,7 +57,7 @@ export const TaskList = observer(({ list }: TaskListProps) => {
       {tasks.length > 0 ? (
         <DraggableFlatList
           data={tasks}
-          style={tw`pt-4 h-full`}
+          containerStyle={tw`flex-1`}
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           contentInsetAdjustmentBehavior="automatic"
@@ -65,7 +65,7 @@ export const TaskList = observer(({ list }: TaskListProps) => {
             const newOrder = data.map((item) => item.id);
             taskListPresenter.reorderTasks(newOrder);
           }}
-          // ItemSeparatorComponent={Separator}
+          ListHeaderComponent={() => <View style={tw`h-4`} />}
         />
       ) : (
         <ListEmptyState title="task" icon="check" onPress={handleNewTask} />
