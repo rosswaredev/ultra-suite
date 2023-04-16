@@ -119,5 +119,16 @@ describe('TaskListPresenter', () => {
         ])
       );
     });
+
+    it('should sort tasks by due date', () => {
+      const { taskListPresenter } = setup();
+      taskListPresenter.addTask('task due second', new Date('2030-01-02'));
+      taskListPresenter.addTask('task due first', new Date('2030-01-01'));
+
+      expect(taskListPresenter.upcoming).toEqual([
+        expect.objectContaining({ title: 'task due first' }),
+        expect.objectContaining({ title: 'task due second' }),
+      ]);
+    });
   });
 });

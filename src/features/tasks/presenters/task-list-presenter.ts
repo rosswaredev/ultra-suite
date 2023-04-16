@@ -50,7 +50,14 @@ export class TaskListPresenter {
   }
 
   get upcoming(): TaskViewModel[] {
-    return this.tasks.filter((task) => !!task.dueDate);
+    return this.tasks
+      .filter((task) => !!task.dueDate)
+      .sort((a, b) => {
+        if (!a.dueDate || !b.dueDate) {
+          return 0;
+        }
+        return a.dueDate.getTime() - b.dueDate.getTime();
+      });
   }
 
   get hasTasks() {
