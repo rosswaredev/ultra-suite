@@ -61,6 +61,7 @@ export const TaskList = observer(({ list }: TaskListProps) => {
           keyExtractor={(item) => item.id}
           renderItem={renderItem}
           contentInsetAdjustmentBehavior="automatic"
+          dragHitSlop={{ left: -50 }}
           onDragEnd={({ data }) => {
             const newOrder = data.map((item) => item.id);
             taskListPresenter.reorderTasks(newOrder);
