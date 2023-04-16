@@ -4,6 +4,7 @@ import { Pressable } from 'react-native';
 import { Icon, IconName, Text } from 'src/components';
 import { tw } from 'src/theme';
 import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
+import { observer } from 'mobx-react';
 
 const LINKS: TaskHomeLink[] = [
   {
@@ -32,7 +33,7 @@ const LINKS: TaskHomeLink[] = [
   },
 ];
 
-export const TaskHomeLinks = () => {
+export const TaskHomeLinks = observer(() => {
   const taskListPresenter = useTaskListPresenter();
   return (
     <>
@@ -47,7 +48,7 @@ export const TaskHomeLinks = () => {
       ))}
     </>
   );
-};
+});
 
 export type TaskHomeLink = {
   icon: IconName;
