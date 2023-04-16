@@ -60,6 +60,10 @@ export class TaskListPresenter {
       });
   }
 
+  get completed(): TaskViewModel[] {
+    return this.tasks.filter((task) => task.completed);
+  }
+
   get hasTasks() {
     return this.tasks.length > 0;
   }

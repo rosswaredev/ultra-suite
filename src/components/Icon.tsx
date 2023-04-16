@@ -13,6 +13,7 @@ import {
   Inbox,
   ChevronRight,
   Sun,
+  CheckCircle,
 } from 'lucide-react-native';
 
 export const ICONS = {
@@ -30,6 +31,7 @@ export const ICONS = {
   inbox: Inbox,
   'chevron-right': ChevronRight,
   sun: Sun,
+  'check-circle': CheckCircle,
 };
 
 export type IconName = keyof typeof ICONS;

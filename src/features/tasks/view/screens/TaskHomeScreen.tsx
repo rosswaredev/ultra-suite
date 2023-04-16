@@ -44,6 +44,11 @@ const LINKS: TaskHomeLink[] = [
     title: 'Upcoming',
     href: 'tasks/list?list=upcoming',
   },
+  {
+    icon: 'check-circle',
+    title: 'Completed',
+    href: 'tasks/list?list=completed',
+  },
 ];
 
 export const TaskHomeScreen = () => {

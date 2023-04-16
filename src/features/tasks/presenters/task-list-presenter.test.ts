@@ -131,4 +131,18 @@ describe('TaskListPresenter', () => {
       ]);
     });
   });
+
+  describe('completed', () => {
+    it('should return completed tasks', () => {
+      const { taskListPresenter } = setup();
+      const taskId = taskListPresenter.addTask('test task', new Date());
+      taskListPresenter.toggleCompletion(taskId);
+
+      expect(taskListPresenter.completed).toEqual(
+        expect.arrayContaining([
+          expect.objectContaining({ title: 'test task' }),
+        ])
+      );
+    });
+  });
 });
