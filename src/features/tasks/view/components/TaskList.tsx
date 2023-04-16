@@ -30,7 +30,7 @@ type TaskListProps = {
 export const TaskList = observer(({ list }: TaskListProps) => {
   const router = useRouter();
   const taskListPresenter = useTaskListPresenter();
-  const tasks = taskListPresenter[list] ?? taskListPresenter.tasks;
+  const tasks = taskListPresenter[list] ?? taskListPresenter.incompleteTasks;
 
   const handleNewTask = () => router.push('/tasks/new');
   const handlePressTask = (taskId: string) => () =>

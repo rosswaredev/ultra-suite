@@ -88,6 +88,14 @@ describe('TaskListPresenter', () => {
         ])
       );
     });
+
+    it('should not return completed tasks', () => {
+      const { taskListPresenter } = setup();
+      const taskId = taskListPresenter.addTask('test task', null);
+      taskListPresenter.toggleCompletion(taskId);
+
+      expect(taskListPresenter.inbox).toHaveLength(0);
+    });
   });
 
   describe('today', () => {

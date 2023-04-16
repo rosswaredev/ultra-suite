@@ -41,16 +41,22 @@ export class TaskListPresenter {
     }));
   }
 
+  get incompleteTasks(): TaskViewModel[] {
+    return this.tasks.filter((task) => !task.completed);
+  }
+
   get inbox(): TaskViewModel[] {
-    return this.tasks.filter((task) => !task.dueDate);
+    return this.incompleteTasks.filter((task) => !task.dueDate);
   }
 
   get today(): TaskViewModel[] {
-    return this.tasks.filter((task) => isSameDay(task.dueDate, new Date()));
+    return this.incompleteTasks.filter((task) =>
+      isSameDay(task.dueDate, new Date())
+    );
   }
 
   get upcoming(): TaskViewModel[] {
-    return this.tasks
+    return this.incompleteTasks
       .filter((task) => !!task.dueDate)
       .sort((a, b) => {
         if (!a.dueDate || !b.dueDate) {
@@ -65,6 +71,6 @@ export class TaskListPresenter {
   }
 
   get hasTasks() {
-    return this.tasks.length > 0;
+    return this.incompleteTasks.length > 0;
   }
 }
