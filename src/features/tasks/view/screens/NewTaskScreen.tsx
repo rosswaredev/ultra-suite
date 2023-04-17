@@ -6,7 +6,7 @@ import { NewTaskForm } from "../components/NewTaskForm";
 export const NewTaskScreen = () => {
   return (
     <TaskListPresenterProvider>
-      <Stack.Screen options={{ title: "New Task" }} />
+      <Stack.Screen options={{ title: "New Task", headerLargeTitle: false }} />
       <NewTaskForm />
     </TaskListPresenterProvider>
   );
