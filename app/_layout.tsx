@@ -29,7 +29,7 @@ const darkTheme: typeof DefaultTheme = {
 };
 
 export const unstable_settings = {
-  initialRouteName: "(tabs)",
+  initialRouteName: "index",
 };
 
 export default function AppLayout() {
