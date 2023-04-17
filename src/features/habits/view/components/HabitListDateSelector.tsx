@@ -6,7 +6,6 @@ import {
   TouchableOpacity,
   ViewToken,
 } from "react-native";
-import { default as cn } from "classnames";
 import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
 import { observer } from "mobx-react-lite";
 import { useCallback } from "react";

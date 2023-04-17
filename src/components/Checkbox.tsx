@@ -1,4 +1,3 @@
-import { default as cn } from "classnames";
 import { TouchableOpacity, View } from "react-native";
 import { haptics, slop } from "src/utils";
 
@@ -25,12 +24,12 @@ export const Checkbox = ({
     hitSlop={slop.all(20)}
   >
     <View
-      style={tw`${cn(
+      style={tw.style(
         "border-2 rounded-full justify-center items-center",
         size === "md" ? "w-6 h-6" : "w-8 h-8",
         isChecked ? "bg-primary-base" : "bg-base-200",
         isChecked ? "border-primary-base" : "border-primary-base/50"
-      )}`}
+      )}
     >
       {isChecked ? (
         <Check
