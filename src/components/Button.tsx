@@ -31,7 +31,7 @@ export type ButtonProps = {
   title?: string;
   round?: boolean;
   textStyle?: ViewProps["style"];
-} & Pick<PressableProps, "onPress"> &
+} & Pick<PressableProps, "onPress" | "onLongPress"> &
   Pick<ViewProps, "style">;
 
 export const Button = ({
@@ -43,6 +43,7 @@ export const Button = ({
   title,
   round,
   onPress,
+  onLongPress,
 }: ButtonProps) => {
   const { base, text } = BUTTON_VARIANT_STYLES[variant || "default"];
   const styles = StyleSheet.flatten(style);

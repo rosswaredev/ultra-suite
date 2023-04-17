@@ -1,26 +1,21 @@
-import { useRouter } from 'expo-router';
-import { observer } from 'mobx-react';
-import { View } from 'react-native';
-import {
-  AbsolutePosition,
-  Button,
-  ListEmptyState,
-  Separator,
-} from 'src/components';
-import { tw } from 'src/theme';
-import { TaskViewModel } from '../../presenters/task-list-presenter';
-import { useTaskListPresenter } from '../hooks/useTaskListPresenter';
-import { TaskListItem } from './TaskListItem';
+import { useRouter } from "expo-router";
+import { observer } from "mobx-react";
+import { View } from "react-native";
 import DraggableFlatList, {
   RenderItemParams,
   ScaleDecorator,
-} from 'react-native-draggable-flatlist';
-import { FadeIn, FadeOut, Layout, Transition } from 'react-native-reanimated';
+} from "react-native-draggable-flatlist";
+import { FadeIn, FadeOut, Layout } from "react-native-reanimated";
+import { ListEmptyState } from "src/components";
+import { tw } from "src/theme";
+import { TaskViewModel } from "../../presenters/task-list-presenter";
+import { useTaskListPresenter } from "../hooks/useTaskListPresenter";
+import { TaskListItem } from "./TaskListItem";
 
 export const ListType = {
-  inbox: 'inbox',
-  today: 'today',
-  upcoming: 'upcoming',
+  inbox: "inbox",
+  today: "today",
+  upcoming: "upcoming",
 } as const;
 export type ListType = keyof typeof ListType;
 
@@ -33,7 +28,7 @@ export const TaskList = observer(({ list }: TaskListProps) => {
   const taskListPresenter = useTaskListPresenter();
   const tasks = taskListPresenter[list] ?? taskListPresenter.incompleteTasks;
 
-  const handleNewTask = () => router.push('/tasks/new');
+  const handleNewTask = () => router.push("/tasks/new");
   const handlePressTask = (taskId: string) => () =>
     router.push(`/tasks/${taskId}`);
 
@@ -75,11 +70,6 @@ export const TaskList = observer(({ list }: TaskListProps) => {
         />
       ) : (
         <ListEmptyState title="task" icon="check" onPress={handleNewTask} />
-      )}
-      {taskListPresenter.hasTasks && (
-        <AbsolutePosition bottom={16} right={16}>
-          <Button variant="primary" icon="plus" round onPress={handleNewTask} />
-        </AbsolutePosition>
       )}
     </>
   );

@@ -1,6 +1,6 @@
-import { makeAutoObservable } from 'mobx';
-import { TaskStore } from '../task-store';
-import { isSameDay } from 'date-fns';
+import { makeAutoObservable } from "mobx";
+import { TaskStore } from "../task-store";
+import { isSameDay } from "date-fns";
 
 export type TaskViewModel = {
   id: string;

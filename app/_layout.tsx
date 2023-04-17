@@ -1,5 +1,6 @@
 import { Stack } from "expo-router";
 import { useColorScheme } from "react-native";
+import { KeyboardProvider } from "react-native-keyboard-controller";
 import colors from "src/theme/colors.json";
 
 import {
@@ -36,10 +37,12 @@ export default function AppLayout() {
   const scheme = useColorScheme();
   const theme = scheme === "light" ? lightTheme : darkTheme;
   return (
-    <ThemeProvider value={theme}>
-      <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-      </Stack>
-    </ThemeProvider>
+    <KeyboardProvider>
+      <ThemeProvider value={theme}>
+        <Stack>
+          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+        </Stack>
+      </ThemeProvider>
+    </KeyboardProvider>
   );
 }
