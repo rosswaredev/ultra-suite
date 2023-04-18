@@ -1,4 +1,10 @@
-import { View } from "react-native";
-import { tw } from "src/theme";
+import { View } from 'react-native';
+import { tw } from 'src/theme';
 
-export const Separator = () => <View style={tw`h-1`} />;
+type SeparatorProps = {
+  style?: View['props']['style'];
+};
+
+export const Separator = ({ style }: SeparatorProps) => (
+  <View style={[tw`h-px bg-base-200`, style]} />
+);
