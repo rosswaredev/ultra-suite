@@ -1569,6 +1569,76 @@
           "type": "color"
         }
       },
+      "task": {
+        "base": {
+          "value": "{core.colors.teal.400}",
+          "type": "color"
+        },
+        "focus": {
+          "value": "{core.colors.teal.500}",
+          "type": "color"
+        },
+        "content": {
+          "value": "{core.colors.teal.100}",
+          "type": "color"
+        }
+      },
+      "habit": {
+        "base": {
+          "value": "{core.colors.orange.400}",
+          "type": "color"
+        },
+        "focus": {
+          "value": "{core.colors.orange.500}",
+          "type": "color"
+        },
+        "content": {
+          "value": "{core.colors.orange.100}",
+          "type": "color"
+        }
+      },
+      "flow": {
+        "base": {
+          "value": "{core.colors.fuchsia.400}",
+          "type": "color"
+        },
+        "focus": {
+          "value": "{core.colors.fuchsia.500}",
+          "type": "color"
+        },
+        "content": {
+          "value": "{core.colors.fuchsia.100}",
+          "type": "color"
+        }
+      },
+      "routine": {
+        "base": {
+          "value": "{core.colors.yellow.400}",
+          "type": "color"
+        },
+        "focus": {
+          "value": "{core.colors.yellow.500}",
+          "type": "color"
+        },
+        "content": {
+          "value": "{core.colors.yellow.100}",
+          "type": "color"
+        }
+      },
+      "calendar": {
+        "base": {
+          "value": "{core.colors.sky.400}",
+          "type": "color"
+        },
+        "focus": {
+          "value": "{core.colors.sky.500}",
+          "type": "color"
+        },
+        "content": {
+          "value": "{core.colors.sky.100}",
+          "type": "color"
+        }
+      },
       "neutral": {
         "base": {
           "value": "{core.colors.slate.800}",
@@ -1617,6 +1687,10 @@
   },
   "$themes": [],
   "$metadata": {
-    "tokenSetOrder": ["global", "semantic", "components"]
+    "tokenSetOrder": [
+      "global",
+      "semantic",
+      "components"
+    ]
   }
 }

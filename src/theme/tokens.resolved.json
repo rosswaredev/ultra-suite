@@ -22,11 +22,11 @@
     },
     "error": {
       "base": {
-        "value": "#f87171",
+        "value": "#dc2626",
         "type": "color"
       },
       "content": {
-        "value": "#7f1d1d",
+        "value": "#fee2e2",
         "type": "color"
       }
     },
@@ -42,15 +42,15 @@
     },
     "primary": {
       "base": {
-        "value": "#7c3aed",
+        "value": "#2dd4bf",
         "type": "color"
       },
       "focus": {
-        "value": "#6d28d9",
+        "value": "#14b8a6",
         "type": "color"
       },
       "content": {
-        "value": "#ede9fe",
+        "value": "#171717",
         "type": "color"
       }
     },
@@ -79,6 +79,76 @@
       },
       "content": {
         "value": "#ccfbf1",
+        "type": "color"
+      }
+    },
+    "task": {
+      "base": {
+        "value": "#2dd4bf",
+        "type": "color"
+      },
+      "focus": {
+        "value": "#14b8a6",
+        "type": "color"
+      },
+      "content": {
+        "value": "#ccfbf1",
+        "type": "color"
+      }
+    },
+    "habit": {
+      "base": {
+        "value": "#fb923c",
+        "type": "color"
+      },
+      "focus": {
+        "value": "#f97316",
+        "type": "color"
+      },
+      "content": {
+        "value": "#ffedd5",
+        "type": "color"
+      }
+    },
+    "flow": {
+      "base": {
+        "value": "#e879f9",
+        "type": "color"
+      },
+      "focus": {
+        "value": "#d946ef",
+        "type": "color"
+      },
+      "content": {
+        "value": "#fae8ff",
+        "type": "color"
+      }
+    },
+    "routine": {
+      "base": {
+        "value": "#facc15",
+        "type": "color"
+      },
+      "focus": {
+        "value": "#eab308",
+        "type": "color"
+      },
+      "content": {
+        "value": "#fef9c3",
+        "type": "color"
+      }
+    },
+    "calendar": {
+      "base": {
+        "value": "#38bdf8",
+        "type": "color"
+      },
+      "focus": {
+        "value": "#0ea5e9",
+        "type": "color"
+      },
+      "content": {
+        "value": "#e0f2fe",
         "type": "color"
       }
     },
@@ -281,7 +351,7 @@
         "value": "66.666667%",
         "type": "sizing"
       },
-      "1oo4": {
+      "1o4": {
         "value": "25%",
         "type": "sizing"
       },

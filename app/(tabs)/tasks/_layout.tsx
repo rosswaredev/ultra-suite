@@ -1,17 +1,20 @@
 import { Stack } from 'expo-router';
-import colors from 'src/theme/colors.json';
+import { FeatureProvider } from 'src/hooks/useFeature';
+import { tw } from 'src/theme';
 
 export default function TasksLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerShadowVisible: false,
-        headerLargeTitle: true,
-        headerLargeTitleShadowVisible: false,
-        headerStyle: { backgroundColor: colors['base-100'] },
-      }}
-    >
-      <Stack.Screen name="index" options={{ title: 'Tasks' }} />
-    </Stack>
+    <FeatureProvider value="task">
+      <Stack
+        screenOptions={{
+          headerShadowVisible: false,
+          headerLargeTitle: true,
+          headerLargeTitleShadowVisible: false,
+          headerStyle: { backgroundColor: tw.color('base-100') },
+        }}
+      >
+        <Stack.Screen name="index" options={{ title: 'Tasks' }} />
+      </Stack>
+    </FeatureProvider>
   );
 }

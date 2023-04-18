@@ -1,8 +1,9 @@
-import { Pressable, PressableProps, StyleSheet, ViewProps } from "react-native";
-import { tw } from "src/theme";
-import { haptics } from "src/utils/haptics";
-import { Icon, IconName } from "./Icon";
-import { Text } from "./Text";
+import { Pressable, PressableProps, StyleSheet, ViewProps } from 'react-native';
+import { tw } from 'src/theme';
+import { haptics } from 'src/utils/haptics';
+import { Icon, IconName } from './Icon';
+import { Text } from './Text';
+import { useFeature } from 'src/hooks/useFeature';
 
 const BUTTON_VARIANT_STYLES = {
   primary: {
@@ -22,17 +23,17 @@ const BUTTON_VARIANT_STYLES = {
     text: `text-error-base`,
   },
 };
-type ButtonVariants = keyof typeof BUTTON_VARIANT_STYLES;
+type ButtonVariant = keyof typeof BUTTON_VARIANT_STYLES;
 
 export type ButtonProps = {
-  variant?: ButtonVariants;
+  variant?: ButtonVariant;
   icon?: IconName;
   iconColor?: string;
   title?: string;
-  round?: boolean;
-  textStyle?: ViewProps["style"];
-} & Pick<PressableProps, "onPress" | "onLongPress"> &
-  Pick<ViewProps, "style">;
+  isRound?: boolean;
+  textStyle?: ViewProps['style'];
+} & Pick<PressableProps, 'onPress' | 'onLongPress'> &
+  Pick<ViewProps, 'style'>;
 
 export const Button = ({
   style,
@@ -41,13 +42,14 @@ export const Button = ({
   icon,
   iconColor,
   title,
-  round,
+  isRound,
   onPress,
-  onLongPress,
 }: ButtonProps) => {
-  const { base, text } = BUTTON_VARIANT_STYLES[variant || "default"];
+  const feature = useFeature();
+  const { base, text } = BUTTON_VARIANT_STYLES[variant || 'default'];
   const styles = StyleSheet.flatten(style);
   const textStyles = StyleSheet.flatten(textStyle);
+  const defaultIconColor = feature ? `${feature}-base` : text;
 
   return (
     <Pressable
@@ -55,11 +57,12 @@ export const Button = ({
         tw.style(
           base,
           `py-3 pr-7`,
-          "flex-row items-center justify-center",
-          icon ? "pl-6" : "pl-7",
-          !title && "px-3",
-          pressed && "opacity-70",
-          round ? "rounded-full" : "rounded-lg"
+          'flex-row items-center justify-center',
+          icon ? 'pl-6' : 'pl-7',
+          !title && 'px-3',
+          pressed && 'opacity-70',
+          isRound ? 'rounded-full' : 'rounded-lg',
+          feature && `bg-${feature}-base/25`
         ),
         styles,
       ]}
@@ -69,12 +72,19 @@ export const Button = ({
       }}
     >
       {!!icon && (
-        <Icon name={icon} color={tw.color(iconColor ?? text)} size={24} />
+        <Icon
+          name={icon}
+          color={tw.color(iconColor ?? defaultIconColor)}
+          size={24}
+        />
       )}
       {!!title && (
         <Text
           variant="bold"
-          style={[tw.style(text, icon && "ml-3"), textStyles]}
+          style={[
+            tw.style(text, icon && 'ml-3', feature && `text-${feature}-base`),
+            textStyles,
+          ]}
         >
           {title}
         </Text>

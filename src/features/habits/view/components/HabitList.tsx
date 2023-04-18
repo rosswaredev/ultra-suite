@@ -1,16 +1,16 @@
-import { useRouter } from "expo-router";
-import { observer } from "mobx-react";
-import { FlatList, ListRenderItem, View } from "react-native";
+import { useRouter } from 'expo-router';
+import { observer } from 'mobx-react';
+import { FlatList, ListRenderItem, View } from 'react-native';
 import {
   AbsolutePosition,
   Button,
   ListEmptyState,
   Separator,
-} from "src/components";
-import { tw } from "src/theme";
-import { HabitViewModel } from "../../presenters/habit-list-presenter";
-import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
-import { HabitListItem } from "./HabitListItem";
+} from 'src/components';
+import { tw } from 'src/theme';
+import { HabitViewModel } from '../../presenters/habit-list-presenter';
+import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
+import { HabitListItem } from './HabitListItem';
 
 type HabitsListProps = {
   header?: React.ReactElement;
@@ -20,7 +20,7 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
   const router = useRouter();
   const habitListPresenter = useHabitListPresenter();
 
-  const handleNewHabit = () => router.push("/habits/new");
+  const handleNewHabit = () => router.push('/habits/new');
   const handleHabitPress = (id: string) => () => router.push(`/habits/${id}`);
 
   const renderItem: ListRenderItem<HabitViewModel> = ({ item }) => (
@@ -52,7 +52,7 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
           <Button
             variant="primary"
             icon="plus"
-            round
+            isRound
             onPress={handleNewHabit}
           />
         </AbsolutePosition>

@@ -1,17 +1,17 @@
-import { format, isSameDay, sub } from "date-fns";
+import { format, isSameDay, sub } from 'date-fns';
 import {
   View,
   FlatList,
   ListRenderItem,
   TouchableOpacity,
   ViewToken,
-} from "react-native";
-import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
-import { observer } from "mobx-react-lite";
-import { useCallback } from "react";
-import { haptics, slop } from "src/utils";
-import { tw } from "src/theme";
-import { Text } from "src/components";
+} from 'react-native';
+import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
+import { observer } from 'mobx-react-lite';
+import { useCallback } from 'react';
+import { haptics, slop } from 'src/utils';
+import { tw } from 'src/theme';
+import { Text } from 'src/components';
 
 const LAST_30_DAYS = [...Array(30).keys()].map((i) =>
   sub(new Date(), { days: i })
@@ -43,8 +43,8 @@ export const HabitListDateSelector = observer(() => {
     return (
       <TouchableOpacity
         style={tw.style(
-          "bg-base-200 w-11 py-2 rounded-lg border",
-          item.isSelected ? "border-primary-base" : "border border-transparent"
+          'bg-base-200 w-11 py-2 rounded-lg border',
+          item.isSelected ? 'border-habit-base' : 'border border-transparent'
         )}
         onPress={() => {
           haptics.heavy();
@@ -55,17 +55,17 @@ export const HabitListDateSelector = observer(() => {
         <Text
           variant="small"
           style={tw.style(
-            "font-bold text-center",
-            isToday && "text-primary-base"
+            'font-bold text-center',
+            isToday && 'text-habit-base'
           )}
         >
-          {format(item.date, "d")}
+          {format(item.date, 'd')}
         </Text>
         <Text
           variant="small"
-          style={tw.style("text-center", isToday && "text-primary-base")}
+          style={tw.style('text-center', isToday && 'text-habit-base')}
         >
-          {format(item.date, "EEE").toUpperCase()}
+          {format(item.date, 'EEE').toUpperCase()}
         </Text>
       </TouchableOpacity>
     );

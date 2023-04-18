@@ -1,17 +1,19 @@
-import React, { useRef, useState } from "react";
-import { Pressable, TextInputProps } from "react-native";
-import { Text } from "./Text";
-import { TextInput } from "./TextInput";
-import { tw } from "src/theme";
+import React, { useRef, useState } from 'react';
+import { Pressable, TextInputProps } from 'react-native';
+import { Text } from './Text';
+import { TextInput } from './TextInput';
+import { tw } from 'src/theme';
+import { useFeature } from 'src/hooks/useFeature';
 
 export type NumberInput = {
   trailingText: string;
-} & Pick<TextInputProps, "value" | "onChangeText">;
+} & Pick<TextInputProps, 'value' | 'onChangeText'>;
 export const NumberInput = ({
   trailingText,
   value,
   onChangeText,
 }: NumberInput) => {
+  const feature = useFeature();
   const [isFocused, setIsFocused] = useState(false);
   const inputRef = useRef(null);
 
@@ -23,7 +25,7 @@ export const NumberInput = ({
     <Pressable
       style={tw.style(
         `bg-base-200 rounded-lg flex-row flex-1 items-center border border-base-200`,
-        isFocused && "border-primary-base"
+        isFocused && `border-${feature ?? 'primary'}-base`
       )}
       onPress={handlePress}
     >
@@ -33,7 +35,7 @@ export const NumberInput = ({
         keyboardType="number-pad"
         value={value}
         onChangeText={onChangeText}
-        onEndEditing={() => value === "" && onChangeText("1")}
+        onEndEditing={() => value === '' && onChangeText('1')}
         onFocus={handleFocus}
         onBlur={handleBlur}
       />

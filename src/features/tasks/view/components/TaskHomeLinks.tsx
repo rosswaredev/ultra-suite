@@ -38,11 +38,12 @@ export const TaskHomeLinks = observer(() => {
   const taskListPresenter = useTaskListPresenter();
   return (
     <>
-      {LINKS.map(({ icon, title, href, list }) => (
+      {LINKS.map(({ icon, title, href, list }, index) => (
         <Fragment key={`${href}`}>
           <TaskHomeLink
             icon={icon}
             title={title}
+            color={`task-base/${100 - Math.round((index / LINKS.length) * 75)}`}
             href={href}
             count={taskListPresenter[list].length}
             separator
@@ -61,11 +62,13 @@ export type TaskHomeLink = {
 };
 type TaskHomeLinkProps = {
   count?: number;
+  color: string;
   separator?: boolean;
 } & Omit<TaskHomeLink, 'list'>;
 const TaskHomeLink = ({
   icon,
   title,
+  color,
   href,
   count,
   separator,
@@ -80,11 +83,15 @@ const TaskHomeLink = ({
         tw.style(`flex-row items-center px-5 py-3`, pressed && `bg-base-200`)
       }
     >
-      <Icon name={icon} size={16} color={tw.color('base-content')} />
-      <Text variant="bold" style={tw`ml-4 flex-1`}>
+      <Icon name={icon} size={16} color={tw.color(color)} />
+      <Text variant="bold" style={tw`ml-4 flex-1 text-${color}`}>
         {title}
       </Text>
-      {!!count && <Text variant="bold">{count}</Text>}
+      {!!count && (
+        <Text variant="bold" style={tw`text-${color}`}>
+          {count}
+        </Text>
+      )}
       {separator && (
         <Separator
           style={tw`absolute bottom-0 left-5 right-5 h-px bg-base-200`}

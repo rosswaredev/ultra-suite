@@ -1,20 +1,20 @@
 import { Stack } from 'expo-router';
 import { FeatureProvider } from 'src/hooks/useFeature';
 import { tw } from 'src/theme';
-import colors from 'src/theme/colors.json';
 
-export default function HabitsLayout() {
+export default function TasksLayout() {
   return (
-    <FeatureProvider value="habit">
+    <FeatureProvider value="calendar">
       <Stack
         screenOptions={{
+          headerShadowVisible: false,
           headerLargeTitle: true,
           headerLargeTitleShadowVisible: false,
-          headerShadowVisible: false,
-          headerStyle: { backgroundColor: colors['base-100'] },
-          headerTintColor: tw.color(`habit-base`),
+          headerStyle: { backgroundColor: tw.color('base-100') },
         }}
-      />
+      >
+        <Stack.Screen name="index" options={{ title: 'Calendar' }} />
+      </Stack>
     </FeatureProvider>
   );
 }
