@@ -4,7 +4,12 @@ import { ScrollView } from "react-native";
 import { Button, Text } from "src/components";
 import { notifications } from "src/init";
 
-export default observer(function NotificationsScreen() {
+export default function NotificationsScreen() {
+  return <NotificationsView />;
+}
+
+const NotificationsView = observer(() => {
+  console.log(notifications.isRegistered);
   const enableNotificationsIcon = notifications.isRegistered
     ? "bell"
     : "bell-off";
@@ -12,7 +17,6 @@ export default observer(function NotificationsScreen() {
   const handleEnableNotificationsPress = () => {
     notifications.register();
   };
-
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic">
       <Stack.Screen options={{ title: "Notifications" }} />

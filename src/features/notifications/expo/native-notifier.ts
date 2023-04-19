@@ -7,11 +7,17 @@ import {
 } from "../notifications";
 import * as Notifications from "expo-notifications";
 import * as Device from "expo-device";
+import { makeAutoObservable } from "mobx";
 
 export class NativeNotifier implements Notifier {
   private registered = false;
 
+  constructor() {
+    makeAutoObservable(this);
+  }
+
   setRegistered() {
+    console.log("set registered");
     this.registered = true;
   }
 
@@ -27,7 +33,7 @@ export class NativeNotifier implements Notifier {
 
     if (!Device.isDevice) {
       alert("Must use physical device for Push Notifications");
-
+      this.setRegistered();
       return undefined;
     }
 
