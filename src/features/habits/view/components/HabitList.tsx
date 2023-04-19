@@ -1,16 +1,11 @@
-import { useRouter } from 'expo-router';
-import { observer } from 'mobx-react';
-import { FlatList, ListRenderItem, View } from 'react-native';
-import {
-  AbsolutePosition,
-  Button,
-  ListEmptyState,
-  Separator,
-} from 'src/components';
-import { tw } from 'src/theme';
-import { HabitViewModel } from '../../presenters/habit-list-presenter';
-import { useHabitListPresenter } from '../hooks/useHabitsListPresenter';
-import { HabitListItem } from './HabitListItem';
+import { useRouter } from "expo-router";
+import { observer } from "mobx-react";
+import { FlatList, ListRenderItem, View } from "react-native";
+import { AbsolutePosition, Button, ListEmptyState } from "src/components";
+import { tw } from "src/theme";
+import { HabitViewModel } from "../../presenters/habit-list-presenter";
+import { useHabitListPresenter } from "../hooks/useHabitsListPresenter";
+import { HabitListItem } from "./HabitListItem";
 
 type HabitsListProps = {
   header?: React.ReactElement;
@@ -20,11 +15,11 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
   const router = useRouter();
   const habitListPresenter = useHabitListPresenter();
 
-  const handleNewHabit = () => router.push('/habits/new');
+  const handleNewHabit = () => router.push("/habits/new");
   const handleHabitPress = (id: string) => () => router.push(`/habits/${id}`);
 
   const renderItem: ListRenderItem<HabitViewModel> = ({ item }) => (
-    <View style={tw`px-4`}>
+    <View style={tw`px-4 py-px`}>
       <HabitListItem item={item} onPress={handleHabitPress(item.id)} />
     </View>
   );
@@ -45,7 +40,6 @@ export const HabitsList = observer(({ header }: HabitsListProps) => {
             onPress={handleNewHabit}
           />
         }
-        ItemSeparatorComponent={Separator}
       />
       {habitListPresenter.hasHabits && (
         <AbsolutePosition bottom={16} right={16}>
