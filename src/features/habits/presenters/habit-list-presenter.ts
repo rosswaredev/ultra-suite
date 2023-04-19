@@ -1,6 +1,6 @@
-import { differenceInDays, isSameDay } from 'date-fns';
-import { makeAutoObservable } from 'mobx';
-import { HabitStore } from '../habit-store';
+import { differenceInDays, isSameDay } from "date-fns";
+import { makeAutoObservable } from "mobx";
+import { HabitStore } from "../habit-store";
 
 export type HabitViewModel = {
   id: string;
@@ -30,7 +30,6 @@ export class HabitListPresenter {
   }
 
   toggleCompletedForSelectedDate(habitId: string) {
-    console.log(this.selectedDate);
     this.habitStore.toggleHabitCompletedForSelectedDate(
       habitId,
       new Date(this.selectedDate)
@@ -53,7 +52,6 @@ export class HabitListPresenter {
       const { previousScore: score, previousCompletionDate } =
         sortedCompletionsForHabit.reduce(
           ({ previousScore, previousCompletionDate }, completion) => {
-            console.log(previousCompletionDate);
             if (previousCompletionDate === null) {
               return {
                 previousScore: 1 - multiplier,
