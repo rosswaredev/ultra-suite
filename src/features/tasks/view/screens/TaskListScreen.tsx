@@ -82,6 +82,7 @@ const AddTaskInput = () => {
           onPress={handleQuickAdd}
           onLongPress={handleAddTask}
           style={({ pressed }) => tw.style(pressed && `opacity-75`)}
+          testID="add-task-button"
         >
           <View style={tw`flex-row rounded-lg bg-base-200 px-4 py-3`}>
             <Icon name="plus" size={24} color={tw.color("primary-base")} />

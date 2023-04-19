@@ -1,0 +1,1 @@
+maestro test $1

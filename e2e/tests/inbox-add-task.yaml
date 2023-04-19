@@ -1,0 +1,15 @@
+# flow.yaml
+
+appId: com.rosswaredev.ultrasuite
+---
+- openLink: ultrasuite://tasks
+- tapOn:
+    id: task-home-link-inbox
+- tapOn:
+    # id: add-task-button
+    point: "50%, 85%"
+- inputText: Buy some milk
+- tapOn: return
+- tapOn:
+    point: "50%, 50%"
+- assertVisible: Buy some milk

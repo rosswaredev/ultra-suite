@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "expo start",
+    "start": "npx expo start --dev-client",
     "android": "expo start --android",
     "ios": "npx expo start --dev-client --ios",
     "ios:install": "eas build:run -p ios --latest",
@@ -26,7 +26,9 @@
     "update:preview:ios": "eas update --branch preview --platform ios --non-interactive --message",
     "ui": "yarn ladle serve",
     "icon": "npx remotion still ./app-icon/index.ts app-icon ./assets/icon.png",
-    "icon:preview": "npx remotion preview ./app-icon/index.ts"
+    "icon:preview": "npx remotion preview ./app-icon/index.ts",
+    "maestro:install": "curl -Ls \"https://get.maestro.mobile.dev\" | bash",
+    "e2e": "./scripts/run-test.sh"
   },
   "dependencies": {
     "@expo/config-plugins": "~6.0.0",
@@ -67,6 +69,7 @@
     "react-native-draggable-flatlist": "^4.0.1",
     "react-native-gesture-handler": "~2.9.0",
     "react-native-get-random-values": "^1.8.0",
+    "react-native-is-maestro": "^2.0.0",
     "react-native-keyboard-controller": "^1.5.1",
     "react-native-reanimated": "~2.14.4",
     "react-native-safe-area-context": "4.5.0",
