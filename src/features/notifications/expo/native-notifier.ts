@@ -11,6 +11,10 @@ import * as Device from "expo-device";
 export class NativeNotifier implements Notifier {
   private registered = false;
 
+  setRegistered() {
+    this.registered = true;
+  }
+
   async register(): Promise<string> {
     if (Platform.OS === "android") {
       await Notifications.setNotificationChannelAsync("default", {
@@ -23,6 +27,7 @@ export class NativeNotifier implements Notifier {
 
     if (!Device.isDevice) {
       alert("Must use physical device for Push Notifications");
+
       return undefined;
     }
 
@@ -32,7 +37,7 @@ export class NativeNotifier implements Notifier {
     if (existingStatus !== "granted") {
       const { status } = await Notifications.requestPermissionsAsync();
       finalStatus = status;
-      this.registered = true;
+      this.setRegistered();
     }
     if (finalStatus !== "granted") {
       alert("Failed to get push token for push notification!");
