@@ -52,7 +52,6 @@ const AddTaskInput = () => {
 
   const { progress, height } = useReanimatedKeyboardAnimation();
   const animatedInputStyle = useAnimatedStyle(() => {
-    console.log(height.value);
     return {
       opacity: progress.value,
       transform: [

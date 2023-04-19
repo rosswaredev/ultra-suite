@@ -3,6 +3,11 @@
 appId: com.rosswaredev.ultrasuite
 ---
 - openLink: ultrasuite://tasks
+- runFlow:
+    file: ../flows/open.yaml
+    when:
+      notVisible: Tasks
+    
 - tapOn:
     id: task-home-link-inbox
 - tapOn:

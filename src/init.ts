@@ -19,7 +19,7 @@ const habitStore = new HabitStore({});
 export const rootStore = new RootStore({ taskStore, habitStore });
 const eventLog = new EventLog({});
 
-// console.log({ isMaestro: isMaestro() });
-
-// persistActions(rootStore, eventLog, new PocketBasePersister());
-// loadActions(rootStore, eventLog, new PocketBaseLoader());
+if (!isMaestro()) {
+  persistActions(rootStore, eventLog, new PocketBasePersister());
+  loadActions(rootStore, eventLog, new PocketBaseLoader());
+}
