@@ -7,11 +7,11 @@ import { tw } from "src/theme";
 import { useHabitDetailPresenter } from "../hooks/useHabitDetailPresenter";
 import { HabitCriteriaRow } from "../components/HabitCriteriaRow";
 import { HabitDetailHeader } from "../components/HabitDetailHeader";
-import { useParam } from "src/hooks/useParam";
+import { useLocalParam } from "src/hooks/useLocalParam";
 
 export const HabitDetailScreen = observer(() => {
   const router = useRouter();
-  const habitId = useParam("habitId");
+  const habitId = useLocalParam("habitId");
   const habit = useHabitDetailPresenter(habitId);
   const [habitTitle, setHabitTitle] = useState(habit.title);
   const [targetCountInput, setTargetCountInput] = useState(

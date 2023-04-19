@@ -1,7 +1,7 @@
-import { useSearchParams } from "expo-router";
+import { useLocalSearchParams } from "expo-router";
 
-export const useParam = (key: string) => {
-  const params = useSearchParams();
+export const useLocalParam = (key: string) => {
+  const params = useLocalSearchParams();
   const param = params[key];
   const id =
     typeof param !== "string" && param && param[0]
