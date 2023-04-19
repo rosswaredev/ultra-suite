@@ -15,25 +15,29 @@ import {
   Sun,
   CheckCircle,
   ArrowUp,
-} from 'lucide-react-native';
+  Bell,
+  BellOff,
+} from "lucide-react-native";
 
 export const ICONS = {
   plus: Plus,
   check: Check,
   delete: Trash,
-  'trending-up': TrendingUp,
-  'list-video': ListVideo,
+  "trending-up": TrendingUp,
+  "list-video": ListVideo,
   calendar: Calendar,
   settings: Settings,
   star: Star,
   award: Award,
-  'calendar-plus': CalendarPlus,
+  "calendar-plus": CalendarPlus,
   x: X,
   inbox: Inbox,
-  'chevron-right': ChevronRight,
+  "chevron-right": ChevronRight,
   sun: Sun,
-  'check-circle': CheckCircle,
-  'arrow-up': ArrowUp,
+  "check-circle": CheckCircle,
+  "arrow-up": ArrowUp,
+  bell: Bell,
+  "bell-off": BellOff,
 };
 
 export type IconName = keyof typeof ICONS;

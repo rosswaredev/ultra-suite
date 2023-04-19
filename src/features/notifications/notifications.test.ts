@@ -1,66 +1,46 @@
 import { nanoid } from "nanoid";
+import {
+  Notifier,
+  Notifications,
+  AppNotificationId,
+  AppNotificationRequest,
+  PushToken,
+  AppNotification,
+} from "./notifications";
+import { makeAutoObservable } from "mobx";
 
-type PushToken = string;
-type NotificationId = string;
+export class TestNotifier implements Notifier {
+  private notifications: AppNotification[] = [];
+  private registered = false;
 
-type PushNotification = {
-  id: NotificationId;
-  title?: string;
-  body?: string;
-};
-type PushNotificationInput = Omit<PushNotification, "id">;
-
-interface Notifier {
-  register: () => Promise<PushToken>;
-  allNotifications: () => Promise<PushNotification[]>;
-  scheduleNotification: (
-    notification: PushNotificationInput
-  ) => Promise<NotificationId>;
-  cancelNotification: (notificationId: NotificationId) => Promise<void>;
-}
-
-class TestNotifier implements Notifier {
-  private notifications: PushNotification[] = [];
+  constructor() {
+    makeAutoObservable(this);
+  }
 
   async register(): Promise<PushToken> {
+    this.registered = true;
     return Promise.resolve("test-token");
   }
 
-  async scheduleNotification(notification: PushNotificationInput) {
+  get isRegistered(): boolean {
+    return this.registered;
+  }
+
+  async scheduleNotification(notification: AppNotificationRequest) {
     const id = nanoid();
     this.notifications.push({ id, ...notification });
     return Promise.resolve(id);
   }
 
-  async cancelNotification(notificationId: NotificationId) {
+  async cancelNotification(notificationId: AppNotificationId) {
     this.notifications = this.notifications.filter(
       (notification) => notification.id !== notificationId
     );
     return Promise.resolve();
   }
 
-  async allNotifications(): Promise<PushNotification[]> {
+  async allNotifications(): Promise<AppNotification[]> {
     return Promise.resolve(this.notifications);
-  }
-}
-
-class Notifications {
-  constructor(private notifier: Notifier) {}
-
-  async register(): Promise<PushToken> {
-    return this.notifier.register();
-  }
-
-  async allNotifications(): Promise<PushNotification[]> {
-    return this.notifier.allNotifications();
-  }
-
-  async scheduleNotification(notification: PushNotificationInput) {
-    return this.notifier.scheduleNotification(notification);
-  }
-
-  async cancelNotification(notificationId: NotificationId) {
-    return this.notifier.cancelNotification(notificationId);
   }
 }
 
@@ -72,16 +52,33 @@ const setup = () => {
 };
 
 describe("Notifier", () => {
+  it("should not be registered by default", async () => {
+    const { notifications } = setup();
+
+    expect(notifications.isRegistered).toBe(false);
+  });
+
   it("should register for push notifications", async () => {
     const { notifications } = setup();
 
-    expect(notifications.register()).resolves.toBe("test-token");
+    const token = await notifications.register();
+
+    expect(token).toBe("test-token");
+  });
+
+  it("should inidicate when registered for push notifications", async () => {
+    const { notifications } = setup();
+    await notifications.register();
+
+    expect(notifications.isRegistered).toBe(true);
   });
 
   it("should return no notifications", async () => {
     const { notifications } = setup();
 
-    expect(notifications.allNotifications()).resolves.toEqual([]);
+    const allNotifications = await notifications.allNotifications();
+
+    expect(allNotifications).toEqual([]);
   });
 
   it("should add a notification", async () => {
