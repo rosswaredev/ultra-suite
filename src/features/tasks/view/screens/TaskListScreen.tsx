@@ -30,7 +30,7 @@ export const TaskListScreen = () => {
       {/* <KeyboardGestureArea interpolator="ios"> */}
       <TaskList list={list} />
       {/* </KeyboardGestureArea> */}
-      {/* <AddTaskInput /> */}
+      <AddTaskInput />
       {/* </View> */}
     </TaskListPresenterProvider>
   );
@@ -64,23 +64,25 @@ const AddTaskInput = () => {
       ],
     };
   });
-  const animatedButtonStyle = useAnimatedStyle(() => {
-    return {
-      opacity: 1 - progress.value,
-      transform: [
-        {
-          translateY: interpolate(height.value, [0, -336], [0, 50]),
-        },
-      ],
-    };
-  });
+  // const animatedButtonStyle = useAnimatedStyle(() => {
+  //   return {
+  //     opacity: 1 - progress.value,
+  //     transform: [
+  //       {
+  //         translateY: interpolate(height.value, [0, -336], [0, 50]),
+  //       },
+  //     ],
+  //   };
+  // });
 
   return (
     <View>
-      <Animated.View
-        style={[animatedButtonStyle, tw`absolute bottom-0 right-0 left-0 p-4`]}
-      >
-        <Pressable onPress={handleQuickAdd} onLongPress={handleAddTask}>
+      <Animated.View style={[tw`absolute bottom-0 right-0 left-0 p-4`]}>
+        <Pressable
+          onPress={handleQuickAdd}
+          onLongPress={handleAddTask}
+          style={({ pressed }) => tw.style(pressed && `opacity-75`)}
+        >
           <View style={tw`flex-row rounded-lg bg-base-200 px-4 py-3`}>
             <Icon name="plus" size={24} color={tw.color("primary-base")} />
             <Text style={tw`text-primary-base ml-3`}>Add a Task</Text>
