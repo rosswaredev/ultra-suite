@@ -1,13 +1,19 @@
 import { Stack } from "expo-router";
-import { useColorScheme } from "react-native";
+import { View, useColorScheme, StyleSheet } from "react-native";
 import { KeyboardProvider } from "react-native-keyboard-controller";
 import colors from "src/theme/colors.json";
+import { Text } from "src/components";
 
 import {
   DarkTheme,
   DefaultTheme,
   ThemeProvider,
 } from "@react-navigation/native";
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from "@gorhom/bottom-sheet";
+import { useRef, useMemo, useCallback } from "react";
 
 const lightTheme: typeof DefaultTheme = {
   ...DefaultTheme,
@@ -36,13 +42,18 @@ export const unstable_settings = {
 export default function AppLayout() {
   const scheme = useColorScheme();
   const theme = scheme === "light" ? lightTheme : darkTheme;
+
   return (
-    <KeyboardProvider>
-      <ThemeProvider value={theme}>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        </Stack>
-      </ThemeProvider>
-    </KeyboardProvider>
+    <>
+      <BottomSheetModalProvider>
+        <KeyboardProvider>
+          <ThemeProvider value={theme}>
+            <Stack>
+              <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            </Stack>
+          </ThemeProvider>
+        </KeyboardProvider>
+      </BottomSheetModalProvider>
+    </>
   );
 }

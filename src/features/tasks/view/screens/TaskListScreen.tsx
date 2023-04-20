@@ -1,12 +1,13 @@
 import { Stack, useRouter } from "expo-router";
-import { useRef, useState } from "react";
-import { Pressable, TextInput, View } from "react-native";
+import React, { useCallback, useMemo, useRef, useState } from "react";
+import { Pressable, TextInput, View, StyleSheet, Keyboard } from "react-native";
 import {
   KeyboardGestureArea,
   useReanimatedKeyboardAnimation,
 } from "react-native-keyboard-controller";
 import Animated, {
   interpolate,
+  onChange,
   useAnimatedStyle,
 } from "react-native-reanimated";
 import { AbsolutePosition, Button, Icon, Text } from "src/components";
@@ -19,6 +20,12 @@ import {
   useTaskListPresenter,
 } from "../hooks/useTaskListPresenter";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
+import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
+import { BlurView } from "expo-blur";
+import { useFeature } from "src/hooks/useFeature";
+import DateTimePicker, {
+  DateTimePickerEvent,
+} from "@react-native-community/datetimepicker";
 
 export const TaskListScreen = () => {
   const list = (useLocalParam("list") as ListType) ?? ListType.inbox;
@@ -37,6 +44,7 @@ export const TaskListScreen = () => {
 };
 
 const AddTaskInput = () => {
+  const feature = useFeature();
   const router = useRouter();
   const quickAddTextInputRef = useRef(null);
   const [quickAddText, setQuickAddText] = useState("");
@@ -63,16 +71,31 @@ const AddTaskInput = () => {
       ],
     };
   });
-  // const animatedButtonStyle = useAnimatedStyle(() => {
-  //   return {
-  //     opacity: 1 - progress.value,
-  //     transform: [
-  //       {
-  //         translateY: interpolate(height.value, [0, -336], [0, 50]),
-  //       },
-  //     ],
-  //   };
-  // });
+
+  const bottomSheetModalRef = useRef<BottomSheetModal>(null);
+
+  // variables
+  const snapPoints = useMemo(() => ["50%"], []);
+
+  // callbacks
+  const handlePresentModalPress = useCallback(() => {
+    Keyboard.dismiss();
+    bottomSheetModalRef.current?.present();
+  }, []);
+  const handleSheetChanges = useCallback((index: number) => {
+    console.log("handleSheetChanges", index);
+  }, []);
+
+  const renderBackdrop = useCallback(
+    (props) => (
+      <BottomSheetBackdrop
+        {...props}
+        appearsOnIndex={0}
+        disappearsOnIndex={-1}
+      />
+    ),
+    []
+  );
 
   return (
     <View>
@@ -80,7 +103,16 @@ const AddTaskInput = () => {
         <Pressable
           onPress={handleQuickAdd}
           onLongPress={handleAddTask}
-          style={({ pressed }) => tw.style(pressed && `opacity-75`)}
+          style={({ pressed }) => [
+            tw.style(pressed && `opacity-75`),
+
+            {
+              shadowColor: "#000",
+              shadowOffset: { width: 0, height: 0 },
+              shadowOpacity: 0.25,
+              shadowRadius: 4,
+            },
+          ]}
           testID="add-task-button"
         >
           <View style={tw`flex-row rounded-lg bg-base-200 px-4 py-3`}>
@@ -90,11 +122,18 @@ const AddTaskInput = () => {
         </Pressable>
       </Animated.View>
       <Animated.View
-        style={[animatedInputStyle, tw`absolute bottom-0 right-0 left-0`]}
+        style={[
+          animatedInputStyle,
+          tw`absolute bottom-0 right-0 left-0 bg-base-200 rounded-t-xl`,
+          {
+            shadowColor: "#000",
+            shadowOffset: { width: 0, height: -8 },
+            shadowOpacity: 0.25,
+            shadowRadius: 4,
+          },
+        ]}
       >
-        <View
-          style={[tw`flex-row items-center bg-base-200 pl-7 pr-2 rounded-t-xl`]}
-        >
+        <View style={[tw`flex-row items-center  pl-7 pr-2 `]}>
           <View
             style={tw`w-6 h-6 rounded-full border-2 border-primary-base/50`}
           />
@@ -108,7 +147,55 @@ const AddTaskInput = () => {
             blurOnSubmit={false}
           />
         </View>
+        <View>
+          <Button
+            icon="bell"
+            variant="ghost"
+            iconColor="base-400"
+            onPress={handlePresentModalPress}
+          />
+        </View>
       </Animated.View>
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={0}
+        snapPoints={snapPoints}
+        onChange={handleSheetChanges}
+        backgroundStyle={tw`bg-base-300`}
+        handleIndicatorStyle={tw`bg-base-content`}
+        backdropComponent={renderBackdrop}
+        // style={{
+        //   shadowColor: "#000",
+        //   shadowOffset: {
+        //     width: 0,
+        //     height: -8,
+        //   },
+        //   shadowOpacity: 0.25,
+        //   shadowRadius: 4,
+        // }}
+      >
+        <View style={tw`h-full`}>
+          <DateTimePicker
+            value={new Date()}
+            mode="date"
+            display="inline"
+            accentColor={tw.color(`${feature}-focus`)}
+          />
+        </View>
+      </BottomSheetModal>
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    padding: 24,
+    justifyContent: "center",
+    backgroundColor: "grey",
+  },
+  contentContainer: {
+    flex: 1,
+    alignItems: "center",
+  },
+});
