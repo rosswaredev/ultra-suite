@@ -1,27 +1,27 @@
-import { Stack, useRouter } from "expo-router";
-import { observer } from "mobx-react";
-import { useState } from "react";
-import { ScrollView, View } from "react-native";
-import { Button } from "src/components/Button";
-import { useLocalParam } from "src/hooks/useLocalParam";
-import { tw } from "src/theme";
-import { TaskDetailHeader } from "../components/TaskDetailHeader";
-import { useTaskDetailPresenter } from "../hooks/useTaskDetailPresenter";
-import { DateInputSheet, Space } from "src/components";
-import { InputRow } from "src/components/InputRow";
-import { format } from "date-fns";
+import { Stack, useRouter } from 'expo-router';
+import { observer } from 'mobx-react';
+import { useState } from 'react';
+import { ScrollView, View } from 'react-native';
+import { Button } from 'src/components/Button';
+import { useLocalParam } from 'src/hooks/useLocalParam';
+import { tw } from 'src/theme';
+import { TaskDetailHeader } from '../components/TaskDetailHeader';
+import { useTaskDetailPresenter } from '../hooks/useTaskDetailPresenter';
+import { DateInputSheet, Space } from 'src/components';
+import { InputRow } from 'src/components/InputRow';
+import { format } from 'date-fns';
 
 export const TaskDetailScreen = observer(() => {
   const router = useRouter();
-  const taskId = useLocalParam("taskId");
+  const taskId = useLocalParam('taskId');
   const task = useTaskDetailPresenter(taskId);
   const [taskTitle, setTaskTitle] = useState(task.title);
   const [isShowingDateInputSheet, setIsShowingDateInputSheet] = useState(false);
 
-  const dueDateInputRowIcon = task.dueDate ? "calendar" : "calendar-plus";
+  const dueDateInputRowIcon = task.dueDate ? 'calendar' : 'calendar-plus';
   const dueDateInputRowTitle = task.dueDate
-    ? `Due ${format(task.dueDate, "EEE, d MMM")}`
-    : "Add Due Date";
+    ? `Due ${format(task.dueDate, 'EEE, d MMM')}`
+    : 'Add Due Date';
 
   const handleChangeTitle = (title: string) => setTaskTitle(title);
   const handleSubmitTitle = () => task.updateTitle(taskTitle);
@@ -42,14 +42,12 @@ export const TaskDetailScreen = observer(() => {
     <>
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
-        style={tw`bg-base-200`}
         contentContainerStyle={tw`flex-1`}
       >
         <Stack.Screen
           options={{
             headerLargeTitle: false,
-            title: "",
-            headerStyle: tw`bg-base-200`,
+            title: '',
           }}
         />
         <TaskDetailHeader
