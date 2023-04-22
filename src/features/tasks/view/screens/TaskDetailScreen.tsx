@@ -40,23 +40,20 @@ export const TaskDetailScreen = observer(() => {
 
   return (
     <>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
-        contentContainerStyle={tw`flex-1`}
-      >
-        <Stack.Screen
-          options={{
-            headerLargeTitle: false,
-            title: '',
-          }}
-        />
-        <TaskDetailHeader
-          title={taskTitle}
-          completed={task.completed}
-          onToggleCompletion={task.toggleCompletion}
-          onChangeTitle={handleChangeTitle}
-          onSubmitTitle={handleSubmitTitle}
-        />
+      <Stack.Screen
+        options={{
+          headerLargeTitle: false,
+          title: '',
+        }}
+      />
+      <TaskDetailHeader
+        title={taskTitle}
+        completed={task.completed}
+        onToggleCompletion={task.toggleCompletion}
+        onChangeTitle={handleChangeTitle}
+        onSubmitTitle={handleSubmitTitle}
+      />
+      <ScrollView contentContainerStyle={tw`flex-1`}>
         <InputRow
           icon={dueDateInputRowIcon}
           title={dueDateInputRowTitle}
