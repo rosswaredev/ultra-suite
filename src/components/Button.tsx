@@ -50,6 +50,7 @@ export const Button = ({
   const styles = StyleSheet.flatten(style);
   const textStyles = StyleSheet.flatten(textStyle);
   const defaultIconColor = feature ? `${feature}-base` : text;
+  const isGhost = variant === "ghost";
 
   return (
     <Pressable
@@ -60,15 +61,15 @@ export const Button = ({
           "flex-row items-center justify-center",
           icon ? "pl-6" : "pl-7",
           !title && "px-3",
-          pressed && "opacity-70",
           isRound ? "rounded-full" : "rounded-lg",
-          feature && variant !== "ghost" && `bg-${feature}-base/25`
+          feature && !isGhost && `bg-${feature}-base/25`,
+          pressed && "opacity-70"
         ),
         styles,
       ]}
       onPress={(event) => {
         if (onPress) haptics.medium();
-        onPress?.(event);
+        onPress?.();
       }}
     >
       {!!icon && (

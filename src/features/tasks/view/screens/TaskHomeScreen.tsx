@@ -4,8 +4,19 @@ import { TaskHomeLinks } from "../components/TaskHomeLinks";
 import { TaskListPresenterProvider } from "../hooks/useTaskListPresenter";
 import { ContextMenuButton } from "react-native-ios-context-menu";
 import { Button } from "src/components";
+import {
+  DueDateBottomSheetStack,
+  DueDateBottomSheetStackHandle,
+} from "src/components/DueDateBottomSheetStack";
+import { useRef } from "react";
 
 export const TaskHomeScreen = () => {
+  const dueDateSheetRef = useRef<DueDateBottomSheetStackHandle>(null);
+
+  const handleShowDateSheet = () => {
+    dueDateSheetRef.current.show();
+  };
+
   return (
     <ScrollView contentInsetAdjustmentBehavior="automatic" style={tw`py-4`}>
       <TaskListPresenterProvider>
@@ -39,6 +50,11 @@ export const TaskHomeScreen = () => {
         >
           <Button icon="award" title="Menu" style={tw`m-6`} />
         </ContextMenuButton>
+        <Button title="Date" onPress={handleShowDateSheet} />
+        <DueDateBottomSheetStack
+          ref={dueDateSheetRef}
+          onDate={(d) => console.log(d)}
+        />
       </TaskListPresenterProvider>
     </ScrollView>
   );
