@@ -6,6 +6,7 @@ import {
   useReanimatedKeyboardAnimation,
 } from "react-native-keyboard-controller";
 import Animated, {
+  Easing,
   interpolate,
   onChange,
   useAnimatedStyle,
@@ -20,7 +21,12 @@ import {
   useTaskListPresenter,
 } from "../hooks/useTaskListPresenter";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
-import { BottomSheetBackdrop, BottomSheetModal } from "@gorhom/bottom-sheet";
+import {
+  BottomSheetBackdrop,
+  BottomSheetModal,
+  useBottomSheetSpringConfigs,
+  useBottomSheetTimingConfigs,
+} from "@gorhom/bottom-sheet";
 import { BlurView } from "expo-blur";
 import { useFeature } from "src/hooks/useFeature";
 import DateTimePicker, {
@@ -47,12 +53,16 @@ const AddTaskInput = () => {
   const feature = useFeature();
   const router = useRouter();
   const quickAddTextInputRef = useRef(null);
+  const [isQuickAdding, setIsQuickAdding] = useState(false);
   const [quickAddText, setQuickAddText] = useState("");
   const taskListPresenter = useTaskListPresenter();
   const bottomTabBarHeight = useBottomTabBarHeight();
 
   const handleAddTask = () => router.push("/tasks/new");
-  const handleQuickAdd = () => quickAddTextInputRef.current.focus();
+  const handleQuickAdd = () => {
+    setIsQuickAdding(true);
+    quickAddTextInputRef.current.focus();
+  };
   const handleSubmitTask = () => {
     taskListPresenter.addTask(quickAddText, null);
     setQuickAddText("");
@@ -86,6 +96,8 @@ const AddTaskInput = () => {
     console.log("handleSheetChanges", index);
   }, []);
 
+  const handleDateSheetDismiss = () => isQuickAdding && handleQuickAdd();
+
   const renderBackdrop = useCallback(
     (props) => (
       <BottomSheetBackdrop
@@ -96,6 +108,19 @@ const AddTaskInput = () => {
     ),
     []
   );
+
+  // const animationConfigs = useBottomSheetTimingConfigs({
+  //   duration: 250,
+  //   easing: Easing.inOut(Easing.ease),
+  // });
+
+  const animationConfigs = useBottomSheetSpringConfigs({
+    damping: 80,
+    overshootClamping: true,
+    restDisplacementThreshold: 0.1,
+    restSpeedThreshold: 0.1,
+    stiffness: 800,
+  });
 
   return (
     <View>
@@ -161,9 +186,11 @@ const AddTaskInput = () => {
         index={0}
         snapPoints={snapPoints}
         onChange={handleSheetChanges}
-        backgroundStyle={tw`bg-base-300`}
+        backgroundStyle={tw`bg-base-200`}
         handleIndicatorStyle={tw`bg-base-content`}
         backdropComponent={renderBackdrop}
+        onDismiss={handleDateSheetDismiss}
+        animationConfigs={animationConfigs}
         // style={{
         //   shadowColor: "#000",
         //   shadowOffset: {
