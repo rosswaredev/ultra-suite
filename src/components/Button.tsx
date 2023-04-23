@@ -32,8 +32,8 @@ export type ButtonProps = {
   title?: string;
   isRound?: boolean;
   textStyle?: ViewProps["style"];
-} & Pick<PressableProps, "onPress" | "onLongPress"> &
-  Pick<ViewProps, "style">;
+  onPress?: () => void;
+} & Pick<ViewProps, "style">;
 
 export const Button = ({
   style,
