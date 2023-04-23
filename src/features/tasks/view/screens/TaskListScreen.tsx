@@ -96,7 +96,9 @@ const AddTaskInput = () => {
     console.log("handleSheetChanges", index);
   }, []);
 
-  const handleDateSheetDismiss = () => isQuickAdding && handleQuickAdd();
+  const handleDateSheetAnimate = (_: number, toIndex: number) => {
+    if (toIndex === -1) handleQuickAdd();
+  };
 
   const renderBackdrop = useCallback(
     (props) => (
@@ -104,6 +106,7 @@ const AddTaskInput = () => {
         {...props}
         appearsOnIndex={0}
         disappearsOnIndex={-1}
+        opacity={0}
       />
     ),
     []
@@ -189,7 +192,7 @@ const AddTaskInput = () => {
         backgroundStyle={tw`bg-base-200`}
         handleIndicatorStyle={tw`bg-base-content`}
         backdropComponent={renderBackdrop}
-        onDismiss={handleDateSheetDismiss}
+        onAnimate={handleDateSheetAnimate}
         animationConfigs={animationConfigs}
         // style={{
         //   shadowColor: "#000",
